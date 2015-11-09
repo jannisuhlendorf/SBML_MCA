@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3">
+  <model id="model">
+    <listOfCompartments>
+      <compartment id="GO_0005623" size="1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:obo.go:GO%3A0005623"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="Ex1_GO_0005623" name="Ex1" compartment="GO_0005623" initialConcentration="4" boundaryCondition="true"/>
+      <species id="A_GO_0005623" name="A" compartment="GO_0005623" initialConcentration="3.5"/>
+      <species id="B_GO_0005623" name="B" compartment="GO_0005623" initialConcentration="3"/>
+      <species id="enzyme_reaction_1_GO_0005623" name="enzyme_enzyme_reaction_1" compartment="GO_0005623" initialConcentration="10.88" sboTerm="SBO:0000014"/>
+      <species id="C_GO_0005623" name="C" compartment="GO_0005623" initialConcentration="2.5"/>
+      <species id="enzyme_reaction_2_GO_0005623" name="enzyme_enzyme_reaction_2" compartment="GO_0005623" initialConcentration="9.6" sboTerm="SBO:0000014"/>
+      <species id="D_GO_0005623" name="D" compartment="GO_0005623" initialConcentration="2"/>
+      <species id="enzyme_reaction_3_GO_0005623" name="enzyme_enzyme_reaction_3" compartment="GO_0005623" initialConcentration="4.2" sboTerm="SBO:0000014"/>
+      <species id="E_GO_0005623" name="E" compartment="GO_0005623" initialConcentration="1.5"/>
+      <species id="enzyme_reaction_4_GO_0005623" name="enzyme_enzyme_reaction_4" compartment="GO_0005623" initialConcentration="3.64" sboTerm="SBO:0000014"/>
+      <species id="Ex2_GO_0005623" name="Ex2" compartment="GO_0005623" initialConcentration="2" boundaryCondition="true"/>
+      <species id="Ex3_GO_0005623" name="Ex3" compartment="GO_0005623" initialConcentration="1" boundaryCondition="true"/>
+      <species id="F_GO_0005623" name="F" compartment="GO_0005623" initialConcentration="2"/>
+      <species id="enzyme_reaction_6_GO_0005623" name="enzyme_enzyme_reaction_6" compartment="GO_0005623" initialConcentration="4.2" sboTerm="SBO:0000014"/>
+      <species id="G_GO_0005623" name="G" compartment="GO_0005623" initialConcentration="1.5"/>
+      <species id="enzyme_reaction_7_GO_0005623" name="enzyme_enzyme_reaction_7" compartment="GO_0005623" initialConcentration="3.64" sboTerm="SBO:0000014"/>
+      <species id="Ex4_GO_0005623" name="Ex4" compartment="GO_0005623" initialConcentration="2" boundaryCondition="true"/>
+      <species id="Ex5_GO_0005623" name="Ex5" compartment="GO_0005623" initialConcentration="1" boundaryCondition="true"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="reaction_0">
+        <listOfReactants>
+          <speciesReference species="Ex1_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="A_GO_0005623"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> 1 </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> k_f_reaction_0 </ci>
+                  <ci> Ex1_GO_0005623 </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> k_b_reaction_0 </ci>
+                  <ci> A_GO_0005623 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f_reaction_0" value="4"/>
+            <parameter id="k_b_reaction_0" value="4"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_1">
+        <listOfReactants>
+          <speciesReference species="A_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="B_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_1_GO_0005623"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> enzyme_reaction_1_GO_0005623 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> kf_reaction_1 </ci>
+                    <apply>
+                      <divide/>
+                      <ci> A_GO_0005623 </ci>
+                      <ci> kM_reaction_1_A_GO_0005623 </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> kb_reaction_1 </ci>
+                    <apply>
+                      <divide/>
+                      <ci> B_GO_0005623 </ci>
+                      <ci> kM_reaction_1_B_GO_0005623 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> A_GO_0005623 </ci>
+                    <ci> kM_reaction_1_A_GO_0005623 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> B_GO_0005623 </ci>
+                    <ci> kM_reaction_1_B_GO_0005623 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf_reaction_1" value="5"/>
+            <parameter id="kb_reaction_1" value="5"/>
+            <parameter id="kM_reaction_1_A_GO_0005623" value="5"/>
+            <parameter id="kM_reaction_1_B_GO_0005623" value="5"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_2">
+        <listOfReactants>
+          <speciesReference species="B_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_2_GO_0005623"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> enzyme_reaction_2_GO_0005623 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> kf_reaction_2 </ci>
+                    <apply>
+                      <divide/>
+                      <ci> B_GO_0005623 </ci>
+                      <ci> kM_reaction_2_B_GO_0005623 </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> kb_reaction_2 </ci>
+                    <apply>
+                      <divide/>
+                      <ci> C_GO_0005623 </ci>
+                      <ci> kM_reaction_2_C_GO_0005623 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> B_GO_0005623 </ci>
+                    <ci> kM_reaction_2_B_GO_0005623 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> C_GO_0005623 </ci>
+                    <ci> kM_reaction_2_C_GO_0005623 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf_reaction_2" value="5"/>
+            <parameter id="kb_reaction_2" value="5"/>
+            <parameter id="kM_reaction_2_B_GO_0005623" value="5"/>
+            <parameter id="kM_reaction_2_C_GO_0005623" value="5"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_3">
+        <listOfReactants>
+          <speciesReference species="C_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="D_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_3_GO_0005623"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> enzyme_reaction_3_GO_0005623 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> kf_reaction_3 </ci>
+                    <apply>
+                      <divide/>
+                      <ci> C_GO_0005623 </ci>
+                      <ci> kM_reaction_3_C_GO_0005623 </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> kb_reaction_3 </ci>
+                    <apply>
+                      <divide/>
+                      <ci> D_GO_0005623 </ci>
+                      <ci> kM_reaction_3_D_GO_0005623 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> C_GO_0005623 </ci>
+                    <ci> kM_reaction_3_C_GO_0005623 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> D_GO_0005623 </ci>
+                    <ci> kM_reaction_3_D_GO_0005623 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf_reaction_3" value="5"/>
+            <parameter id="kb_reaction_3" value="5"/>
+            <parameter id="kM_reaction_3_C_GO_0005623" value="5"/>
+            <parameter id="kM_reaction_3_D_GO_0005623" value="5"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_4">
+        <listOfReactants>
+          <speciesReference species="D_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="E_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_4_GO_0005623"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> enzyme_reaction_4_GO_0005623 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> kf_reaction_4 </ci>
+                    <apply>
+                      <divide/>
+                      <ci> D_GO_0005623 </ci>
+                      <ci> kM_reaction_4_D_GO_0005623 </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> kb_reaction_4 </ci>
+                    <apply>
+                      <divide/>
+                      <ci> E_GO_0005623 </ci>
+                      <ci> kM_reaction_4_E_GO_0005623 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> D_GO_0005623 </ci>
+                    <ci> kM_reaction_4_D_GO_0005623 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> E_GO_0005623 </ci>
+                    <ci> kM_reaction_4_E_GO_0005623 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf_reaction_4" value="5"/>
+            <parameter id="kb_reaction_4" value="5"/>
+            <parameter id="kM_reaction_4_D_GO_0005623" value="5"/>
+            <parameter id="kM_reaction_4_E_GO_0005623" value="5"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_9">
+        <listOfReactants>
+          <speciesReference species="Ex2_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+	  <speciesReference species="E_GO_0005623"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> 1 </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> k_f_reaction_9 </ci>
+                  <ci> Ex2_GO_0005623 </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> k_b_reaction_9 </ci>
+                  <ci> E_GO_0005623 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f_reaction_9" value="2"/>
+            <parameter id="k_b_reaction_9" value="2"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_5">
+        <listOfReactants>
+          <speciesReference species="E_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ex3_GO_0005623"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> 1 </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> k_f_reaction_5 </ci>
+                  <ci> E_GO_0005623 </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> k_b_reaction_5 </ci>
+                  <ci> Ex3_GO_0005623 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f_reaction_5" value="4"/>
+            <parameter id="k_b_reaction_5" value="4"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_6">
+        <listOfReactants>
+          <speciesReference species="C_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="F_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_6_GO_0005623"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> enzyme_reaction_6_GO_0005623 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> kf_reaction_6 </ci>
+                    <apply>
+                      <divide/>
+                      <ci> C_GO_0005623 </ci>
+                      <ci> kM_reaction_6_C_GO_0005623 </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> kb_reaction_6 </ci>
+                    <apply>
+                      <divide/>
+                      <ci> F_GO_0005623 </ci>
+                      <ci> kM_reaction_6_F_GO_0005623 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> C_GO_0005623 </ci>
+                    <ci> kM_reaction_6_C_GO_0005623 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> F_GO_0005623 </ci>
+                    <ci> kM_reaction_6_F_GO_0005623 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf_reaction_6" value="5"/>
+            <parameter id="kb_reaction_6" value="5"/>
+            <parameter id="kM_reaction_6_C_GO_0005623" value="5"/>
+            <parameter id="kM_reaction_6_F_GO_0005623" value="5"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_7">
+        <listOfReactants>
+          <speciesReference species="F_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="G_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_7_GO_0005623"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> enzyme_reaction_7_GO_0005623 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> kf_reaction_7 </ci>
+                    <apply>
+                      <divide/>
+                      <ci> F_GO_0005623 </ci>
+                      <ci> kM_reaction_7_F_GO_0005623 </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> kb_reaction_7 </ci>
+                    <apply>
+                      <divide/>
+                      <ci> G_GO_0005623 </ci>
+                      <ci> kM_reaction_7_G_GO_0005623 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> F_GO_0005623 </ci>
+                    <ci> kM_reaction_7_F_GO_0005623 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> G_GO_0005623 </ci>
+                    <ci> kM_reaction_7_G_GO_0005623 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="kf_reaction_7" value="5"/>
+            <parameter id="kb_reaction_7" value="5"/>
+            <parameter id="kM_reaction_7_F_GO_0005623" value="5"/>
+            <parameter id="kM_reaction_7_G_GO_0005623" value="5"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_10">
+        <listOfReactants>
+          <speciesReference species="Ex4_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+	  <speciesReference species="G_GO_0005623"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> 1 </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> k_f_reaction_10 </ci>
+                  <ci> Ex4_GO_0005623 </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> k_b_reaction_10 </ci>
+                  <ci> G_GO_0005623 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f_reaction_10" value="2"/>
+            <parameter id="k_b_reaction_10" value="2"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_8">
+        <listOfReactants>
+          <speciesReference species="G_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ex5_GO_0005623"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> 1 </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> k_f_reaction_8 </ci>
+                  <ci> G_GO_0005623 </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> k_b_reaction_8 </ci>
+                  <ci> Ex5_GO_0005623 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f_reaction_8" value="4"/>
+            <parameter id="k_b_reaction_8" value="4"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

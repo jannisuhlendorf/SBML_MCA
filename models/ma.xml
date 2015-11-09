@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3">
+  <model id="kegg2sbml">
+    <listOfCompartments>
+      <compartment id="comp0" size="1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://www.geneontology.org/#GO:0005623"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="A_comp0" name="A" compartment="comp0"/>
+      <species id="B_comp0" name="B" compartment="comp0"/>
+      <species id="C_comp0" name="C" compartment="comp0"/>
+      <species id="D_comp0" name="D" compartment="comp0"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="reaction_0">
+        <listOfReactants>
+          <speciesReference species="A_comp0"/>
+          <speciesReference species="B_comp0"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C_comp0"/>
+        </listOfProducts>
+      </reaction>
+      <reaction id="reaction_1">
+        <listOfReactants>
+          <speciesReference species="C_comp0"/>
+          <speciesReference species="D_comp0"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="A_comp0"/>
+        </listOfProducts>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

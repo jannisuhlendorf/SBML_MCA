@@ -1,0 +1,46 @@
+--------
+SBML-MCA
+--------
+SBML-MCA is a set of tools written in python to perform 
+metabolic control analyses on biochemical network models 
+provided in the SBML format. Functionalities inlude the 
+computation of first and second order response coefficients, 
+elasticities, first order control coefficients and the first 
+order spectral response coefficients.
+Additionaly the tools allow to compute the propagation of 
+perturbations in a biochemical network and the construction 
+of kinetic SBML models from structural SBML models and data 
+on the steady state.
+SBML-MCA is provided under the MIT license. See the COPYING
+file included.
+
+
+------------
+DEPENDENCIES
+------------
+* python >= 2.4
+* libSBML
+* numpy
+* scipy
+* pylab
+
+
+-----
+TOOLS
+-----
+sbml_mca.py          -   Basic MCA functionality, simulation
+		         of SBML models, computation of 
+		         steady states. Type ./sbml_mca.py 
+		         --help for more information.
+model_variation.py   -   Compute the influence of parameter
+		      	 fluctuations on the steady state
+			 fluxes and metabolite concentrations.
+			 Type ./model_variation.py --help
+			 for more information.
+
+
+------------
+DOCUMENATION
+------------
+An API documentation created by ecydoc ca be found in the
+html directory.

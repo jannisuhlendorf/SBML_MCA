@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3">
+  <model id="model">
+    <listOfCompartments>
+      <compartment id="GO_0005623" size="1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:obo.go:GO%3A0005623"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="A_GO_0005623" name="A" compartment="GO_0005623"/>
+      <species id="B_GO_0005623" name="B" compartment="GO_0005623"/>
+      <species id="enzyme_reaction_0_GO_0005623" name="enzyme_enzyme_reaction_0" compartment="GO_0005623" sboTerm="SBO:0000014"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="reaction_0">
+        <listOfReactants>
+          <speciesReference species="A_GO_0005623" stoichiometry="2"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="B_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_0_GO_0005623"/>
+        </listOfModifiers>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

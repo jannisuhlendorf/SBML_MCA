@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3">
+  <model id="kegg2sbml">
+    <listOfCompartments>
+      <compartment id="comp0" size="1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://www.geneontology.org/#GO:0005623"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="C00890_comp0" name="Polyphosphate" compartment="comp0" initialConcentration="0.1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00890"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species id="C00001_comp0" name="H2O" compartment="comp0" initialConcentration="0.1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00001"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species id="C02174_comp0" name="Oligophosphate" compartment="comp0" initialConcentration="0.1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C02174"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species id="C00022_comp0" name="Pyruvate" compartment="comp0" initialConcentration="0.1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00022"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species id="C00068_comp0" name="Thiamin_diphosphate" compartment="comp0" initialConcentration="0.1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00068"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species id="C05125_comp0" name="2_(alpha_Hydroxyethyl)thiamine_diphosphate" compartment="comp0" initialConcentration="0.1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C05125"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species id="C00011_comp0" name="CO2" compartment="comp0" initialConcentration="0.1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://www.genome.jp/kegg/compound/#C00011"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species id="enzyme_R00001" compartment="comp0" initialConcentration="0.00016659"/>
+      <species id="enzyme_R00014" compartment="comp0" initialConcentration="0.00021439"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="KG_C00890_comp0" value="-150.7"/>
+      <parameter id="KG_C00001_comp0" value="-150.7"/>
+      <parameter id="KG_C02174_comp0" value="-301.3"/>
+      <parameter id="KG_C00022_comp0" value="-227.29"/>
+      <parameter id="KG_C00068_comp0" value="-227.29"/>
+      <parameter id="KG_C05125_comp0" value="-224.71"/>
+      <parameter id="KG_C00011_comp0" value="-224.71"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="R00001">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R00001"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="C00890_comp0"/>
+          <speciesReference species="C00001_comp0"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C02174_comp0"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_R00001"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> enzyme_R00001 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> kcatf </ci>
+                    <apply>
+                      <divide/>
+                      <ci> C00890_comp0 </ci>
+                      <ci> KM_C00890_comp0 </ci>
+                    </apply>
+                    <apply>
+                      <divide/>
+                      <ci> C00001_comp0 </ci>
+                      <ci> KM_C00001_comp0 </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <divide/>
+                      <ci> C02174_comp0 </ci>
+                      <ci> KM_C02174_comp0 </ci>
+                    </apply>
+                    <ci> kcatb </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <minus/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> C00890_comp0 </ci>
+                        <ci> KM_C00890_comp0 </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> C00001_comp0 </ci>
+                        <ci> KM_C00001_comp0 </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> C02174_comp0 </ci>
+                    <ci> KM_C02174_comp0 </ci>
+                  </apply>
+                </apply>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="KV" value="4.953"/>
+            <parameter id="kcatf" value="4.84460624534027"/>
+            <parameter id="kcatb" value="5.06381896848604"/>
+            <parameter id="KM_C00890_comp0" value="0.16999"/>
+            <parameter id="KM_C00001_comp0" value="0.16999"/>
+            <parameter id="KM_C02174_comp0" value="0.16999"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="R00014">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://www.genome.jp/kegg/reaction/#R00014"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="C00022_comp0"/>
+          <speciesReference species="C00068_comp0"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C05125_comp0"/>
+          <speciesReference species="C00011_comp0"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_R00014"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> enzyme_R00014 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> kcatf </ci>
+                    <apply>
+                      <divide/>
+                      <ci> C00022_comp0 </ci>
+                      <ci> KM_C00022_comp0 </ci>
+                    </apply>
+                    <apply>
+                      <divide/>
+                      <ci> C00068_comp0 </ci>
+                      <ci> KM_C00068_comp0 </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <divide/>
+                      <ci> C05125_comp0 </ci>
+                      <ci> KM_C05125_comp0 </ci>
+                    </apply>
+                    <apply>
+                      <divide/>
+                      <ci> C00011_comp0 </ci>
+                      <ci> KM_C00011_comp0 </ci>
+                    </apply>
+                    <ci> kcatb </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <minus/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> C00022_comp0 </ci>
+                        <ci> KM_C00022_comp0 </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> C00068_comp0 </ci>
+                        <ci> KM_C00068_comp0 </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> C05125_comp0 </ci>
+                        <ci> KM_C05125_comp0 </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> C00011_comp0 </ci>
+                        <ci> KM_C00011_comp0 </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="KV" value="2.0884"/>
+            <parameter id="kcatf" value="0.739718237369879"/>
+            <parameter id="kcatb" value="5.89604844069726"/>
+            <parameter id="KM_C00022_comp0" value="0.21189"/>
+            <parameter id="KM_C00068_comp0" value="0.21189"/>
+            <parameter id="KM_C05125_comp0" value="0.13638"/>
+            <parameter id="KM_C00011_comp0" value="0.13638"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

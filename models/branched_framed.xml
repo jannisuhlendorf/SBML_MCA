@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3">
+  <model id="model">
+    <listOfCompartments>
+      <compartment id="GO_0005623" size="1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:obo.go:GO%3A0005623"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="Ex1_GO_0005623" name="Ex1" compartment="GO_0005623" boundaryCondition="true"/>
+      <species id="A_GO_0005623" name="A" compartment="GO_0005623"/>
+      <species id="enzyme_reaction_0_GO_0005623" name="enzyme_enzyme_reaction_0" compartment="GO_0005623" sboTerm="SBO:0000014"/>
+      <species id="B_GO_0005623" name="B" compartment="GO_0005623"/>
+      <species id="enzyme_reaction_1_GO_0005623" name="enzyme_enzyme_reaction_1" compartment="GO_0005623" sboTerm="SBO:0000014"/>
+      <species id="C_GO_0005623" name="C" compartment="GO_0005623"/>
+      <species id="enzyme_reaction_2_GO_0005623" name="enzyme_enzyme_reaction_2" compartment="GO_0005623" sboTerm="SBO:0000014"/>
+      <species id="D_GO_0005623" name="D" compartment="GO_0005623"/>
+      <species id="enzyme_reaction_3_GO_0005623" name="enzyme_enzyme_reaction_3" compartment="GO_0005623" sboTerm="SBO:0000014"/>
+      <species id="E_GO_0005623" name="E" compartment="GO_0005623"/>
+      <species id="enzyme_reaction_4_GO_0005623" name="enzyme_enzyme_reaction_4" compartment="GO_0005623" sboTerm="SBO:0000014"/>
+      <species id="Ex2_GO_0005623" name="Ex2" compartment="GO_0005623" boundaryCondition="true"/>
+      <species id="enzyme_reaction_5_GO_0005623" name="enzyme_enzyme_reaction_5" compartment="GO_0005623" sboTerm="SBO:0000014"/>
+      <species id="F_GO_0005623" name="F" compartment="GO_0005623"/>
+      <species id="enzyme_reaction_6_GO_0005623" name="enzyme_enzyme_reaction_6" compartment="GO_0005623" sboTerm="SBO:0000014"/>
+      <species id="G_GO_0005623" name="G" compartment="GO_0005623"/>
+      <species id="enzyme_reaction_7_GO_0005623" name="enzyme_enzyme_reaction_7" compartment="GO_0005623" sboTerm="SBO:0000014"/>
+      <species id="Ex3_GO_0005623" name="Ex3" compartment="GO_0005623" boundaryCondition="true"/>
+      <species id="enzyme_reaction_8_GO_0005623" name="enzyme_enzyme_reaction_8" compartment="GO_0005623" sboTerm="SBO:0000014"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="reaction_0">
+        <listOfReactants>
+          <speciesReference species="Ex1_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="A_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_0_GO_0005623"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_1">
+        <listOfReactants>
+          <speciesReference species="A_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="B_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_1_GO_0005623"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_2">
+        <listOfReactants>
+          <speciesReference species="B_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_2_GO_0005623"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_3">
+        <listOfReactants>
+          <speciesReference species="C_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="D_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_3_GO_0005623"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_4">
+        <listOfReactants>
+          <speciesReference species="D_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="E_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_4_GO_0005623"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_5">
+        <listOfReactants>
+          <speciesReference species="E_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ex2_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_5_GO_0005623"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_6">
+        <listOfReactants>
+          <speciesReference species="C_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="F_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_6_GO_0005623"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_7">
+        <listOfReactants>
+          <speciesReference species="F_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="G_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_7_GO_0005623"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_8">
+        <listOfReactants>
+          <speciesReference species="G_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ex3_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_8_GO_0005623"/>
+        </listOfModifiers>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

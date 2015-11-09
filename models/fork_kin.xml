@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3">
+  <model id="model">
+    <listOfCompartments>
+      <compartment id="c" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="A_c" name="A" compartment="c" initialConcentration="1" boundaryCondition="true"/>
+      <species id="B_c" name="B" compartment="c" initialConcentration="1"/>
+      <species id="enzyme_reaction_0_c" name="enzyme_enzyme_reaction_0" compartment="c" initialConcentration="1" sboTerm="SBO:0000014"/>
+      <species id="C_c" name="C" compartment="c" initialConcentration="1"/>
+      <species id="enzyme_reaction_1_c" name="enzyme_enzyme_reaction_1" compartment="c" initialConcentration="1" sboTerm="SBO:0000014"/>
+      <species id="D_c" name="D" compartment="c" initialConcentration="1"/>
+      <species id="enzyme_reaction_2_c" name="enzyme_enzyme_reaction_2" compartment="c" initialConcentration="1" sboTerm="SBO:0000014"/>
+      <species id="E_c" name="E" compartment="c" initialConcentration="1" boundaryCondition="true"/>
+      <species id="enzyme_reaction_3_c" name="enzyme_enzyme_reaction_3" compartment="c" initialConcentration="1" sboTerm="SBO:0000014"/>
+      <species id="F_c" name="F" compartment="c" initialConcentration="1"/>
+      <species id="enzyme_reaction_4_c" name="enzyme_enzyme_reaction_4" compartment="c" initialConcentration="1" sboTerm="SBO:0000014"/>
+      <species id="G_c" name="G" compartment="c" initialConcentration="1" boundaryCondition="true"/>
+      <species id="enzyme_reaction_5_c" name="enzyme_enzyme_reaction_5" compartment="c" initialConcentration="1" sboTerm="SBO:0000014"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="reaction_0">
+        <listOfReactants>
+          <speciesReference species="A_c"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="B_c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_0_c"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> enzyme_reaction_0_c </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> k_f_reaction_0 </ci>
+                  <ci> A_c </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> k_b_reaction_0 </ci>
+                  <ci> B_c </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f_reaction_0" value="3"/>
+            <parameter id="k_b_reaction_0" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_1">
+        <listOfReactants>
+          <speciesReference species="B_c"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C_c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_1_c"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> enzyme_reaction_1_c </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> k_f_reaction_1 </ci>
+                  <ci> B_c </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> k_b_reaction_1 </ci>
+                  <ci> C_c </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f_reaction_1" value="3"/>
+            <parameter id="k_b_reaction_1" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_2">
+        <listOfReactants>
+          <speciesReference species="C_c"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="D_c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_2_c"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> enzyme_reaction_2_c </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> k_f_reaction_2 </ci>
+                  <ci> C_c </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> k_b_reaction_2 </ci>
+                  <ci> D_c </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f_reaction_2" value="2"/>
+            <parameter id="k_b_reaction_2" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_3">
+        <listOfReactants>
+          <speciesReference species="D_c"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="E_c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_3_c"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> enzyme_reaction_3_c </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> k_f_reaction_3 </ci>
+                  <ci> D_c </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> k_b_reaction_3 </ci>
+                  <ci> E_c </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f_reaction_3" value="2"/>
+            <parameter id="k_b_reaction_3" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_4">
+        <listOfReactants>
+          <speciesReference species="C_c"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="F_c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_4_c"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> enzyme_reaction_4_c </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> k_f_reaction_4 </ci>
+                  <ci> C_c </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> k_b_reaction_4 </ci>
+                  <ci> F_c </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f_reaction_4" value="2"/>
+            <parameter id="k_b_reaction_4" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_5">
+        <listOfReactants>
+          <speciesReference species="F_c"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="G_c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_5_c"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> enzyme_reaction_5_c </ci>
+              <apply>
+                <minus/>
+                <apply>
+                  <times/>
+                  <ci> k_f_reaction_5 </ci>
+                  <ci> F_c </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> k_b_reaction_5 </ci>
+                  <ci> G_c </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f_reaction_5" value="2"/>
+            <parameter id="k_b_reaction_5" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

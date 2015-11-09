@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3">
+  <model id="kegg2sbml">
+    <listOfCompartments>
+      <compartment id="comp0" size="1">
+        <annotation/>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="A_comp0" name="A" compartment="comp0" initialConcentration="1"/>
+      <species id="B_comp0" name="B" compartment="comp0" initialConcentration="1"/>
+      <species id="C_comp0" name="C" compartment="comp0" initialConcentration="1"/>
+      <species id="enzyme_reaction_0" initialConcentration="1"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="reaction_0">
+        <listOfReactants>
+          <speciesReference species="A_comp0"/>
+          <speciesReference species="B_comp0"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C_comp0"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_0"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> enzyme_reaction_0 </ci>
+                <ci> k_f </ci>
+                <ci> A_comp0 </ci>
+                <ci> B_comp0 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> k_b </ci>
+                <ci> C_comp0 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f" value="1"/>
+            <parameter id="k_b" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3">
+  <model id="model">
+    <listOfCompartments>
+      <compartment id="GO_0005623" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="A_GO_0005623" name="A" compartment="GO_0005623" initialConcentration="1" constant="true"/>
+      <species id="B_GO_0005623" name="B" compartment="GO_0005623" initialConcentration="10"/>
+      <species id="enzyme_reaction_0_GO_0005623" name="enzyme_enzyme_reaction_0" compartment="GO_0005623" sboTerm="SBO:0000014" initialConcentration="1"/>
+      <species id="C_GO_0005623" name="C" compartment="GO_0005623" initialConcentration="2" />
+      <species id="enzyme_reaction_1_GO_0005623" name="enzyme_enzyme_reaction_1" compartment="GO_0005623" sboTerm="SBO:0000014" initialConcentration="4"/>
+      <species id="D_GO_0005623" name="D" compartment="GO_0005623" initialConcentration="1" />
+      <species id="enzyme_reaction_2_GO_0005623" name="enzyme_enzyme_reaction_2" compartment="GO_0005623" sboTerm="SBO:0000014" initialConcentration="3"/>
+      <species id="E_GO_0005623" name="E" compartment="GO_0005623" initialConcentration="1.5" constant="true"/>
+      <species id="enzyme_reaction_3_GO_0005623" name="enzyme_enzyme_reaction_3" compartment="GO_0005623" sboTerm="SBO:0000014" initialConcentration="0.1"/>
+      <species id="F_GO_0005623" name="F" compartment="GO_0005623" initialConcentration="2" constant="true"/>
+      <species id="enzyme_reaction_4_GO_0005623" name="enzyme_enzyme_reaction_4" compartment="GO_0005623" sboTerm="SBO:0000014" initialConcentration="5"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="reaction_0">
+        <listOfReactants>
+          <speciesReference species="A_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="B_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_0_GO_0005623"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> enzyme_reaction_0_GO_0005623 </ci>
+                <ci> k_f </ci>
+                <ci> A_GO_0005623 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> k_b </ci>
+                <ci> B_GO_0005623 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f" value="1"/>
+            <parameter id="k_b" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_1">
+        <listOfReactants>
+          <speciesReference species="B_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_1_GO_0005623"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> enzyme_reaction_1_GO_0005623 </ci>
+                <ci> k_f </ci>
+                <ci> B_GO_0005623 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> k_b </ci>
+                <ci> C_GO_0005623 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f" value="1"/>
+            <parameter id="k_b" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_2">
+        <listOfReactants>
+          <speciesReference species="B_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="D_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_2_GO_0005623"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> enzyme_reaction_2_GO_0005623 </ci>
+                <ci> k_f </ci>
+                <ci> B_GO_0005623 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> k_b </ci>
+                <ci> D_GO_0005623 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f" value="1"/>
+            <parameter id="k_b" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_3">
+        <listOfReactants>
+          <speciesReference species="D_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="E_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_3_GO_0005623"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> enzyme_reaction_3_GO_0005623 </ci>
+                <ci> k_f </ci>
+                <ci> D_GO_0005623 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> k_b </ci>
+                <ci> E_GO_0005623 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f" value="1"/>
+            <parameter id="k_b" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="reaction_4">
+        <listOfReactants>
+          <speciesReference species="C_GO_0005623"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="F_GO_0005623"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_4_GO_0005623"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> enzyme_reaction_4_GO_0005623 </ci>
+                <ci> k_f </ci>
+                <ci> C_GO_0005623 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> k_b </ci>
+                <ci> F_GO_0005623 </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k_f" value="1"/>
+            <parameter id="k_b" value="1"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

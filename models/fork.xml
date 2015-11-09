@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version3" level="2" version="3">
+  <model id="model">
+    <listOfCompartments>
+      <compartment id="c" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="A_c" name="A" compartment="c" boundaryCondition="true"/>
+      <species id="B_c" name="B" compartment="c"/>
+      <species id="enzyme_reaction_0_c" name="enzyme_enzyme_reaction_0" compartment="c" sboTerm="SBO:0000014"/>
+      <species id="C_c" name="C" compartment="c"/>
+      <species id="enzyme_reaction_1_c" name="enzyme_enzyme_reaction_1" compartment="c" sboTerm="SBO:0000014"/>
+      <species id="D_c" name="D" compartment="c"/>
+      <species id="enzyme_reaction_2_c" name="enzyme_enzyme_reaction_2" compartment="c" sboTerm="SBO:0000014"/>
+      <species id="E_c" name="E" compartment="c" boundaryCondition="true"/>
+      <species id="enzyme_reaction_3_c" name="enzyme_enzyme_reaction_3" compartment="c" sboTerm="SBO:0000014"/>
+      <species id="F_c" name="F" compartment="c"/>
+      <species id="enzyme_reaction_4_c" name="enzyme_enzyme_reaction_4" compartment="c" sboTerm="SBO:0000014"/>
+      <species id="G_c" name="G" compartment="c" boundaryCondition="true"/>
+      <species id="enzyme_reaction_5_c" name="enzyme_enzyme_reaction_5" compartment="c" sboTerm="SBO:0000014"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction id="reaction_0">
+        <listOfReactants>
+          <speciesReference species="A_c"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="B_c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_0_c"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_1">
+        <listOfReactants>
+          <speciesReference species="B_c"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C_c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_1_c"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_2">
+        <listOfReactants>
+          <speciesReference species="C_c"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="D_c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_2_c"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_3">
+        <listOfReactants>
+          <speciesReference species="D_c"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="E_c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_3_c"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_4">
+        <listOfReactants>
+          <speciesReference species="C_c"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="F_c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_4_c"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="reaction_5">
+        <listOfReactants>
+          <speciesReference species="F_c"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="G_c"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="enzyme_reaction_5_c"/>
+        </listOfModifiers>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
