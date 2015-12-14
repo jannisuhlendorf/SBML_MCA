@@ -721,12 +721,12 @@ class sbml_mca:
         if s0 is None:
             s0 = self.get_initial_conc(with_rate_rule_params=True)
         self._ss_s0 = s0
-        if self._ss!=None and numpy.linalg.norm(self._ss_s0-s0)<0.0001:
+        if self._ss is not None and numpy.linalg.norm(self._ss_s0-s0)<0.0001:
             if string_output:
                 return misc.matrix2string( numpy.array( [self._ss] ), self._species_ids )
             return self._ss
         # linear approximation of new ss
-        if old_ss!=None and old_conc_resp!=None and d_params!=None:
+        if old_ss is not None and old_conc_resp is not None and d_params is not None:
             s0 = old_ss + numpy.dot( old_conc_resp, d_params )
         result = [s0]
 
@@ -1255,25 +1255,24 @@ class sbml_mca:
 
     def _normalize_coefficients(self, coeff, left=None, right=None, first_order=None ):
         """ normalize coefficients (2d or 3d) """
-        #min_value_norm = 1e-18  # minimal value that is divided by in normalization
+        min_value_norm = 1e-18  # minimal value that is divided by in normalization
 
         if left is not None:
             if left=='conc':
                 d = self.get_steady_state()
             elif left=='flux':
                 d = self._v( self.get_steady_state(), 1 )
-                #L = numpy.diag( 1./self._v( self.get_steady_state(), 1 ) )
             elif isinstance( left, list ):
                 raise Exception('Impelment me...')
             elif isinstance ( left, numpy.ndarray ):
                 d = left
-                #L = numpy.diag( 1./left )
             else:
                 raise Exception('Unkown input for normalization')
-
-            #if any( abs(d) < min_value_norm ):
-            #    raise Noncritical_error('Error: Normalization failed. Value to divide by is too small.')
-            L = numpy.diag( 1./d )
+            
+            d[abs(d)<min_value_norm] = 0. # for values very close to zero, we want inf/nan values for the normalization result
+            with numpy.errstate(divide='print'):
+                L = numpy.diag( 1./d )
+                print L
             if coeff.shape.__len__()==2:
                 coeff = numpy.dot( L, coeff )
             if coeff.shape.__len__()==3:
@@ -1283,15 +1282,17 @@ class sbml_mca:
             if isinstance( right, list ):
                 ss = self.get_steady_state()
                 value_d = self._get_value_dict(ss)
-                R = numpy.diag( [value_d[x] for x in right] )
+                d = numpy.array([value_d[x] for x in right])
             elif isinstance(right, numpy.ndarray):
-                R = numpy.diag( right )
+                d = right
             elif right=='conc':
-                R = numpy.diag( self.get_steady_state() )
+                d =  self.get_steady_state()
             elif right=='flux':
-                R = numpy.diag( self._v(self.get_steady_state(),1) )
+                d = self._v(self.get_steady_state(),1)
             else:
                 raise Exception('Unkown input for normalization')
+            #d[abs(d)<min_value_norm] = 0.
+            R = numpy.diag(d)
             if coeff.shape.__len__()==2:
                 coeff = numpy.dot( coeff, R )
             if coeff.shape.__len__()==3:
