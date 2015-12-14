@@ -30,7 +30,7 @@ class sbml_mca:
         @type model:  libsbml.model or string
         @param model: SBML model, or filename
         """
-        if type(model)==type('katze'):
+        if type(model)==str:
             self._doc = libsbml.readSBML(model)
             m = self._doc.getModel()
             self._model = m
@@ -46,7 +46,6 @@ class sbml_mca:
         self._species2pos                  =    dict( zip(self._species_ids, range(self._species_ids.__len__() ) ) )
         self._N                            =    self._get_stoich_mat(self._model)
         self._species_volume_conversion    =    self._get_species_volume_conversion()
-        #[self._L_inv, self._L, self._Nr]   =    self._partition_stoich_matrix( self._N )        
         self._external_species_conc        =    self._get_external_species_conc(self._model)
         self._external_species_ids         =    [s.getId() for s in self._get_constant_species()]
         self._parameter_ids                =    None
@@ -69,7 +68,7 @@ class sbml_mca:
         species_changed_by_rule = []
         for rule in self._model.getListOfRules(): 
              var = rule.getVariable()
-             if self._model.getSpecies(var) != None:
+             if self._model.getSpecies(var) is not None:
                  species_changed_by_rule.append( var )
         return species_changed_by_rule
 
@@ -246,7 +245,7 @@ class sbml_mca:
         
     def _get_enzyme_positions( self ):
         """ get the positions of the enzymes in the list of (non constant) species """
-        if self._enzyme_positions!=None:
+        if self._enzyme_positions is not None:
             return self._enzyme_positions
         positions=[]
         for pos, species in enumerate( [ self._model.getSpecies(id) for id in self._species_ids ] ):
@@ -257,7 +256,7 @@ class sbml_mca:
 
     def _get_not_enzyme_positions( self ):
         """ get the positions of the species without the enzymes """
-        if self._not_enzyme_positions!=None:
+        if self._not_enzyme_positions is not None:
             return self._not_enzyme_positions
         ret = range( len(self._species_ids) )
         for pos in self._get_enzyme_positions():
@@ -299,7 +298,7 @@ class sbml_mca:
         @rtype  numpy.array
         @return array with parameter values
         """
-        if parameter_ids==None:
+        if parameter_ids is None:
             parameter_ids=self.get_parameter_ids()
         return numpy.array([ misc.get_parameter_value( self._model, p ) for p in parameter_ids ])
 
@@ -324,7 +323,7 @@ class sbml_mca:
 
     def get_parameter_ids(self):
         """ get list of parameters that are varied in p_elasticities """
-        if self._parameter_ids == None:
+        if self._parameter_ids is None:
             const_species_ids = [s.getId() for s in self._get_constant_species()]
             params_changed_by_rule = [ r.getVariable() for r in self._model.getListOfRules() ] 
             #[p.getId() for p in self._model.getListOfParameters()]
@@ -423,7 +422,7 @@ class sbml_mca:
         l  =  self._ast_to_string( ast.getLeftChild(), mode, replace ) 
         r  =  self._ast_to_string( ast.getRightChild(), mode, replace )
         if type==libsbml.AST_MINUS:
-            if r==None:
+            if r is None:
                 return '( - %s)' %l
             return '( %s  - %s )' %(l,r)
         elif type==libsbml.AST_PLUS:
@@ -613,7 +612,7 @@ class sbml_mca:
         @rtype     numpy.array
         @return    matrix containing a row for each metabolite time course
         """
-        if s0 == None:
+        if s0 is None:
             s0 = self.get_initial_conc(with_rate_rule_params=True)
         t=numpy.linspace(0,time,steps)
         #return [ t, scipy.integrate.odepack.odeint( self._dSdt, s0, t, rtol=r_tol, atol=a_tol ) ]
@@ -719,7 +718,7 @@ class sbml_mca:
         """
         if self._no_steady_state:
             raise Noncritical_error('No steady state could be found')
-        if s0==None:
+        if s0 is None:
             s0 = self.get_initial_conc(with_rate_rule_params=True)
         self._ss_s0 = s0
         if self._ss!=None and numpy.linalg.norm(self._ss_s0-s0)<0.0001:
@@ -908,9 +907,9 @@ class sbml_mca:
         @rtype:                    numpy.array
         @return:                   3d-tensor with second order elasticities, 1st index: reaction, 2nd index: param 1 3rd index: param 2
         """
-        if ss_conc==None:
+        if ss_conc is None:
             ss_conc=self.get_steady_state()
-        if parameter_names==None:
+        if parameter_names is None:
             parameter_names = self.get_parameter_ids()
         value_dict              =  self._get_value_dict( ss_conc )
         #ee = numpy.zeros( (self._model.getNumReactions(),len(p_names),len(p_names)) )
@@ -936,10 +935,10 @@ class sbml_mca:
         @rtype:                    numpy.array
         @return:                   matrix with elasticities
         """
-        if ss_conc==None:
+        if ss_conc is None:
             ss_conc=self.get_steady_state()
         value_dict              =  self._get_value_dict( ss_conc )
-        if time!=None:
+        if time is not None:
             value_dict[self._time_variable] = time
         ec                      =  numpy.zeros(( self._model.getNumReactions(), len(parameter_names) ))
 
@@ -968,9 +967,9 @@ class sbml_mca:
                                                { 'left': ('flux',None), \
                                                  'right': (None, self.get_parameter_ids()), \
                                                  'both': ('flux', self.get_parameter_ids())}  [normalize] )
-        if ss_conc==None:
+        if ss_conc is None:
             ss_conc=self.get_steady_state()
-        if self._p_ela!=None :
+        if self._p_ela is not None :
             try:
                 if numpy.linalg.norm(self._reference_params['ep_ss']-ss_conc) < 1e-8:
                     p_ela = self._p_ela
@@ -1004,9 +1003,9 @@ class sbml_mca:
                                                { 'left': ('flux',None), \
                                                  'right': (None,  'conc'), \
                                                  'both': ('flux', 'conc')}  [normalize] )
-        if ss_conc==None:
+        if ss_conc is None:
             ss_conc=self.get_steady_state()
-        if self._e_ela!=None :
+        if self._e_ela is not None :
             try:
                 if numpy.linalg.norm(self._reference_params['ee_ss']-ss_conc) < 1e-8:  
                     e_ela = self._e_ela
@@ -1043,9 +1042,9 @@ class sbml_mca:
                                                { 'left': ('flux',None), \
                                                  'right': (None,  'flux'), \
                                                  'both': ('flux', 'flux')}  [normalize] )
-        if ss_conc==None:
+        if ss_conc is None:
             ss_conc=self.get_steady_state()
-        if self._fcc!=None :
+        if self._fcc is not None :
             try:
                 if numpy.linalg.norm(self._reference_params['fcc_ss']-ss_conc) < 1e-8:
                     fcc=self._fcc
@@ -1084,9 +1083,9 @@ class sbml_mca:
                                                { 'left': ('conc',None), \
                                                  'right': (None,  'flux'), \
                                                  'both': ('conc', 'flux')}  [normalize] )
-        if ss_conc==None:
+        if ss_conc is None:
             ss_conc=self.get_steady_state()
-        if self._ccc!=None :
+        if self._ccc is not None :
             try:
                 if numpy.linalg.norm(self._reference_params['ccc_ss']-ss_conc) < 1e-8:
                     ccc=self._ccc
@@ -1133,9 +1132,9 @@ class sbml_mca:
                                                { 'left': ('conc',None), \
                                                  'right': (None,self.get_parameter_ids()), \
                                                  'both': ('conc',self.get_parameter_ids())}  [normalize] )
-        if ss_conc==None:
+        if ss_conc is None:
             ss_conc=self.get_steady_state()
-        if self._crc!=None :
+        if self._crc is not None :
             try:
                 if numpy.linalg.norm(self._reference_params['crc_ss']-ss_conc) < 1e-8:
                     crc=self._crc
@@ -1174,9 +1173,9 @@ class sbml_mca:
                                                { 'left': ('flux',None), \
                                                  'right': (None,self.get_parameter_ids()), \
                                                  'both': ('flux',self.get_parameter_ids())}  [normalize] )
-        if ss_conc==None:
+        if ss_conc is None:
             ss_conc=self.get_steady_state()
-        if self._frc!=None :
+        if self._frc is not None :
             try:
                 if numpy.linalg.norm(self._reference_params['frc_ss']-ss_conc) < 1e-8:
                     frc = self._frc
@@ -1214,7 +1213,7 @@ class sbml_mca:
         """
         if self._rate_rules != {}:
             raise Noncritical_error('MCA methods are not avaiable for explicit ODE systems.')
-        if ss_conc==None:
+        if ss_conc is None:
             ss_conc=self.get_steady_state()
         custom_ela = self.get_elasticities( parameter_names, ss_conc )
         ccc = self.get_conc_cc( ss_conc )
@@ -1242,7 +1241,7 @@ class sbml_mca:
         """
         if self._rate_rules != {}:
             raise Noncritical_error('MCA methods are not avaiable for explicit ODE systems.')
-        if ss_conc==None:
+        if ss_conc is None:
             ss_conc=self.get_steady_state()
         custom_ela = self.get_elasticities( parameter_names, ss_conc )
         fcc = self.get_flux_cc(ss_conc)
@@ -1256,9 +1255,9 @@ class sbml_mca:
 
     def _normalize_coefficients(self, coeff, left=None, right=None, first_order=None ):
         """ normalize coefficients (2d or 3d) """
-        min_value_norm = 1e-18  # minimal value that is divided by in normalization
+        #min_value_norm = 1e-18  # minimal value that is divided by in normalization
 
-        if left!=None:
+        if left is not None:
             if left=='conc':
                 d = self.get_steady_state()
             elif left=='flux':
@@ -1272,15 +1271,15 @@ class sbml_mca:
             else:
                 raise Exception('Unkown input for normalization')
 
-            if any( abs(d) < min_value_norm ):
-                raise Noncritical_error('Error: Normalization failed. Value to divide by is too small.')
+            #if any( abs(d) < min_value_norm ):
+            #    raise Noncritical_error('Error: Normalization failed. Value to divide by is too small.')
             L = numpy.diag( 1./d )
             if coeff.shape.__len__()==2:
                 coeff = numpy.dot( L, coeff )
             if coeff.shape.__len__()==3:
                 coeff = numpy.tensordot( L, coeff, [1,0] )
 
-        if right!=None:
+        if right is not None:
             if isinstance( right, list ):
                 ss = self.get_steady_state()
                 value_d = self._get_value_dict(ss)
@@ -1298,20 +1297,20 @@ class sbml_mca:
             if coeff.shape.__len__()==3:
                 coeff = numpy.tensordot( numpy.tensordot( coeff, R, [2,0] ), R, [1,0] )
 
-        if first_order!=None:
+        if first_order is not None:
             #correction terms for normalization of second order terms
             if not isinstance(first_order, numpy.ndarray):
                 raise Exception('Not supported yet')
             
             coeff_correction_r = numpy.zeros( coeff.shape )
             coeff_correction_l = numpy.zeros( coeff.shape )
-            if right!=None:
+            if right is not None:
                 for i in range( coeff_correction_r.shape[0] ):
                     coeff_correction_r[i] = numpy.diag( first_order[i] )
-            if left!=None:
+            if left is not None:
                 coeff_correction_l = misc.matrix2tensor( first_order, first_order )
             coeff = coeff + coeff_correction_r - coeff_correction_l
-        if coeff.shape.__len__()==3 and (left!=None or right!=None ) and first_order==None:
+        if coeff.shape.__len__()==3 and (left is not None or right is not None ) and first_order is None:
             raise Exception('No first order term specified for normalization')        
         return coeff
 
@@ -1356,7 +1355,7 @@ class sbml_mca:
         """
         if self._rate_rules != {}:
             raise Noncritical_error('MCA methods are not avaiable for explicit ODE systems.')
-        if self._2nd_crc == None:
+        if self._2nd_crc is None:
             self._compute_2nd_resp()
         if normalize:
             fst_order = self.get_conc_resp( normalize=normalize )
@@ -1377,7 +1376,7 @@ class sbml_mca:
         """
         if self._rate_rules != {}:
             raise Noncritical_error('MCA methods are not avaiable for explicit ODE systems.')
-        if self._2nd_frc == None:
+        if self._2nd_frc is None:
             self._compute_2nd_resp()
         if normalize:
             fst_order = self.get_flux_resp( normalize=normalize )
@@ -1454,7 +1453,7 @@ class sbml_mca:
         """
         if self._rate_rules != {}:
             raise Noncritical_error('MCA methods are not avaiable for explicit ODE systems.')
-        if ss_conc==None:
+        if ss_conc is None:
             ss_conc=self.get_steady_state()
         e_ela = self.get_metabolite_elasticities( ss_conc )
         M       = numpy.dot( numpy.dot( self._Nr, e_ela ), self._L ) - (1j * frequency * numpy.eye(len(self._Nr)))
@@ -1480,8 +1479,8 @@ class sbml_mca:
         """
         if self._rate_rules != {}:
             raise Noncritical_error('MCA methods are not avaiable for explicit ODE systems.')
-        if ss_conc==None:
-            ss_conc=self.get_steady_state()
+        if ss_conc is None:
+            ss_conc = self.get_steady_state()
         s_ccc = self.get_spectral_conc_cc( frequency, ss_conc )
         e_ela = self.get_metabolite_elasticities(ss_conc)
         prod = numpy.dot( e_ela, s_ccc )
@@ -1498,8 +1497,8 @@ class sbml_mca:
         """
         if self._rate_rules != {}:
             raise Noncritical_error('MCA methods are not avaiable for explicit ODE systems.')
-        if ss_conc==None:
-            ss_conc=self.get_steady_state()
+        if ss_conc is None:
+            ss_conc = self.get_steady_state()
         s_ccc = self.get_spectral_conc_cc( frequency, ss_conc )
         p_ela = self.get_parameter_elasticities(ss_conc)
         s_crc = numpy.dot( s_ccc, p_ela )
@@ -1515,8 +1514,8 @@ class sbml_mca:
         """
         if self._rate_rules != {}:
             raise Noncritical_error('MCA methods are not avaiable for explicit ODE systems.')
-        if ss_conc==None:
-            ss_conc=self.get_steady_state()
+        if ss_conc is None:
+            ss_conc = self.get_steady_state()
         s_fcc = self.get_spectral_flux_cc( frequency, ss_conc )
         p_ela = self.get_parameter_elasticities(ss_conc)
         s_frc = numpy.dot( s_fcc, p_ela )
@@ -1892,7 +1891,7 @@ class sbml_mca:
             return [s.getInitialAmount() for s in misc.get_not_constant_species( self._model ) ]
             
     def get_parameter_names( self, parameter_ids=None, replace_empty_names_with_id=False ):
-        if parameter_ids==None:
+        if parameter_ids is None:
             parameter_ids = self.get_parameter_ids()
         if replace_empty_names_with_id:
             return [ misc.get_parameter_name(self._model, p_id) or p_id
@@ -1982,7 +1981,7 @@ if __name__=='__main__':
 
     for param in ['timecourse', 'ss', 'p_ela', 'e_ela', 'p_ela2', 'flux_cc', 'conc_cc', 'flux_resp', 'conc_resp', 'flux_resp2', 'conc_resp2',\
                   'spectral_conc_cc', 'spectral_flux_cc', 'spectral_conc_resp', 'spectral_flux_resp', 'stoich_mat']:
-        if getattr( options, param)!=None:
+        if getattr( options, param) is not None:
             if param=='timecourse':
                 print 'Simulating the model'
                 t=float(getattr(options,param))
@@ -2008,7 +2007,7 @@ if __name__=='__main__':
                 print
             elif param=='p_ela2':
                 print 'Second order parameter elasticities'
-                if options.normalize!=None:
+                if options.normalize is not None:
                     print 'Warning: No normalization is done for elasticities'
                 ela2 = j.get_2nd_elasticities()
                 for pos,r in enumerate(model.getListOfReactions()):
