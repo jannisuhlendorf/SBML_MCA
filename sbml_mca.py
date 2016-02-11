@@ -423,7 +423,7 @@ class sbml_mca:
         r  =  self._ast_to_string( ast.getRightChild(), mode, replace )
         if type==libsbml.AST_MINUS:
             if r is None:
-                return '( - %s)' %l
+                return '( - %s )' %l
             return '( %s  - %s )' %(l,r)
         elif type==libsbml.AST_PLUS:
             return '( %s  + %s )' %(l,r)
