@@ -1624,7 +1624,7 @@ class sbml_mca:
                 ec[r_pos, p_pos] = sympy.diff( formula, p_id )
         return ec
 
-    def get_time_varying_conc_rc_numerical( self, end_time, normalize=None, initial_cond_as_params=False, return_multiple=False ):
+    def get_time_varying_conc_rc_numerical( self, end_time, normalize=None, initial_cond_as_params=False, return_multiple=False, return_species_tc=False ):
         """
         get time varying concentration response coefficients
         """
@@ -1634,22 +1634,23 @@ class sbml_mca:
         l_p = len(p_id)
         if initial_cond_as_params: # if initial conditions are also condidered as parameters
             l_p += len(self._species_ids)
-        l_s = len(self._species_ids)
-        l_sp = l_p*l_s
+        l_s = len(self._species_ids) # number of ODE species
+        l_sp = l_p*l_s # number of concentration response coefficients
 
         if l_sp > self._max_max_model_size:
             raise Noncritical_error( 'Model is too large to compute time varying coefficients.' )
 
         def my_ode( x, t ):
-            dc = x[:l_sp].reshape((l_s,l_p))
-            s = x[l_sp:]
-            es = self.get_elasticities( self._species_ids, s, time=t )
-            ep = self.get_elasticities( p_id, s, time=t )
+            # generate ODE system to solve for time varying conc. response coefficients
+            dc = x[:l_sp].reshape((l_s,l_p)) # the first l_sp values are the time varying r.c., here they are reshaped to matrix form
+            s = x[l_sp:] # the species concentrations at current time point
+            es = self.get_elasticities( self._species_ids, s, time=t ) # species elasticities dv/dS
+            ep = self.get_elasticities( p_id, s, time=t ) # parameter elasticities dv/dp
             if initial_cond_as_params:
                 # elasticities for initial conditions are zero
-                ep = numpy.hstack( (ep, numpy.zeros((self._model.getNumReactions(),l_s))) )
+                ep = numpy.hstack( (ep, numpy.zeros((self._model.getNumReactions(),l_s))) ) 
             dx = numpy.zeros( l_sp+len(self._species_ids) )
-            dx[:l_sp] = numpy.reshape( numpy.dot( self._N, (numpy.dot(es,dc) + ep) ), -1)
+            dx[:l_sp] = numpy.reshape( numpy.dot( self._N, (numpy.dot(es,dc) + ep) ), -1) # compuation: d/dt R = N( dv/ds * ds/dp + dv/dp )
             dx[l_sp:] =  self._dSdt( s, t )
             return dx
 
@@ -1661,7 +1662,7 @@ class sbml_mca:
             c0[:,len(p_id):] = numpy.eye( l_s)
             c0 = numpy.reshape( c0, -1 )
         t = numpy.linspace(0,end_time,100)
-        result = self._odeint_wrapper( my_ode, numpy.concatenate( (c0,s0) ), t )
+        result = self._odeint_wrapper( my_ode, numpy.concatenate( (c0, s0) ), t )
         tv_rc = result[:,:l_sp]
 
         errors=[]
@@ -1687,167 +1688,37 @@ class sbml_mca:
 
         if return_multiple:
             return [t, tv_rc_not_norm, tv_rc, errors]
+
+        if return_species_tc:
+            species_tc = result[:,l_sp:]
+            return [t, tv_rc, species_tc]
         
         return [t, tv_rc]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # FROM HERE ON DEBUG CODE:
-
-    def get_time_varying_response_coeff( self, end_time ):
-        p_id = self.get_parameter_ids()
-        import time
-        t = time.time()
-        ep = self.get_elasticities_symbolic( p_id ) 
-        es = self.get_elasticities_symbolic( self._species_ids )
-        print 'get elasticities ', time.time() -t
-        t = time.time()
-
-        ep = ep.subs( self._replacements )
-        #ep = ep.subs( dict( zip(self._external_species_ids, self._external_species_conc) ) )
-        ep = ep.subs( self._external_species_conc )
-        es = es.subs( self._replacements )
-        #es = es.subs( dict( zip(self._external_species_ids, self._external_species_conc) ) )
-        es = es.subs( self._external_species_conc )
-
-        #print ep
-        #print es
-        print 'elasticity subs ', time.time() -t
-        t = time.time()
-
-        list_ds_dp = []
-        ds_dp = sympy.zeros( (len(self._species_ids),len(p_id)) )
-        for s_pos,sp in enumerate(self._species_ids):
-            for p_pos,p in enumerate(p_id):
-                ds_dp[s_pos,p_pos] = 'd_' + sp + '_d_' + p
-                list_ds_dp.append( 'd_' + sp + '_d_' + p )
-
-        print 'ds_dp matrix ', time.time() - t
-        t= time.time()
-
-        dt_ds_dp = self._N * (es * ds_dp + ep)
-
-        print 'multiplication ', time.time() - t
-        t = time.time()
-
-        #print dt_ds_dp
-        
-        #test = ( es * ds_dp + ep )
-        #fct = sympy.utilities.lambdify( ['current_time_variable'] + list_ds_dp + self._species_ids, dt_ds_dp, modules = 'numpy' )
-
-        #3fct_dt_ds_dp = sympy.lambdify( ['current_time_variable'] + list_ds_dp + self._species_ids, dt_ds_dp, modules = 'numpy' )
-        fct_dt_ds_dp = sympy.utilities.lambdify( ['current_time_variable'] + list_ds_dp + self._species_ids, dt_ds_dp, modules = 'numpy' )
-        #fct_dt_ds_dp = sympy.utilities.lambdify( list_ds_dp + self._species_ids, dt_ds_dp, modules = 'numpy' )
-        
-        print 'lambdify ', time.time()-t
-        t = time.time()
-
-
-        l_dt_ds = len( list_ds_dp )
-        l_species = len( self._species_ids )
-        def my_ode( x, t ):
-            dx = numpy.zeros( l_dt_ds+l_species )
-            dx[:l_dt_ds] = numpy.reshape( apply( fct_dt_ds_dp, [t] + x.tolist() ), -1 )[0]
-            dx[l_dt_ds:] = self._dSdt( x[l_dt_ds:], t )
-            return dx
-
-        print 'build ode fct ', time.time()-t
-        t = time.time()
-
-        s0 = self.get_initial_conc(with_rate_rule_params=True)
-        c0 = numpy.zeros(l_dt_ds)
-        t = numpy.linspace(0,end_time,100)
-        #print c0.shape
-        #print s0.shape
-        #numpy.concatenate( c0, s0 )
-        tt=time.time()
-        #result = scipy.integrate.odepack.odeint( my_ode, numpy.concatenate( (c0,s0) ), t )
-        result = self._odeint_wrapper( my_ode, numpy.concatenate( (c0,s0) ), t )
-        print time.time()-tt
-        tv_rc = result[:,:l_dt_ds]
-        #s_tc  = result[:,l_dt_ds:]
-        print 'integrate ', time.time()-tt
-
-        #pylab.plot( t, tv_rc )
-        #pylab.show()
-
-        return tv_rc
-        #return result[:,l_dt_ds:]
-
-    def get_time_varying_response_coeff2( self, end_time ):
-        p_id = self.get_parameter_ids()
-        import time
-        t = time.time()
-        ep = self.get_elasticities_symbolic( p_id ) 
-        es = self.get_elasticities_symbolic( self._species_ids )
-        print 'get elasticities ', time.time() -t
-        t = time.time()
-
-        ep = ep.subs( self._replacements )
-        #ep = ep.subs( dict( zip(self._external_species_ids, self._external_species_conc) ) )
-        ep = ep.subs( self._external_species_conc )
-        es = es.subs( self._replacements )
-        #es = es.subs( dict( zip(self._external_species_ids, self._external_species_conc) ) )
-        es = es.subs( self._external_species_conc )
-
-        #print ep
-        #print es
-        print 'elasticity subs ', time.time() -t
-        t = time.time()
-        fct_ep = sympy.utilities.lambdify( ['current_time_vatriable'] + self._species_ids, ep, modules='numpy' )
-        fct_es = sympy.utilities.lambdify( ['current_time_vatriable'] + self._species_ids, es, modules='numpy' )
-        #dt_ds_dp = self._N * (es * ds_dp + ep)        
-        print 'lambdify ', time.time()-t
-
-        t = time.time()
+    def get_time_varying_flux_rc( self, end_time, initial_cond_as_params=False ):
+        """
+        get time varying flux response coefficients
+        """
         p_id = self.get_parameter_ids()
         l_p = len(p_id)
-        l_s = len(self._species_ids)
-        l_sp = l_p*l_s
-        def my_ode( x, t ):
-            dc = x[:l_sp].reshape((l_s,l_p))
-            s = x[l_sp:]
-            epc = fct_ep( s )
-            esc = fct_es( s ) 
-            dx = numpy.zeros( l_sp+len(self._species_ids) )
-            dx[:l_sp] = numpy.reshape( numpy.dot( self._N, (numpy.dot(esc,dc) + epc) ), -1)
-            
+        if initial_cond_as_params: # if initial conditions are also condidered as parameters
+            l_p += len(self._species_ids)
+        l_s = len(self._species_ids) # number of ODE species
+        l_sp = l_p*l_s # number of concentration response coefficients
+        l_v = self._N.shape[1]
+        timepoints, tv_rcs, species_tc = self.get_time_varying_conc_rc_numerical( end_time, initial_cond_as_params=initial_cond_as_params, return_species_tc=True )
+        tv_rc_j = numpy.zeros((len(timepoints), l_v*l_p))
 
-            #print dx[:l_sp] - b
-            dx[l_sp:] = self._dSdt( x[l_dt_ds:], t )
-            return dx
-        print 'build ode fct ', time.time()-t
+        for i,t in enumerate(timepoints):
+            s = species_tc[i,:]
+            es = self.get_elasticities( self._species_ids, s, time=t ) # species elasticities dv/dS
+            ep = self.get_elasticities( p_id, s, time=t ) # parameter elasticities dv/dp
+            RS = tv_rcs[i,:].reshape((l_s,l_p))
+            RJ = numpy.dot( es, RS ) + ep
+            tv_rc_j[i,:] = RJ.reshape(-1)
 
-        t = time.time()
-        s0 = self.get_initial_conc(with_rate_rule_params=True)
-        c0 = numpy.zeros(l_sp)
-        t = numpy.linspace(0,end_time,100)
-        tt=time.time()
-        #result = scipy.integrate.odepack.odeint( my_ode, numpy.concatenate( (c0,s0) ), t )
-        result = self._odeint_wrapper( my_ode, numpy.concatenate( (c0,s0) ), t )
-        print time.time()-tt
-        tv_rc = result[:,:l_sp]
-        print 'integrate ', time.time()-tt
-
-        #pylab.plot( t, tv_rc )
-        #pylab.show()
-
-        return tv_rc
-
-
-    
+        return [timepoints, tv_rc_j]
 
 
     # from here on model information methods:
