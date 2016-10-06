@@ -1315,6 +1315,29 @@ class sbml_mca:
             raise Exception('No first order term specified for normalization')        
         return coeff
 
+
+    def _normalize_time_varying_coeff(self, coeff, left=None, right=None):
+        coeff_copy = coeff.copy()
+        no_coeff = coeff.shape[1] # number of coeff
+        if left is not None:
+            no_right = no_coeff/left.shape[1] # number of right coefficients (here: parameters)
+            if right is not None:
+                assert no_right == len(right)
+            for i in range(no_coeff):
+                try:
+                    # divide earch row by left coeff (flux or conc.)
+                    coeff_copy[:, i] = coeff_copy[:, i] / left[:,int(i/no_right)] 
+                except RuntimeWarning:
+                    raise Noncritical_error( 'Error: Normalization failed. Value to divide by is too small.')
+        if right is not None:
+            no_right = len(right)
+            if left is not None:
+                assert no_right == no_coeff/left.shape[1]
+            for i in range(no_coeff):
+                coeff_copy[:, i] = coeff_copy[:, i] * right[i%no_right]
+        return coeff_copy
+
+
     def _compute_2nd_resp( self, custom_params=None ):
         """ compute the second order responce coefficients """
         if self._rate_rules != {}:
@@ -1588,7 +1611,6 @@ class sbml_mca:
         return result
 
 
-
     def __getstate__(self):
         """ flatten object for pickeling """
         d= self.__dict__.copy()
@@ -1604,8 +1626,6 @@ class sbml_mca:
         self._model = self._doc.getModel()
         misc.make_unique_local_parameters( self._model )
         self._kinetic_laws            =    self._get_kinetic_laws(self._model)
-
-
 
 
     def get_elasticities_symbolic( self, parameter_names ):
@@ -1624,7 +1644,12 @@ class sbml_mca:
                 ec[r_pos, p_pos] = sympy.diff( formula, p_id )
         return ec
 
-    def get_time_varying_conc_rc_numerical( self, end_time, normalize=None, initial_cond_as_params=False, return_multiple=False, return_species_tc=False ):
+    def get_time_varying_conc_rc_numerical( self, 
+                                            end_time, 
+                                            normalize=None, 
+                                            initial_cond_as_params=False, 
+                                            return_multiple=False, 
+                                            return_species_tc=False ):
         """
         get time varying concentration response coefficients
         """
@@ -1696,7 +1721,80 @@ class sbml_mca:
         return [t, tv_rc]
 
 
-    def get_time_varying_flux_rc( self, end_time, initial_cond_as_params=False ):
+    def get_time_varying_conc_rc(self, 
+                                 end_time, 
+                                 normalize=None, 
+                                 initial_cond_as_params=False, 
+                                 return_flat=False,
+                                 return_species_tc=False):
+        """
+        get time varying concentration response coefficients
+        """
+        if self._rate_rules != {}:
+            raise Noncritical_error('MCA methods are not avaiable for explicit ODE systems.')
+        p_id = self.get_parameter_ids()
+        l_p = len(p_id)
+        if initial_cond_as_params: # if initial conditions are also condidered as parameters
+            l_p += len(self._species_ids)
+        l_s = len(self._species_ids) # number of ODE species
+        l_sp = l_p*l_s # number of concentration response coefficients
+
+        if l_sp > self._max_max_model_size:
+            raise Noncritical_error( 'Model is too large to compute time varying coefficients.' )
+
+        def my_ode( x, t ):
+            # generate ODE system to solve for time varying conc. response coefficients
+            dc = x[:l_sp].reshape((l_s,l_p)) # the first l_sp values are the time varying r.c., here they are reshaped to matrix form
+            s = x[l_sp:] # the species concentrations at current time point
+            es = self.get_elasticities( self._species_ids, s, time=t ) # species elasticities dv/dS
+            ep = self.get_elasticities( p_id, s, time=t ) # parameter elasticities dv/dp
+            if initial_cond_as_params:
+                # elasticities for initial conditions are zero
+                ep = numpy.hstack( (ep, numpy.zeros((self._model.getNumReactions(),l_s))) ) 
+            dx = numpy.zeros( l_sp+len(self._species_ids) )
+            dx[:l_sp] = numpy.reshape( numpy.dot( self._N, (numpy.dot(es,dc) + ep) ), -1) # compuation: d/dt R = N( dv/ds * ds/dp + dv/dp )
+            dx[l_sp:] =  self._dSdt( s, t )
+            return dx
+
+        s0 = self.get_initial_conc(with_rate_rule_params=True)
+        c0 = numpy.zeros(l_sp)    
+        if initial_cond_as_params:
+            # initialize derivatives w.r.t. initial conditions to 1.
+            c0 = numpy.zeros( (l_s,l_p) )
+            c0[:,len(p_id):] = numpy.eye( l_s)
+            c0 = numpy.reshape( c0, -1 )
+        t = numpy.linspace(0,end_time,100)
+        result = self._odeint_wrapper( my_ode, numpy.concatenate( (c0, s0) ), t )
+        tv_rc = result[:, :l_sp]
+
+        if normalize is not None:
+            left = right = None
+            if normalize in ['left', 'both']:
+                left = result[:, l_sp:]
+            if normalize in ['right', 'both']:
+                right = self.get_parameter_values( p_id )
+                if initial_cond_as_params:
+                    right = numpy.concatenate( (right, self.get_initial_conc()) )
+            tv_rc = self._normalize_time_varying_coeff(tv_rc, left, right)
+
+        if not return_flat:
+            tv_rc = tv_rc.reshape((len(t), l_s, l_p))
+
+        if return_species_tc:
+            # return also species timecourse (required for computation of flux-resp-coeff)
+            species_tc = result[:, l_sp:]
+            return [t, tv_rc, species_tc]
+
+
+        return [t, tv_rc]
+
+
+    def get_time_varying_flux_rc(self, 
+                                 end_time,
+                                 normalize=None,
+                                 initial_cond_as_params=False,
+                                 return_flat=False,
+                                 return_species_tc=False):
         """
         get time varying flux response coefficients
         """
@@ -1706,11 +1804,15 @@ class sbml_mca:
             l_p += len(self._species_ids)
         l_s = len(self._species_ids) # number of ODE species
         l_sp = l_p*l_s # number of concentration response coefficients
-        l_v = self._N.shape[1]
-        timepoints, tv_rcs, species_tc = self.get_time_varying_conc_rc_numerical( end_time, initial_cond_as_params=initial_cond_as_params, return_species_tc=True )
-        tv_rc_j = numpy.zeros((len(timepoints), l_v*l_p))
+        l_v = self._N.shape[1] # nubmer of fluxes
+        timepoints, tv_rcs, species_tc = self.get_time_varying_conc_rc( end_time,
+                                                                        normalize=None,
+                                                                        initial_cond_as_params=initial_cond_as_params, 
+                                                                        return_flat=True,
+                                                                        return_species_tc=True )
+        tv_rc_j = numpy.zeros((len(timepoints), l_v*l_p)) # initialize flux coeff.
 
-        for i,t in enumerate(timepoints):
+        for i, t in enumerate(timepoints):
             s = species_tc[i,:]
             es = self.get_elasticities( self._species_ids, s, time=t ) # species elasticities dv/dS
             ep = self.get_elasticities( p_id, s, time=t ) # parameter elasticities dv/dp
@@ -1718,9 +1820,79 @@ class sbml_mca:
             RJ = numpy.dot( es, RS ) + ep
             tv_rc_j[i,:] = RJ.reshape(-1)
 
+        if normalize is not None:
+            left = right = None
+            if normalize in ['left', 'both']:
+                left = numpy.zeros((len(timepoints), l_v))
+                for i, t in enumerate(timepoints):
+                    left[i, :] = self._v(species_tc[i, :], t)
+            if normalize in ['right', 'both']:
+                right = self.get_parameter_values( p_id )
+                if initial_cond_as_params:
+                    right = numpy.concatenate( (right, self.get_initial_conc()) )
+            tv_rc_j = self._normalize_time_varying_coeff(tv_rc_j, left, right)
+
+        if not return_flat:
+            tv_rc_j = tv_rc_j.reshape((len(timepoints), l_v, l_p))
+
+        if return_species_tc:
+            # return also species timecourse (required for computation of flux-resp-coeff)
+            return [timepoints, tv_rc_j, species_tc]
+
         return [timepoints, tv_rc_j]
 
 
+    def get_time_varying_rc_web_if(self, 
+                                   end_time, 
+                                   what='conc',
+                                   initial_cond_as_params=False):
+        errors = []
+        if what == 'conc':
+            timepoints, tv_rc, species_tc = self.get_time_varying_conc_rc(end_time,
+                                                                          normalize=None,
+                                                                          initial_cond_as_params=initial_cond_as_params,
+                                                                          return_flat=True,
+                                                                          return_species_tc=True)
+            left = species_tc
+        elif what =='flux':
+            timepoints, tv_rc, specie_tc = self.get_time_varying_flux_rc(end_time,
+                                                                         normalize=None,
+                                                                         initial_cond_as_params=initial_cond_as_params,
+                                                                         return_flat=True,
+                                                                         return_species_tc=True)
+            left = numpy.zeros((len(timepoints), l_v))
+            for i, t in enumerate(timepoints):
+                    left[i, :] = self._v(species_tc[i, :], t)
+
+        right = self.get_parameter_values()
+        if initial_cond_as_params:
+            right = numpy.concatenate( (right, self.get_initial_conc()) )
+
+        try:
+            tv_rc_norm = self._normalize_time_varying_coeff( tv_rc, left, right)
+        except Exception, e:
+            errors.append(e)
+            tv_rc_norm = numpy.zeros(tv_rc.shape)
+
+        return [timepoints, tv_rc, tv_rc_norm, errors]
+
+
+    def plot_time_varying_coefficients(self, end_time, what='conc_resp', initial_cond_as_params=False, normalize=None):
+        if what == 'conc_resp':
+            timepoints, tvrc = self.get_time_varying_flux_rc(end_time, initial_cond_as_params)
+            p_ids = self.get_parameter_ids()
+            if initial_cond_as_params: # if initial conditions are also condidered as parameters
+                l_p += len(self._species_ids)
+            r_ids = [r.getId() for r in self._model.getListOfReactions()]
+            coeff_names = numpy.reshape([[r_id+ '_' + p_id  for r_id in r_ids] for p_id in p_ids], -1)
+        elif what == 'flux_resp':
+            raise Exception('implement me')
+        pylab.plot(timepoints, tvrc)
+        pylab.legend(coeff_names)
+        pylab.show()
+
+        
+        
     # from here on model information methods:
 
     def get_model_id( self ):
