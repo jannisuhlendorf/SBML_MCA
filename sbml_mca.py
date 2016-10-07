@@ -1879,14 +1879,26 @@ class sbml_mca:
 
     def plot_time_varying_coefficients(self, end_time, what='conc_resp', initial_cond_as_params=False, normalize=None):
         if what == 'conc_resp':
-            timepoints, tvrc = self.get_time_varying_flux_rc(end_time, initial_cond_as_params)
+            timepoints, tvrc = self.get_time_varying_conc_rc(end_time,
+                                                             normalize=normalize,
+                                                             initial_cond_as_params=initial_cond_as_params,
+                                                             return_flat=True)
+            p_ids = self.get_parameter_ids()
+            if initial_cond_as_params: # if initial conditions are also condidered as parameters
+                l_p += len(self._species_ids)
+            r_ids = [r.getId() for r in self._model.getListOfReactions()]
+            s_ids = self._species_ids
+            coeff_names = numpy.reshape([[s_id+ '_' + p_id  for s_id in s_ids] for p_id in p_ids], -1)
+        elif what == 'flux_resp':
+            timepoints, tvrc = self.get_time_varying_flux_rc(end_time,
+                                                             normalize=normalize,
+                                                             initial_cond_as_params=initial_cond_as_params,
+                                                             return_flat=True)
             p_ids = self.get_parameter_ids()
             if initial_cond_as_params: # if initial conditions are also condidered as parameters
                 l_p += len(self._species_ids)
             r_ids = [r.getId() for r in self._model.getListOfReactions()]
             coeff_names = numpy.reshape([[r_id+ '_' + p_id  for r_id in r_ids] for p_id in p_ids], -1)
-        elif what == 'flux_resp':
-            raise Exception('implement me')
         pylab.plot(timepoints, tvrc)
         pylab.legend(coeff_names)
         pylab.show()
@@ -1989,6 +2001,8 @@ if __name__=='__main__':
     parser.add_option('--conc_resp', action='store_true', dest='conc_resp', help='compute concentration response coefficients')
     parser.add_option('--flux_resp2', action='store_true', dest='flux_resp2', help='compute second order flux response coefficients')
     parser.add_option('--conc_resp2', action='store_true', dest='conc_resp2', help='compute second order concentration response coefficients')
+    parser.add_option('--flux_resp_tv', metavar='time', dest='flux_resp_tv', help='computes and plots time varying flux response coefficients (parameter: end_time)')
+    parser.add_option('--conc_resp_tv', metavar='time', dest='conc_resp_tv', help='computes and plots time varying concentration response coefficients (parameter: end_time)')
     parser.add_option('--spectral_conc_cc', metavar='frequency', dest='spectral_conc_cc', help='compute spectral concentration control coefficients')
     parser.add_option('--spectral_flux_cc', metavar='frequency', dest='spectral_flux_cc', help='compute spectral flux control coefficients')
     parser.add_option('--spectral_conc_resp', metavar='frequency', dest='spectral_conc_resp', help='compute spectral conc response coefficients')
@@ -2024,7 +2038,7 @@ if __name__=='__main__':
 
 
     for param in ['timecourse', 'ss', 'p_ela', 'e_ela', 'p_ela2', 'flux_cc', 'conc_cc', 'flux_resp', 'conc_resp', 'flux_resp2', 'conc_resp2',\
-                  'spectral_conc_cc', 'spectral_flux_cc', 'spectral_conc_resp', 'spectral_flux_resp', 'stoich_mat']:
+                  'flux_resp_tv', 'conc_resp_tv', 'spectral_conc_cc', 'spectral_flux_cc', 'spectral_conc_resp', 'spectral_flux_resp', 'stoich_mat']:
         if getattr( options, param) is not None:
             if param=='timecourse':
                 print 'Simulating the model'
@@ -2087,6 +2101,16 @@ if __name__=='__main__':
                 for pos,s in enumerate(j._species_ids):
                     print s,':'
                     print crc2[pos]
+                print
+            elif param=='flux_resp_tv':
+                print 'Time varying flux response coefficients:'
+                t=float(getattr(options,param))
+                j.plot_time_varying_coefficients(t, what='flux_resp', normalize=options.normalize)
+                print
+            elif param=='conc_resp_tv':
+                print 'Time varying concentration response coefficients:'
+                t=float(getattr(options,param))
+                j.plot_time_varying_coefficients(t, what='conc_resp', normalize=options.normalize)
                 print
             elif param=='spectral_conc_cc':
                 print 'Spectral concentration conctrol coefficients:'
