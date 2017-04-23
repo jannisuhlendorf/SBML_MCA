@@ -1,16 +1,16 @@
 import libsbml
 
-class sbml_validator:
+class SBMLValidator:
     """ class for validating an SBML model """
 
     _maximal_model_size = 4000
 
-    def __init__( self, model ):
+    def __init__(self, model):
         """
         @type model:  libsbml.model or string
         @param model: SBML model, or filename
         """
-        if type(model)==type('katze'):
+        if type(model)==str:
             self._doc = libsbml.readSBML(model)
             m = self._doc.getModel()
             self._model = m
@@ -19,8 +19,7 @@ class sbml_validator:
             self._doc = libsbml.SBMLDocument(model.getLevel(), model.getVersion())
             self._doc.setModel(self._model)
 
-
-    def validate( self ):
+    def validate(self):
         """
         validate the model (this function should be called)
         @return: [warnings,errors] (each of them is a list of strings)
@@ -33,11 +32,9 @@ class sbml_validator:
         w,e = self._get_libsbml_errors()
         warnings += w
         errors += e
-
         return [warnings,errors]
 
-
-    def _check_model_size( self ):
+    def _check_model_size(self):
         """ check the size of the model """
         errors = []
         no_sp = self._model.getNumSpecies()
@@ -48,7 +45,7 @@ class sbml_validator:
             errors.append('Model is larger than maximal allowed size.')
         return errors
 
-    def _check_not_supported_sbml_mca( self ):
+    def _check_not_supported_sbml_mca(self):
         """ check for features in the sbml that are not supported yet """
         errors = []
         if self._model.getNumConstraints():
@@ -73,41 +70,35 @@ class sbml_validator:
             var = rule.getVariable()
             if var in parameter_ids:
                 errors.append('Parameter %s is changed by a rate rule. This is not supported.' %(var))
-
-
-
         return errors
 
-    def _check_initial_conditions( self ):
+    def _check_initial_conditions(self):
         """ check if for each species initial conditions are given """
         warnings = []
         for s in self._model.getListOfSpecies():
             if s.getConstant():
                 continue
-            if not( s.isSetInitialConcentration() or s.isSetInitialAmount() ):
+            if not(s.isSetInitialConcentration() or s.isSetInitialAmount()):
                 warnings.append('No initial value specified for species %s. Setting initial value to 0.' %s.getId())
         return warnings
 
-    def _get_libsbml_errors( self ):
+    def _get_libsbml_errors(self):
         """ get errors from libsbml """
-
-        self._doc.setConsistencyChecks( libsbml.LIBSBML_CAT_GENERAL_CONSISTENCY, True )
-        self._doc.setConsistencyChecks( libsbml.LIBSBML_CAT_IDENTIFIER_CONSISTENCY, True )
-        self._doc.setConsistencyChecks( libsbml.LIBSBML_CAT_UNITS_CONSISTENCY, False )
-        self._doc.setConsistencyChecks( libsbml.LIBSBML_CAT_MATHML_CONSISTENCY, True )
-        self._doc.setConsistencyChecks( libsbml.LIBSBML_CAT_SBO_CONSISTENCY, False )
-        self._doc.setConsistencyChecks( libsbml.LIBSBML_CAT_OVERDETERMINED_MODEL, False )
-        self._doc.setConsistencyChecks( libsbml.LIBSBML_CAT_MODELING_PRACTICE, False )
-
+        self._doc.setConsistencyChecks(libsbml.LIBSBML_CAT_GENERAL_CONSISTENCY, True)
+        self._doc.setConsistencyChecks(libsbml.LIBSBML_CAT_IDENTIFIER_CONSISTENCY, True)
+        self._doc.setConsistencyChecks(libsbml.LIBSBML_CAT_UNITS_CONSISTENCY, False)
+        self._doc.setConsistencyChecks(libsbml.LIBSBML_CAT_MATHML_CONSISTENCY, True)
+        self._doc.setConsistencyChecks(libsbml.LIBSBML_CAT_SBO_CONSISTENCY, False)
+        self._doc.setConsistencyChecks(libsbml.LIBSBML_CAT_OVERDETERMINED_MODEL, False)
+        self._doc.setConsistencyChecks(libsbml.LIBSBML_CAT_MODELING_PRACTICE, False)
         # TODO: find out why this gives zero errors for cloned models
         errors = []
         warnings = []
         self._doc.checkConsistency()
         for i in range(self._doc.getNumErrors()):
             e = self._doc.getError(i)
-            msg   = e.getMessage()
-            line  = e.getLine()
-            #smsg  = e.getShortMessage()
+            msg = e.getMessage()
+            line = e.getLine()
             fatal = e.isFatal()
             e_type = 'warning'
             if e.isError():
@@ -121,5 +112,3 @@ class sbml_validator:
             else:
                 warnings.append(error_msg)
         return [warnings,errors]
-
-

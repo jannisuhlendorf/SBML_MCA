@@ -28,15 +28,16 @@ DEPENDENCIES
 -----
 TOOLS
 -----
-MCA.py           -   Basic MCA functionality, simulation
-		         of SBML models, computation of 
-		         steady states. Type ./sbml_mca.py 
-		         --help for more information.
-model_variation.py   -   Compute the influence of parameter
-		      	 fluctuations on the steady state
-			 fluxes and metabolite concentrations.
-			 Type ./model_variation.py --help
-			 for more information.
+sbml_mca         - script for computing MCA coefficients,
+                 simulation of SBML models, computation
+                 of steady states sbml_mca --help for more
+                 information.
+Model.py         - class for parsing SBML models
+Simulator.py     - class for simulating SBML models
+MCA.py           - class providing MCA functionality
+Kineticizer.py   - fill SBML models with different types
+                 of kinetic laws
+SBMLTestSuite
 
 
 ------------
