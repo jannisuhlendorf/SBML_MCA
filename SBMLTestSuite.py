@@ -4,7 +4,7 @@ import traceback
 import sbml_mca
 
 
-class sbml_test_suite:
+class SBMLTestSuite:
     """
     class for running the SBML test suite (sbml.org/Software/SBML_Test_Suite)
 
@@ -215,7 +215,7 @@ if __name__=='__main__':
         path = './sbml-test-cases'
     else:
         path = sys.argv[1]
-    sts = sbml_test_suite( path )
+    sts = SBMLTestSuite(path)
     #sts.run_test(  81, stop_and_plot=True)
     #sts.run_test(range(1,100))
     sts.run_test()

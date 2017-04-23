@@ -19,6 +19,16 @@ class MCA:
         self.model = model
         self.simulator = Simulator.Simulator(model)
 
+        self._p_ela = None
+        self._e_ela = None
+        self._ccc = None
+        self._fcc = None
+        self._crc = None
+        self._frc = None
+        self._2nd_crc = None
+        self._2nd_frc = None
+        self._reference_params = {}
+
     def get_2nd_elasticities(self, parameter_names=None, ss_conc=None):
         """
         get the second order elasticities, if parameter_names is not speciefied for all parameters
@@ -635,9 +645,8 @@ class MCA:
     def get_elasticities_symbolic(self, parameter_names):
         # TODO: maybe evaluate first parameters / external conc.
         if self.model.rate_rules != {}:
-            raise NoncriticalError(
-                'MCA methods are not avaiable for explicit ODE systems.')
-        ec = sympy.zeros((self.model.sbml_model.getNumReactions(), len(parameter_names)))
+            raise NoncriticalError('MCA methods are not avaiable for explicit ODE systems.')
+        ec = sympy.zeros(self.model.sbml_model.getNumReactions(), len(parameter_names))
         for r_pos, kl in enumerate([r.getKineticLaw()
                                     for r in self.model.sbml_model.getListOfReactions()]):
             formula = misc.ast_to_string(kl.getMath(),

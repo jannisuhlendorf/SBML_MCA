@@ -1,0 +1,178 @@
+#!/usr/bin/env python
+import Model
+import Simulator
+import MCA
+import misc
+import optparse
+import sys
+
+if __name__ == '__main__':
+    parser = optparse.OptionParser(usage='usage: %prog [options] model')
+    parser.add_option('--string_output', action='store_true',
+                      dest='string_output', help='format output as string')
+    parser.add_option('-t', '--timecourse', metavar='time',
+                      dest='timecourse', help='simulate model for given time')
+    parser.add_option('--ss', action='store_true', dest='ss',
+                      help='get steady state concentrations and flux')
+    parser.add_option('--normalize', dest='normalize',
+                      help='normalize coefficients. left | right| both')
+    parser.add_option('--p_ela', action='store_true',
+                      dest='p_ela', help='compute parameter elasticities')
+    parser.add_option('--e_ela', action='store_true',
+                      dest='e_ela', help='compute substrate elasticities')
+    parser.add_option('--p_ela2', action='store_true', dest='p_ela2',
+                      help='compute second order parameter elasticities')
+    parser.add_option('--flux_cc', action='store_true',
+                      dest='flux_cc', help='compute flux conctrol coefficients')
+    parser.add_option('--conc_cc', action='store_true', dest='conc_cc',
+                      help='compute concentration conctrol coefficients')
+    parser.add_option('--flux_resp', action='store_true',
+                      dest='flux_resp', help='compute flux response coefficients')
+    parser.add_option('--conc_resp', action='store_true', dest='conc_resp',
+                      help='compute concentration response coefficients')
+    parser.add_option('--flux_resp2', action='store_true', dest='flux_resp2',
+                      help='compute second order flux response coefficients')
+    parser.add_option('--conc_resp2', action='store_true', dest='conc_resp2',
+                      help='compute second order concentration response coefficients')
+    parser.add_option('--flux_resp_tv', metavar='time', dest='flux_resp_tv',
+                      help='computes and plots time varying flux response coefficients (parameter: end_time)')
+    parser.add_option('--conc_resp_tv', metavar='time', dest='conc_resp_tv',
+                      help='computes and plots time varying concentration response coefficients (parameter: end_time)')
+    parser.add_option('--spectral_conc_cc', metavar='frequency', dest='spectral_conc_cc',
+                      help='compute spectral concentration control coefficients')
+    parser.add_option('--spectral_flux_cc', metavar='frequency',
+                      dest='spectral_flux_cc', help='compute spectral flux control coefficients')
+    parser.add_option('--spectral_conc_resp', metavar='frequency',
+                      dest='spectral_conc_resp', help='compute spectral conc response coefficients')
+    parser.add_option('--spectral_flux_resp', metavar='frequency',
+                      dest='spectral_flux_resp', help='compute spectral flux response coefficients')
+    parser.add_option('--stoich_mat', dest='stoich_mat',
+                      help='output the stoichiometric matrix')
+
+    (options, args) = parser.parse_args()
+    if len(sys.argv) == 1:
+        parser.print_help()
+        sys.exit()
+
+    model = Model.Model(sys.argv[-1])
+    simulator = Simulator.Simulator(model)
+    mca = MCA.MCA(model)
+
+    if options.normalize not in [None, 'left', 'right', 'both']:
+        raise Exception('Unknown normalization %s' % (options.normalize))
+
+    print 'Reactions:'
+    print '\n'.join(model.reaction_ids)
+    print
+    print 'Species:'
+    print '\n'.join(model.species_ids)
+    print
+    print 'Parameters:'
+    print '\n'.join(model.parameter_ids)
+    print
+    print
+
+    for param in ['timecourse', 'ss', 'p_ela', 'e_ela', 'p_ela2', 'flux_cc', 'conc_cc', 'flux_resp',
+                  'conc_resp', 'flux_resp2', 'conc_resp2', 'flux_resp_tv', 'conc_resp_tv', 'spectral_conc_cc',
+                  'spectral_flux_cc', 'spectral_conc_resp', 'spectral_flux_resp', 'stoich_mat']:
+        if getattr(options, param) is not None:
+            if param == 'timecourse':
+                print 'Simulating the model'
+                t = float(getattr(options, param))
+                simulator.plot_timecourse(t, 100)
+                print
+            if param == 'ss':
+                print 'Steady state concentrations:'
+                print simulator.get_steady_state(string_output=options.string_output)
+                print 'Steady state flux:'
+                print simulator.get_steady_state_flux(string_output=options.string_output)
+                print
+            elif param == 'p_ela':
+                print 'Parameter elasticities:'
+                print mca.get_parameter_elasticities(string_output=options.string_output,
+                                                     normalize=options.normalize)
+                print
+            elif param == 'e_ela':
+                print 'Substrate elasticities'
+                print mca.get_metabolite_elasticities(string_output=options.string_output,
+                                                      normalize=options.normalize)
+                print
+            elif param == 'p_ela2':
+                print 'Second order parameter elasticities'
+                if options.normalize is not None:
+                    print 'Warning: No normalization is done for elasticities'
+                ela2 = mca.get_2nd_elasticities()
+                for pos, r in enumerate(model.reaction_ids):
+                    print r, ':'
+                    print ela2[pos]
+                print
+            elif param == 'flux_cc':
+                print 'Flux control coefficients:'
+                print mca.get_flux_cc(string_output=options.string_output,
+                                      normalize=options.normalize)
+                print
+            elif param == 'conc_cc':
+                print 'Concentration control coefficients:'
+                print mca.get_conc_cc(string_output=options.string_output,
+                                      normalize=options.normalize)
+                print
+            elif param == 'flux_resp':
+                print 'Flux response coefficients:'
+                print mca.get_flux_resp(string_output=options.string_output,
+                                        normalize=options.normalize)
+                print
+            elif param == 'conc_resp':
+                print 'Concentration response coefficients:'
+                print mca.get_conc_resp(string_output=options.string_output,
+                                        normalize=options.normalize)
+                print
+            elif param == 'flux_resp2':
+                print 'Second order flux response coefficients:'
+                frc2 = mca.get_2nd_flux_resp(normalize=options.normalize)
+                for pos, r in enumerate(model.reaction_ids):
+                    print r.getId(), ':'
+                    print frc2[pos]
+                print
+            elif param == 'conc_resp2':
+                print 'Second order concentration response coefficients:'
+                crc2 = mca.get_2nd_conc_resp(normalize=options.normalize)
+                for pos, s in enumerate(model.species_ids):
+                    print s, ':'
+                    print crc2[pos]
+                print
+            elif param == 'flux_resp_tv':
+                print 'Time varying flux response coefficients:'
+                t = float(getattr(options, param))
+                mca.plot_time_varying_coefficients(t,
+                                                   what='flux_resp',
+                                                   normalize=options.normalize)
+                print
+            elif param == 'conc_resp_tv':
+                print 'Time varying concentration response coefficients:'
+                t = float(getattr(options, param))
+                mca.plot_time_varying_coefficients(t,
+                                                   what='conc_resp',
+                                                   normalize=options.normalize)
+                print
+            elif param == 'spectral_conc_cc':
+                print 'Spectral concentration conctrol coefficients:'
+                frequency = float(getattr(options, param))
+                print mca.get_spectral_conc_cc(frequency)
+            elif param == 'spectral_flux_cc':
+                print 'Spectral flux conctrol coefficients:'
+                frequency = float(getattr(options, param))
+                print mca.get_spectral_flux_cc(frequency)
+            elif param == 'spectral_conc_resp':
+                print 'Spectral concentration response coefficients:'
+                frequency = float(getattr(options, param))
+                print mca.get_spectral_conc_resp(frequency)
+            elif param == 'spectral_flux_resp':
+                print 'Spectral flux response coefficients:'
+                frequency = float(getattr(options, param))
+                print mca.get_spectral_flux_resp(frequency)
+            elif param == 'stoich_mat':
+                print 'Stoichiometric matrix:'
+                if options.string_output:
+                    print misc.matrix2string(model.N, model.reaction_ids, model.species_ids)
+                else:
+                    print misc.matrix2string(model.N)

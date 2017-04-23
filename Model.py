@@ -285,7 +285,7 @@ class Model:
         @return array with parameter values
         """
         if parameter_ids is None:
-            parameter_ids = self.get_parameter_ids()
+            parameter_ids = self.parameter_ids
         return numpy.array([misc.get_parameter_value(self.sbml_model, p) for p in parameter_ids])
 
     def set_parameter_values(self, parameter_names, parameter_values):
@@ -298,14 +298,11 @@ class Model:
         """
         rebuild = False
         for i, p in enumerate(parameter_names):
-            if p in self._external_species_ids:
-                self._external_species_conc[p] = parameter_values[i]
+            if p in self.external_species_concentrations:
+                self.external_species_concentrations[p] = parameter_values[i]
             else:
                 misc.set_parameter_value(self.sbml_model, p, parameter_values[i])
                 rebuild = True
-        if rebuild:
-            self._build_math()
-        self._reset_calculated_parameters()
 
     def get_delta_parameters(self, d_param, parameter_names):
         """ enter a an array of parameter deviations and names and get back the corresponding d_param vector for all parameters
@@ -316,7 +313,7 @@ class Model:
         @rtype:            numpy.array
         @return:           vector of all parameter changes
         """
-        all_p_names = self.get_parameter_ids()
+        all_p_names = self.parameter_ids
         dp = numpy.zeros(len(all_p_names))
         for value, name in zip(d_param, parameter_names):
             dp[all_p_names.index(name)] = value
