@@ -28,7 +28,7 @@ DEPENDENCIES
 -----
 TOOLS
 -----
-sbml_mca.py          -   Basic MCA functionality, simulation
+MCA.py           -   Basic MCA functionality, simulation
 		         of SBML models, computation of 
 		         steady states. Type ./sbml_mca.py 
 		         --help for more information.

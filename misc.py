@@ -1,7 +1,12 @@
-import cStringIO, copy, libsbml, numpy, pylab
-import sbml_mca
+from Errors import NoncriticalError, CriticalError
+import copy
+import libsbml
+import numpy
+import pylab
+import math
 
-def tensor2string( ten, x=None, y=None, z=None, justify='center', delim=' | '):
+
+def tensor2string(ten, x=None, y=None, z=None, justify='center', delim=' | '):
     ret=''
     for pos,slice in enumerate(ten):
         if x:
@@ -9,7 +14,8 @@ def tensor2string( ten, x=None, y=None, z=None, justify='center', delim=' | '):
         ret += matrix2string( slice, y, z, justify, delim) + '\n'
     return ret
 
-def matrix2string( mat, head=None, left=None, justify='center', delim=' | '):
+
+def matrix2string(mat, head=None, left=None, justify='center', delim=' | '):
     max_length =  [max( (len(str(elem)) for elem in col) ) for col in mat.T]
     mat = mat.tolist()
     if head!=None:
@@ -32,7 +38,8 @@ def matrix2string( mat, head=None, left=None, justify='center', delim=' | '):
         ret += formatline( map( str, line) ) + '\n'
     return ret
 
-def matrix2python( mat ):
+
+def matrix2python(mat):
     ret='['
     for row in mat:
         ret+='['
@@ -43,8 +50,7 @@ def matrix2python( mat ):
     return ret
 
 
-
-def tensor2matlab( a, name ):
+def tensor2matlab(a, name):
     ret='%s = zeros(%s,%s,%s)\n' %(name, a.shape[0], a.shape[1], a.shape[2])
     for i in range(a.shape[0]):
         for j in range(a.shape[1]):
@@ -52,7 +58,8 @@ def tensor2matlab( a, name ):
                 ret += '%s(%s,%s,%s) = %s\n' %(name,i+1,j+1,k+1,a[i,j,k])
     return ret
 
-def matrix2matlab( mat, name=None ):
+
+def matrix2matlab(mat, name=None):
     if not name:
         name='matrix'
     ret='%s = sparse( zeros(%s,%s) );\n' %(name,mat.shape[0],mat.shape[1])
@@ -63,7 +70,8 @@ def matrix2matlab( mat, name=None ):
             ret += '%s(%s,%s) = %s;\n' %(name, i+1, j+1, mat[i,j] )
     return ret
 
-def make_unique_local_parameters( model ):
+
+def make_unique_local_parameters(model):
     """ Function to give all local parameters unique ids """
     #for pos,kl in enumerate([ r.getKineticLaw() for r in model.getListOfReactions() ]):
     for pos,r in enumerate( model.getListOfReactions() ):
@@ -81,17 +89,20 @@ def make_unique_local_parameters( model ):
             kl.setFormula( new_f )
     return model
 
-def get_constant_species( model ):
+
+def get_constant_species(model):
     def const(s): return ( s.getConstant() or s.getBoundaryCondition() )
     return filter(const, model.getListOfSpecies())
-        
-def get_not_constant_species( model ):
+
+
+def get_not_constant_species(model):
     def not_const(s): return not( s.getConstant() or s.getBoundaryCondition() )
     return filter(not_const, model.getListOfSpecies())
 
 
-def is_enzyme( species ):
+def is_enzyme(species):
     return species.getSBOTerm()==14 or species.getId().startswith('enzyme')
+
 
 def get_enzymes( model ):
     enzymes=[]
@@ -104,11 +115,14 @@ def get_enzymes( model ):
         raise Exception('no enzyme found for reaction %s' %r.getId())
     return enzymes
 
+
 def get_enzyme_positions(model):
     return [i for i,s in enumerate(model.getListOfSpecies()) if is_enzyme(s)]
 
+
 def get_not_enzyme_positions(model):
     return [i for i,s in enumerate(model.getListOfSpecies()) if not is_enzyme(s)]
+
 
 def get_species_wo_enzymes(model):
     enzymes = get_enzymes(model)
@@ -135,13 +149,14 @@ def get_enzyme_catalysed_reactions( model ):
             pass            
     return l
 
-def get_positions_enzyme_catalysed_reactions( model ):
+
+def get_positions_enzyme_catalysed_reactions(model):
     ecr = get_enzyme_catalysed_reactions( model )
     lor = [ r for r in model.getListOfReactions() ]
     return [ lor.index(r) for r in ecr ]
 
 
-def add_enzymes_to_reactions( model ):
+def add_enzymes_to_reactions(model):
     """ Create an enzyme for each reaction, if none exists (and modify kinetic law) """
     for r in model.getListOfReactions():
         try:
@@ -157,7 +172,7 @@ def add_enzymes_to_reactions( model ):
             kl.setFormula(e.getId()+' * '+kl.getFormula())
             
             
-def get_parameter_value( model, _id ):
+def get_parameter_value(model, _id):
     for p in model.getListOfSpecies():
         if p.getId()==_id:
             return p.getInitialConcentration()
@@ -172,27 +187,29 @@ def get_parameter_value( model, _id ):
             if p.getId()==_id:
                 return p.getValue()
 
-def set_parameter_value( model, _id, value ):
+
+def set_parameter_value(model, _id, value):
     for p in model.getListOfSpecies():
-        if p.getId()==_id:
+        if p.getId() == _id:
             p.setInitialConcentration(value)
             return
     for p in model.getListOfParameters():
-        if p.getId()==_id:
+        if p.getId() == _id:
             p.setValue(value)
             return
     for p in model.getListOfCompartments():
-        if p.getId()==_id:
+        if p.getId() == _id:
             p.setVolume(value)
             return
     for kl in [ r.getKineticLaw() for r in model.getListOfReactions() ]:
         for p in kl.getListOfParameters():
-            if p.getId()==_id:
+            if p.getId() == _id:
                 p.setValue(value)
                 return
     raise Exception('Parameter %s not found' %_id)
 
-def get_parameter_name( model, _id ):
+
+def get_parameter_name(model, _id):
     for p in model.getListOfParameters():
         if p.getId()==_id:
             return p.getName()
@@ -202,7 +219,8 @@ def get_parameter_name( model, _id ):
                 return p.getName()
     return ''
 
-def plot_ss_quantity( model, param, quantity, region=[0,10], steps=5 ):
+
+def plot_ss_quantity(model, param, quantity, region=[0,10], steps=5):
     """ plot the steady state value of some quantity in dependence of some parameter """
     # find quantity
     sim = sbml_mca.sbml_mca(model)
@@ -215,7 +233,6 @@ def plot_ss_quantity( model, param, quantity, region=[0,10], steps=5 ):
     except: pass
     if sp_pos==None and r_pos==None:
         raise Exception('Quantity not found')
-    
     p_values = numpy.linspace(region[0],region[1],steps)
     result=[]
     for p in p_values:
@@ -225,20 +242,20 @@ def plot_ss_quantity( model, param, quantity, region=[0,10], steps=5 ):
         if sp_pos!=None:
             x = ss[sp_pos]
         else:
-            v = sim._v(ss,1)
+            v = sim.flux(ss, 1)
             x = v[r_pos]
         result.append(x)
     pylab.plot( p_values, result )
     pylab.show()
 
-        
-def nullspace( matrix, tol=1e-14):
+
+def nullspace(matrix, tol=1e-14):
     """ Get the nullspace (kernel) of a matrix"""
     u,s,vh = numpy.linalg.svd(matrix)
     return vh[ s<tol ].T
 
 
-def matrix2tensor( A, B ):
+def matrix2tensor(A, B):
     # make a tensor from 2 matrices Tikl = Aik * Bil
     ret = numpy.zeros((A.shape[0], A.shape[1], B.shape[1] ))
     for i in range(ret.shape[0]):
@@ -246,21 +263,19 @@ def matrix2tensor( A, B ):
     return ret
 
 
-
-def load_matrix_from_file( f_name ):
+def load_matrix_from_file(f_name):
     f = open(f_name,'r')
     return numpy.array( [[float(x) for x in line.split()] for line in f.readlines()] )
 
 
-
-def cov2cor( mat ):
+def cov2cor(mat):
     # convert covariance to correlation matrix
     mat = mat + numpy.diag( numpy.ones( mat.shape[0] )*10e-16 )
-    d = numpy.diag( 1./numpy.sqrt(mat.diagonal()) )
+    d = numpy.diag(1./numpy.sqrt(mat.diagonal()))
     return numpy.dot( numpy.dot( d, mat ), d )
 
 
-def print_reactions( model ):
+def print_reactions(model):
     for i,r in enumerate(model.getListOfReactions()):
         d={'Reactants':[], 'Products':[]}
         for tp in d.keys():
@@ -269,20 +284,14 @@ def print_reactions( model ):
                 if sr.getStoichiometry()!=1:
                     name = str(sr.getStoichiometry()) + ' ' + name
                 d[tp].append(name)
-        
         print i+1, '\t', r.getId()#, ': '
-        #print ' + '.join(d['Reactants']) + ' -> ' + ' + '.join(d['Products'])
 
 
-def plot_spectrum( model, quantity, param, region=[0,1], steps=100 ):
+def plot_spectrum(model, quantity, param, region=[0,1], steps=100):
     sim = sbml_mca.sbml_mca(model)
-    
     r_pos  = [r.getId() for r in sim._model.getListOfReactions()].index(quantity)
     p_pos = sim.get_parameter_ids().index(param)
-
-
     step=float(region[1]-region[0]) / (steps+1)
-
     x=[]
     result=[]
     for i in range(steps):
@@ -294,8 +303,7 @@ def plot_spectrum( model, quantity, param, region=[0,1], steps=100 ):
     pylab.show()
 
 
-
-def ast_code_to_string( ast_code ):
+def ast_code_to_string(ast_code):
     ast_names = [ 'AST_CONSTANT_E', 'AST_CONSTANT_FALSE', 'AST_CONSTANT_PI', 'AST_CONSTANT_TRUE', 'AST_DIVIDE', 'AST_FUNCTION', 'AST_FUNCTION_ABS',
                   'AST_FUNCTION_ARCCOS', 'AST_FUNCTION_ARCCOSH', 'AST_FUNCTION_ARCCOT', 'AST_FUNCTION_ARCCOTH', 'AST_FUNCTION_ARCCSC', 'AST_FUNCTION_ARCCSCH',
                   'AST_FUNCTION_ARCSEC', 'AST_FUNCTION_ARCSECH', 'AST_FUNCTION_ARCSIN', 'AST_FUNCTION_ARCSINH', 'AST_FUNCTION_ARCTAN', 'AST_FUNCTION_ARCTANH',
@@ -306,41 +314,141 @@ def ast_code_to_string( ast_code ):
                   'AST_LOGICAL_NOT', 'AST_LOGICAL_OR', 'AST_LOGICAL_XOR', 'AST_MINUS', 'AST_NAME', 'AST_NAME_AVOGADRO', 'AST_NAME_TIME',
                   'AST_PLUS', 'AST_POWER', 'AST_RATIONAL', 'AST_REAL', 'AST_REAL_E', 'AST_RELATIONAL_EQ', 'AST_RELATIONAL_GEQ', 'AST_RELATIONAL_GT',
                   'AST_RELATIONAL_LEQ', 'AST_RELATIONAL_LT', 'AST_RELATIONAL_NEQ', 'AST_TIMES', 'AST_UNKNOWN' ]
-
     for name in ast_names:
         if ast_code == getattr( libsbml, name ): # they don't seem to be within a certain range
             return name
     raise Exception('AST code %s unknown' %ast_code)
 
 
+def ast_to_string(ast, assignment_rules, replacements, mode='python', replace=True):
+    """ convert libsbml AST node to string """
+    if ast is None:
+        return
+    type = ast.getType()
+    l = ast_to_string(ast.getLeftChild(), assignment_rules, replacements, mode, replace)
+    r = ast_to_string(ast.getRightChild(), assignment_rules, replacements, mode, replace)
+    if type == libsbml.AST_MINUS:
+        if r is None:
+            return '( - %s )' % l
+        return '( %s  - %s )' % (l, r)
+    elif type == libsbml.AST_PLUS:
+        return '( %s  + %s )' % (l, r)
+    elif type == libsbml.AST_TIMES:
+        return '( %s  *  %s )' % (l, r)
+    elif type == libsbml.AST_DIVIDE:
+        return ' ( %s  /  %s ) ' % (l, r)
+    elif type == libsbml.AST_FUNCTION_POWER:
+        return '( %s  **  %s )' % (l, r)
+    elif type == libsbml.AST_INTEGER:
+        return str(ast.getInteger())
+    elif type == libsbml.AST_REAL:
+        return str(ast.getReal())
+    elif type == libsbml.AST_REAL_E:
+        return str(ast.getReal())
+    elif type == libsbml.AST_CONSTANT_PI:
+        return str(math.pi)
+    elif type == libsbml.AST_CONSTANT_E:
+        return str(math.e)
+    elif type == libsbml.AST_CONSTANT_FALSE:
+        return '0'
+    elif type == libsbml.AST_CONSTANT_TRUE:
+        return '1'
+    elif type == libsbml.AST_FUNCTION_ROOT:
+        return '( %s ** (1. / %s) )' % (r, l)
+    elif type == libsbml.AST_FUNCTION_EXP:
+        return 'math.exp(%s)' % l
+    elif type == libsbml.AST_FUNCTION_LN:
+        return 'math.log(%s)' % (l)
+    elif type == libsbml.AST_FUNCTION_LOG:
+        return 'math.log((%s),(%s))' % (l, r)
+    elif type == libsbml.AST_FUNCTION_SIN:
+        return 'math.sin(%s)' % l
+    elif type == libsbml.AST_FUNCTION_SINH:
+        return 'math.sinh(%s)' % l
+    elif type == libsbml.AST_FUNCTION_TAN:
+        return 'math.tan(%s)' % l
+    elif type == libsbml.AST_FUNCTION_TANH:
+        return 'math.tanh(%s)' % l
+    elif type == libsbml.AST_FUNCTION_COS:
+        return 'math.cos(%s)' % l
+    elif type == libsbml.AST_FUNCTION_COSH:
+        return 'math.cosh(%s)' % l
+    elif type == libsbml.AST_RELATIONAL_EQ:
+        return '( %s == %s )' % (l, r)
+    elif type == libsbml.AST_RELATIONAL_GEQ:
+        return '( %s >= %s )' % (l, r)
+    elif type == libsbml.AST_RELATIONAL_GT:
+        return '( %s > %s )' % (l, r)
+    elif type == libsbml.AST_RELATIONAL_LEQ:
+        return '( %s <= %s )' % (l, r)
+    elif type == libsbml.AST_RELATIONAL_LT:
+        return '( %s < %s )' % (l, r)
+    elif type == libsbml.AST_RELATIONAL_NEQ:
+        return '( %s != %s )' % (l, r)
+    elif type == libsbml.AST_FUNCTION_PIECEWISE:
+        if ast.getNumChildren() != 3:
+            raise CriticalError(
+                'AST_FUNCTION_PIECEWISE not yet implemented completely')
+        condition = ast_to_string(ast.getChild(1), assignment_rules, replacements, mode, replace)
+        return ' ( %s ) * ( %s ) + (1- %s ) *( %s )' % (condition, l, condition, r)
+    elif type == libsbml.AST_FUNCTION_CEILING:
+        return 'math.ceil( %s )' % l
+    elif type == libsbml.AST_FUNCTION_FLOOR:
+        return 'math.floor( %s )' % l
+    elif type == libsbml.AST_FUNCTION_FACTORIAL:
+        return 'math.factorial( %s )' % l
+    elif type == libsbml.AST_RATIONAL:
+        return str(ast.getReal())
+    elif type == libsbml.AST_LOGICAL_AND:
+        s = '(%s' % l
+        for pos in range(1, ast.getNumChildren()):
+            c = ast_to_string(ast.getChild(pos), assignment_rules, replacements, mode, replace)
+            s += '  and  ' + c
+        s += ')'
+        return s
+    elif type == libsbml.AST_LOGICAL_OR:
+        s = '( %s' % l
+        for pos in range(1, ast.getNumChildren()):
+            c = ast_to_string(ast.getChild(pos), assignment_rules, replacements, mode, replace)
+            s += '  or  ' + c
+        s += ')'
+        return s
+    elif type == libsbml.AST_LOGICAL_XOR:
+        s = '(bool( %s )' % l
+        for pos in range(1, ast.getNumChildren()):
+            c = ast_to_string(ast.getChild(pos), assignment_rules, replacements, mode, replace)
+            s += ' ^ bool( %s )' % c
+        s += ')'
+        return s
+    elif type == libsbml.AST_NAME:
+        name = ast.getName()
+        if name in assignment_rules:  # assignment rules are always replaced
+            return str(assignment_rules[name][replace])
+        if replace:
+            try:
+                return str(replacements[name])
+            except:
+                pass
+        return name
+    elif type == libsbml.AST_FUNCTION:
+        children = [ast_to_string(ast.getChild(x), assignment_rules, replacements, mode, replace)
+                    for x in range(ast.getNumChildren())]
+        return get_formula(ast.getName(), children)
+    elif type == libsbml.AST_NAME_TIME:
+        return self._time_variable  # '$TIME$'
+    elif type == libsbml.AST_POWER:
+        raise CriticalError('AST_POWER not yet implemented')
+    else:
+        ast_name = misc.ast_code_to_string(type)
+        print ast_name
+        raise CriticalError(
+            'mathematic fucntion %s not yet implemented' % ast_name)
 
 
-
-
-
-
-
-
-
-
-
-
-if __name__=='__main__':
-    import sys
-    #print load_matrix_from_file(sys.argv[1])
-
-    d = libsbml.readSBML(sys.argv[-1])
-    m = d.getModel()
-    plot_spectrum( m, 'reaction_1', 'A_GO_0005623' )
-
-
-
-
-
-
-
-
-
-
-
-
+def ast_to_string_libsbml(ast):
+    """ convert libsbml AST node to string, using libsbml """
+    # TODO: replace _ast_to_string method with this one
+    formula = libsbml.formulaToString(ast)
+    for old, new in [('log', 'math.log')]:
+        formula = formula.replace(old, new)
+    return formula
