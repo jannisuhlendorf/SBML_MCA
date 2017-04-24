@@ -1,5 +1,6 @@
 import libsbml
 
+
 class SBMLValidator:
     """ class for validating an SBML model """
 
@@ -35,7 +36,11 @@ class SBMLValidator:
         return [warnings,errors]
 
     def _check_model_size(self):
-        """ check the size of the model """
+        """
+        check the size of the model
+        @return: list of errors
+        @rtype: list[str]
+        """
         errors = []
         no_sp = self._model.getNumSpecies()
         no_par = self._model.getNumParameters() # global parameters
@@ -46,7 +51,11 @@ class SBMLValidator:
         return errors
 
     def _check_not_supported_sbml_mca(self):
-        """ check for features in the sbml that are not supported yet """
+        """
+        check for features in the sbml that are not supported yet
+        @return: list of errors
+        @rtype: list[str]
+        """
         errors = []
         if self._model.getNumConstraints():
             errors.append('Constraints not supported')
@@ -73,7 +82,11 @@ class SBMLValidator:
         return errors
 
     def _check_initial_conditions(self):
-        """ check if for each species initial conditions are given """
+        """
+        check if for each species initial conditions are given
+        @return: list of warnings
+        @rtype: list[str]
+        """
         warnings = []
         for s in self._model.getListOfSpecies():
             if s.getConstant():
@@ -83,7 +96,11 @@ class SBMLValidator:
         return warnings
 
     def _get_libsbml_errors(self):
-        """ get errors from libsbml """
+        """
+        get errors from libsbml
+        @return: list of warnings and errors
+        @rtype: [list, list]
+        """
         self._doc.setConsistencyChecks(libsbml.LIBSBML_CAT_GENERAL_CONSISTENCY, True)
         self._doc.setConsistencyChecks(libsbml.LIBSBML_CAT_IDENTIFIER_CONSISTENCY, True)
         self._doc.setConsistencyChecks(libsbml.LIBSBML_CAT_UNITS_CONSISTENCY, False)

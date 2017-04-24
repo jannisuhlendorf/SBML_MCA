@@ -11,8 +11,13 @@ import math
 
 
 class Simulator:
+    """ Class for the simulation of SBML models """
 
     def __init__(self, model):
+        """
+        @param model: SBML_MCA model object
+        @type model: Model.Model
+        """
         if not isinstance(model, Model.Model):
             raise CriticalError("Simulator requires Model object")
         self.model = model
@@ -131,7 +136,15 @@ class Simulator:
         return ss
 
     def dS_dt(self, species_conc, t):
-        """ compute rate of metabolite change """
+        """
+        compute rate of metabolite change
+        @param species_conc: list of species concentrations
+        @type species_conc: list[float]
+        @param t: current time
+        @type t: float
+        @return: array of rate of changes for each substrate
+        @rtype: numpy.array
+        """
         ret = self.model.species_volume_prefactor * numpy.dot(self.model.N, self.flux(species_conc, t))
         # handle rate rules
         for var in self.model.rate_rules:
@@ -150,7 +163,15 @@ class Simulator:
         return ret
 
     def flux(self, species_conc, t):
-        """ get reaction velocities at given point """
+        """
+        get reaction velocities at given point
+        @param species_conc: list of species concentrations
+        @type species_conc: list[float]
+        @param t: current time
+        @type t: float
+        @return: array of reaction rate velocities
+        @rtype: numpy.array
+        """
         vec = []
         species2conc = dict(zip(self.model.ode_variables, species_conc))
         species2conc[Model.TIME_VARIABLE] = t
@@ -215,7 +236,25 @@ class Simulator:
 
     def integrate_return_dict(self, time, steps, s0=None, r_tol=1e-6, a_tol=1e-12, with_constant_species=True,
                               with_assignment_rules=True):
-        """ integrates the model and returns a dictionary as result """
+        """
+        integrates the model and returns a dictionary as result
+        @param time: current time
+        @type time: float
+        @param steps: number of steps
+        @type steps: int
+        @param s0: steady state concentration (optional)
+        @type s0: numpy.array
+        @param r_tol: relative solver tolerance
+        @type r_tol: float
+        @param a_tol: absolute solver tolernace
+        @type a_tol: float
+        @param with_constant_species: include constant species
+        @type with_constant_species: bool
+        @param with_assignment_rules: include assignment rules
+        @type with_assignment_rules: bool
+        @return: dictionary with simulation results {species: result}
+        @rtype: dict
+        """
         s_ids = self.model.species_ids + \
                 [p for p in self.model.rate_rules if not p in self.model.species_ids]
         if with_constant_species:
@@ -262,7 +301,15 @@ class Simulator:
         pylab.show()
 
     def compute_assignment_rules(self, simulation_result, species_ids):
-        """ compute assignment rules for species after a simulation """
+        """
+        compute assignment rules for species after a simulation
+        @param simulation_result: matrix of simulation result
+        @type simulation_result: numpy.ndarray
+        @param species_ids: list of species IDs
+        @type species_ids: list[str]
+        @return: dictionary of assignment rule results {assignment_rule: result}
+        @rtype: dict
+        """
         simulation_result_dict = {}
         for pos, id in enumerate(species_ids):
             simulation_result_dict[id] = simulation_result[:, pos]
@@ -275,7 +322,21 @@ class Simulator:
 
     @staticmethod
     def odeint_wrapper(d_func, x0, timepoints, rtol=1e-6, atol=1e-12):
-        """ wrapper function for scipy.integrate.odepack.odeint adding error handling """
+        """
+        wrapper function for scipy.integrate.odepack.odeint adding error handling
+        @param d_func: derivative function
+        @type d_func: function
+        @param x0: list of intial values
+        @type x0: numpy.array
+        @param timepoints: list of time points
+        @type timepoints: numpy.array
+        @type r_tol:  number
+        @param r_tol:  relative tolervance
+        @type a_tol:  number
+        @param a_tol:  absolute tolerance
+        @return: result matrix
+        @rtype: numpy.ndarray
+        """
         errors = []
 
         def dy_error_handling(x, t):
