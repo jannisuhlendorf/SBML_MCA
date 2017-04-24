@@ -9,16 +9,23 @@ import pylab
 
 
 class MCA:
+    """ Class implementing various metabolic control analysis methods """
     
     _SMALL_FACTOR = 1e-12  # used to add to the trace of a singular jacobian
     MIN_VALUE_NORM = 1e-18  # minimal value that is divided by in normalization
 
     def __init__(self, model):
+        """
+        constructor for MCA class
+        @type model: Model.Model
+        @param model: model object
+        """
         if not isinstance(model, Model.Model):
-            raise CriticalError("Simulator requires Model object")
+            raise CriticalError("MCA class requires Model object")
         self.model = model
         self.simulator = Simulator.Simulator(model)
 
+        # fields to save already computed coeffiecients
         self._p_ela = None
         self._e_ela = None
         self._ccc = None
@@ -27,6 +34,7 @@ class MCA:
         self._frc = None
         self._2nd_crc = None
         self._2nd_frc = None
+        # save parameters for which the coefficients have been computed
         self._reference_params = {}
 
     def get_2nd_elasticities(self, parameter_names=None, ss_conc=None):
@@ -37,7 +45,8 @@ class MCA:
         @type    ss_conc:          numpy.array
         @param   ss_conc:          vector of steady state concentrations
         @rtype:                    numpy.array
-        @return:                   3d-tensor with second order elasticities, 1st index: reaction, 2nd index: param 1 3rd index: param 2
+        @return:                   3d-tensor with second order elasticities,
+                                   1st index: reaction, 2nd index: param 1 3rd index: param 2
         """
         if ss_conc is None:
             ss_conc = self.simulator.get_steady_state()
@@ -669,6 +678,18 @@ class MCA:
                                            return_species_tc=False):
         """
         get time varying concentration response coefficients
+        @param end_time: time to compute time varying coeffs.
+        @type end_time: float
+        @param normalize: one of (None, left, right, both) indicating how the coefficients should be normalized
+        @type normalize: string or None
+        @param initial_cond_as_params: include the initial concentration as influencing parameters
+        @type initial_cond_as_params: bool
+        @param return_multiple: if True, return normalized, non-normalized coefficients and errors
+        @type return_multiple: bool
+        @param return_species_tc: return also time courses of species
+        @type return_species_tc: bool
+        @return: [time, time_varying_concentration_response_coefficients]
+        @rtype: list
         """
         if self.model.rate_rules != {}:
             raise NoncriticalError(
@@ -754,6 +775,18 @@ class MCA:
                                  return_species_tc=False):
         """
         get time varying concentration response coefficients
+        @param end_time: time to compute time varying coeffs.
+        @type end_time: float
+        @param normalize: one of (None, left, right, both) indicating how the coefficients should be normalized
+        @type normalize: string or None
+        @param initial_cond_as_params: include the initial concentration as influencing parameters
+        @type initial_cond_as_params: bool
+        @param return_flat: if True, return flattened (2d) version of coefficients
+        @type return_flat: bool
+        @param return_species_tc: return also time courses of species
+        @type return_species_tc: bool
+        @return: [time, time_varying_concentration_response_coefficients]
+        @rtype: list
         """
         if self.model.rate_rules != {}:
             raise NoncriticalError(
@@ -831,6 +864,18 @@ class MCA:
                                  return_species_tc=False):
         """
         get time varying flux response coefficients
+        @param end_time: time to compute time varying coeffs.
+        @type end_time: float
+        @param normalize: one of (None, left, right, both) indicating how the coefficients should be normalized
+        @type normalize: string or None
+        @param initial_cond_as_params: include the initial concentration as influencing parameters
+        @type initial_cond_as_params: bool
+        @param return_flat: if True, return flattened (2d) version of coefficients
+        @type return_flat: bool
+        @param return_species_tc: return also time courses of species
+        @type return_species_tc: bool
+        @return: [timepoints, time_varying_flux_response_coefficients]
+        @rtype: list
         """
         p_id = self.model.parameter_ids
         l_p = len(p_id)
@@ -883,6 +928,18 @@ class MCA:
                                    end_time,
                                    what='conc',
                                    initial_cond_as_params=False):
+        """
+        get time varying response coefficients
+        method for web-interface
+        @param end_time: time to compute time varying coeffs.
+        @type end_time: float
+        @param what: conc or flux for concentration or flux response coefficients
+        @type what: str
+        @param initial_cond_as_params: include the initial concentration as influencing parameters
+        @type initial_cond_as_params: bool
+        @return:  [timepoints, tv_rc, tv_rc_norm, errors]
+        @rtype: list
+        """
         errors = []
         l_v = self.model.N.shape[1]  # nubmer of fluxes
         if what == 'conc':
@@ -919,6 +976,19 @@ class MCA:
                                        what='conc_resp',
                                        initial_cond_as_params=False,
                                        normalize=None):
+        """
+        plot time varying coefficients using pylab
+        @param end_time: time to compute time varying coeffs.
+        @type end_time: float
+        @param what: conc or flux for concentration or flux response coefficients
+        @type what: str
+        @param initial_cond_as_params: include the initial concentration as influencing parameters
+        @type initial_cond_as_params: bool
+        @param normalize: one of (None, left, right, both) indicating how the coefficients should be normalized
+        @type normalize: string or none
+        @return: None
+        @rtype: None
+        """
         if what == 'conc_resp':
             timepoints, tvrc = self.get_time_varying_conc_rc(end_time,
                                                              normalize=normalize,
@@ -947,7 +1017,21 @@ class MCA:
         pylab.show()
 
     def _normalize_coefficients(self, coeff, left=None, right=None, first_order=None):
-        """ normalize coefficients (2d or 3d) """
+        """
+        normalize coefficients (2d or 3d)
+        @param coeff: coefficients to be normalized
+        @type coeff: numpy.array
+        @param left: conc for steady state concentrations, flux for steady state fluxes
+                     or numpy.ndarray for custom normalization
+        @type left: str or numpy.ndarray
+        @param right: conc for steady state concentrations, flux for steady state fluxes
+                      or numpy.ndarray for custom normalization
+        @type right: str or numpy.ndarray
+        @param first_order: correction terms for normalization of second order terms
+        @type first_order: numpy.ndarray
+        @return: normalized coefficients
+        @rtype: numpy.ndarray
+        """
         if left is not None:
             if left == 'conc':
                 d = self.simulator.get_steady_state()
@@ -1008,6 +1092,17 @@ class MCA:
         return coeff
 
     def _normalize_time_varying_coeff(self, coeff, left=None, right=None):
+        """
+        normalize time varying response coefficients
+        @param coeff: time varying coefficient
+        @type coeff: numpy.ndarray
+        @param left: left side normalization (concentrations or fluxes)
+        @type left: None or numpy.ndarray
+        @param right: right side normalization
+        @type right: None or numpy.ndarray
+        @return: normalized coefficients
+        @rtype: numpy.ndarray
+        """
         coeff_copy = coeff.copy()
         no_coeff = coeff.shape[1]  # number of coeff
         if left is not None:
@@ -1032,7 +1127,13 @@ class MCA:
         return coeff_copy
 
     def _compute_2nd_resp(self, custom_params=None):
-        """ compute the second order responce coefficients """
+        """
+        compute the second order responce coefficients
+        @param custom_params: list of custom parameter to compute 2nd order response coefficients for
+        @type custom_params: list
+        @return: 2nd concentration response coefficients, 2nd flux response coefficients
+        @rtype: list
+        """
         if self.model.rate_rules != {}:
             raise NoncriticalError(
                 'MCA methods are not avaiable for explicit ODE systems.')
@@ -1061,7 +1162,13 @@ class MCA:
         return rs2, rj2
 
     def _get_value_dict(self, species_conc):
-        """ get dictionary with standard parameter values """
+        """
+        get dictionary with standard parameter values
+        @param species_conc: list of species concentrations
+        @type species_conc: list
+        @return: dictionary {species_id: concentration}
+        @rtype: dict
+        """
         value_dict = dict(zip(self.model.species_ids, species_conc.tolist()))
         value_dict.update(self.model.replacements)
         value_dict.update(self.model.external_species_concentrations)
@@ -1069,7 +1176,17 @@ class MCA:
 
     @staticmethod
     def _get_elasticity(formula, value_dict, p_name):
-        """ compute elasticity of formula w.r.t p_name """
+        """
+        compute elasticity (partial derivative) of formula w.r.t p_name
+        @param formula: formula to derive
+        @type formula: str
+        @param value_dict: dictionary with values for parameters
+        @type value_dict: dict
+        @param p_name: parameter name to derive
+        @type p_name: str
+        @return: d(formula)/d(p_name)
+        @rtype: float
+        """
         value_dict = value_dict.copy()
         x = float(value_dict[p_name])
         if abs(x) > 1e-5:
@@ -1084,7 +1201,19 @@ class MCA:
 
     @staticmethod
     def _get_2nd_elasticity(formula, value_dict, p_name1, p_name2):
-        """ get the 2nd derivations of the input function with respect to p_name1 and p_name2 """
+        """
+        get the 2nd derivations of the input function with respect to p_name1 and p_name2
+        @param formula: formula to derive
+        @type formula: str
+        @param value_dict: dictionary with values for parameters
+        @type value_dict: dict
+        @param p_name1: first parameter name to derive
+        @type p_name1: str
+        @param p_name2: second parameter name to derive
+        @type p_name2: str
+        @return:  d^2 f / dxdy
+        @rtype: float
+        """
         value_dict = value_dict.copy()
         default_diff = 1e-5
         x = float(value_dict[p_name1])

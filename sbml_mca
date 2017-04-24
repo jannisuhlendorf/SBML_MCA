@@ -62,15 +62,11 @@ if __name__ == '__main__':
         raise Exception('Unknown normalization %s' % (options.normalize))
 
     print 'Reactions:'
-    print '\n'.join(model.reaction_ids)
-    print
+    print '\n'.join(model.reaction_ids) + '\n'
     print 'Species:'
-    print '\n'.join(model.species_ids)
-    print
+    print '\n'.join(model.species_ids) + '\n'
     print 'Parameters:'
-    print '\n'.join(model.parameter_ids)
-    print
-    print
+    print '\n'.join(model.parameter_ids) + '\n\n'
 
     for param in ['timecourse', 'ss', 'p_ela', 'e_ela', 'p_ela2', 'flux_cc', 'conc_cc', 'flux_resp',
                   'conc_resp', 'flux_resp2', 'conc_resp2', 'flux_resp_tv', 'conc_resp_tv', 'spectral_conc_cc',
