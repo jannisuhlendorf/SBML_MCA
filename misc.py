@@ -40,7 +40,7 @@ def matrix2string(mat, head=None, left=None, justify='center', delim=' | '):
         head = [''] + copy.deepcopy(head)
         mat = [[l] + rest for l, rest in zip(left,mat)]
     justify = {'left': str.ljust,'right': str.rjust, 'center': str.center}[justify.lower()]
-    formatline = lambda line: delim.join(justify(x[0],x[1]) for x in zip( (str(y) for y in line), max_length))
+    formatline = lambda line: delim.join(justify(x[0],x[1]) for x in zip((str(y) for y in line), max_length))
     ret=''
     for line in [head or ''] + mat:
         ret += formatline(map( str, line)) + '\n'
