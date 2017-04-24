@@ -24,6 +24,7 @@ class SBMLValidator:
         """
         validate the model (this function should be called)
         @return: [warnings,errors] (each of them is a list of strings)
+        @rtype: list
         """
         warnings = []
         errors = []

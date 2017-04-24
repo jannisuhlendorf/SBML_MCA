@@ -1,110 +1,107 @@
 from Errors import NoncriticalError, CriticalError
+import Model
 import copy
 import libsbml
 import numpy
-import pylab
 import math
 
-
-def tensor2string(ten, x=None, y=None, z=None, justify='center', delim=' | '):
-    ret=''
-    for pos,slice in enumerate(ten):
-        if x:
-            ret += '%s:\n' %x[pos]
-        ret += matrix2string( slice, y, z, justify, delim) + '\n'
-    return ret
+"""
+helper functions
+"""
 
 
 def matrix2string(mat, head=None, left=None, justify='center', delim=' | '):
-    max_length =  [max( (len(str(elem)) for elem in col) ) for col in mat.T]
+    """
+    convert matrix to a string representation
+    @param mat: matrix
+    @type mat: numpy.ndarray
+    @param head: list of column names
+    @type head: list[str]
+    @param left: list of row names
+    @type left: list[str]
+    @param justify: justify (left|center|right)
+    @type justify: str
+    @param delim: delimiter (default |)
+    @type delim: str
+    @return: string representation of matrix
+    @rtype: str
+    """
+    max_length = [max((len(str(elem)) for elem in col)) for col in mat.T]
     mat = mat.tolist()
-    if head!=None:
-        if len(mat[0])!=len(head):
-            print len(mat[0]), len(head)
+    if head is not None:
+        if len(mat[0]) != len(head):
             raise Exception('Head dos not fix matrix')
         max_head = [len(str(x)) for x in head]
         max_length = [max(x) for x in zip(max_length,max_head)]
-    if left!=None:
-        if len(mat)!=len(left):
-            print len(mat), len(left)
+    if left is not None:
+        if len(mat) != len(left):
             raise Exception('Head dos not fix matrix')
         max_length = [max(len(str(x)) for x in left)]  + max_length
         head = [''] + copy.deepcopy(head)
-        mat = [ [l]+rest for l,rest in zip(left,mat)  ]
+        mat = [[l] + rest for l, rest in zip(left,mat)]
     justify = {'left': str.ljust,'right': str.rjust, 'center': str.center}[justify.lower()]
-    formatline = lambda line: delim.join( justify(x[0],x[1]) for x in zip( (str(y) for y in line), max_length ) )
+    formatline = lambda line: delim.join(justify(x[0],x[1]) for x in zip( (str(y) for y in line), max_length))
     ret=''
-    for line in [head or '']+mat:
-        ret += formatline( map( str, line) ) + '\n'
-    return ret
-
-
-def matrix2python(mat):
-    ret='['
-    for row in mat:
-        ret+='['
-        for e in row:
-            ret+= str(e) + ', '
-        ret+='], ' 
-    ret+=']'
-    return ret
-
-
-def tensor2matlab(a, name):
-    ret='%s = zeros(%s,%s,%s)\n' %(name, a.shape[0], a.shape[1], a.shape[2])
-    for i in range(a.shape[0]):
-        for j in range(a.shape[1]):
-            for k in range(a.shape[2]):
-                ret += '%s(%s,%s,%s) = %s\n' %(name,i+1,j+1,k+1,a[i,j,k])
-    return ret
-
-
-def matrix2matlab(mat, name=None):
-    if not name:
-        name='matrix'
-    ret='%s = sparse( zeros(%s,%s) );\n' %(name,mat.shape[0],mat.shape[1])
-    for i in range(mat.shape[0]):
-        for j in range(mat.shape[1]):
-            if mat[i,j]==0:
-                continue
-            ret += '%s(%s,%s) = %s;\n' %(name, i+1, j+1, mat[i,j] )
+    for line in [head or ''] + mat:
+        ret += formatline(map( str, line)) + '\n'
     return ret
 
 
 def make_unique_local_parameters(model):
-    """ Function to give all local parameters unique ids """
-    #for pos,kl in enumerate([ r.getKineticLaw() for r in model.getListOfReactions() ]):
-    for pos,r in enumerate( model.getListOfReactions() ):
+    """
+    Function to give all local parameters unique ids
+    @param model: libsbml.model
+    @type model: libsbml.model
+    @return: libsbml.model
+    @rtype: libsbml.model
+    """
+    for pos,r in enumerate(model.getListOfReactions()):
         kl = r.getKineticLaw()
         for p in kl.getListOfParameters():
             new_p_id = '%s_local_%s' %(p.getId(),pos)
             f=' %s '%(kl.getFormula())
-            for s in ['(',')','*','/','+','-',',']:
+            for s in ['(', ')', '*', '/', '+', '-', ',']:
                 f = f.replace(s,' %s '%s)
             old_id = p.getId()
-            new_f = f.replace( ' '+old_id+' ', new_p_id )
-            p.setId( new_p_id )
+            new_f = f.replace(' '+old_id+' ', new_p_id)
+            p.setId(new_p_id)
             reaction_base = r.getName() or r.getId()
-            p.setName( reaction_base + '_' + old_id )
-            kl.setFormula( new_f )
+            p.setName(reaction_base + '_' + old_id)
+            kl.setFormula(new_f)
     return model
 
 
-def get_constant_species(model):
-    def const(s): return ( s.getConstant() or s.getBoundaryCondition() )
-    return filter(const, model.getListOfSpecies())
-
-
 def get_not_constant_species(model):
+    """
+    get species of the model that are not constant
+    @param model: libsbml.model
+    @type model: libsbml.model
+    @return: list of species
+    @rtype: list[libsbml.species]
+    """
     def not_const(s): return not( s.getConstant() or s.getBoundaryCondition() )
     return filter(not_const, model.getListOfSpecies())
 
 
 def is_enzyme(species):
+    """
+    is the given species an enzyme?
+    @param species: libsbml.species
+    @type species: libsbml.species
+    @return: bool
+    @rtype: bool
+    """
     return species.getSBOTerm()==14 or species.getId().startswith('enzyme')
 
 
-def get_enzymes( model ):
+def get_enzymes(model):
+    """
+    get the enzymes of the model
+    @param model: libsbml.model
+    @type model: libsmbl.model
+    @return: list of enzymes
+    @rtype: list[libsbml.species]
+    """
     enzymes=[]
     for r in model.getListOfReactions(): 
         for s in [model.getSpecies(m.getSpecies()) for m in r.getListOfModifiers()]:
@@ -116,79 +113,120 @@ def get_enzymes( model ):
     return enzymes
 
 
-def get_enzyme_positions(model):
-    return [i for i,s in enumerate(model.getListOfSpecies()) if is_enzyme(s)]
-
-
 def get_not_enzyme_positions(model):
+    """
+    get positions of species that are not enzymes
+    @param model: libsbml.model
+    @type model: libsbml.model
+    @return: list of positions
+    @rtype: list[int]
+    """
     return [i for i,s in enumerate(model.getListOfSpecies()) if not is_enzyme(s)]
 
 
 def get_species_wo_enzymes(model):
+    """
+    gett species that are not enzymes
+    @param model: libsbml.model
+    @type model: libsbml.model
+    @return: list of species
+    @rtype: list[libsbml.species]
+    """
     enzymes = get_enzymes(model)
-    return [ s for s in model.getListOfSpecies() if not s in enzymes]
+    return [s for s in model.getListOfSpecies() if s not in enzymes]
 
 
 def get_enzyme_for_reaction(model,reaction):
+    """
+    get the enzyme for a given reaction
+    @param model: libsbml.model
+    @type model: libsbml.model
+    @param reaction: libsbml.reaction
+    @type reaction: libsbml.reaction
+    @return: enzme for the reaction
+    @rtype: libsbml.species
+    """
     is_enzyme = lambda s: s.getSBOTerm()==14 or s.getId().startswith('enzyme')
     for m in reaction.getListOfModifiers():
-        s=model.getSpecies( m.getSpecies() )
+        s=model.getSpecies(m.getSpecies())
         if is_enzyme(s):
             return s
     raise Exception('No enzyme was found for reaction %s' %reaction.getId() )
 
 
-def get_enzyme_catalysed_reactions( model ):
-    """ Find the reactions that are being catalysed by an enzyme (enzymatic reactions) """
-    l=[]
+def get_enzyme_catalysed_reactions(model):
+    """
+    Find the reactions that are being catalysed by an enzyme (enzymatic reactions)
+    @param model: libsbml.model
+    @type model: libsbml.model
+    @return: list of reactions
+    @rtype: list[libsbml.reaction]
+    """
+    l = []
     for r in model.getListOfReactions():
         try:
-            get_enzyme_for_reaction(model,r)
+            get_enzyme_for_reaction(model, r)
             l.append(r)
         except:
             pass            
     return l
 
 
-def get_positions_enzyme_catalysed_reactions(model):
-    ecr = get_enzyme_catalysed_reactions( model )
-    lor = [ r for r in model.getListOfReactions() ]
-    return [ lor.index(r) for r in ecr ]
-
-
 def add_enzymes_to_reactions(model):
-    """ Create an enzyme for each reaction, if none exists (and modify kinetic law) """
+    """
+    Create an enzyme for each reaction, if none exists (and modify kinetic law)
+    @param model: libsbml.model
+    @type model: libsbml.model
+    """
     for r in model.getListOfReactions():
         try:
-            get_enzyme_for_reaction(model,r)
+            get_enzyme_for_reaction(model, r)
         except:
             e = model.createSpecies()
             e.setId('enzyme_'+r.getId())
             e.setInitialConcentration(1)
             e.setSBOTerm(14)
-            m=r.createModifier()
+            m = r.createModifier()
             m.setSpecies(e.getId())
-            kl=r.getKineticLaw()
-            kl.setFormula(e.getId()+' * '+kl.getFormula())
+            kl = r.getKineticLaw()
+            kl.setFormula(e.getId() + ' * ' + kl.getFormula())
             
             
 def get_parameter_value(model, _id):
+    """
+    get a certain paraemter value
+    @param model: libsbml.model
+    @type model: libsbml.model
+    @param _id: id of paraemter
+    @type _id: str
+    @return: parameter value
+    @rtype: float
+    """
     for p in model.getListOfSpecies():
-        if p.getId()==_id:
+        if p.getId() == _id:
             return p.getInitialConcentration()
     for p in model.getListOfParameters():
-        if p.getId()==_id:
+        if p.getId() == _id:
             return p.getValue()
     for p in model.getListOfCompartments():
-        if p.getId()==_id:
+        if p.getId() == _id:
             return p.getVolume()
-    for kl in [ r.getKineticLaw() for r in model.getListOfReactions() ]:
+    for kl in [r.getKineticLaw() for r in model.getListOfReactions()]:
         for p in kl.getListOfParameters():
-            if p.getId()==_id:
+            if p.getId() == _id:
                 return p.getValue()
 
 
 def set_parameter_value(model, _id, value):
+    """
+    set a parameter value
+    @param model: libsbml.model
+    @type model: libsbml.model
+    @param _id: id of paraemter
+    @type _id: str
+    @param value: parameter value
+    @type value: float
+    """
     for p in model.getListOfSpecies():
         if p.getId() == _id:
             p.setInitialConcentration(value)
@@ -210,6 +248,15 @@ def set_parameter_value(model, _id, value):
 
 
 def get_parameter_name(model, _id):
+    """
+    get the name of a parameter
+    @param model: libsbml.model
+    @type model: libsbml.model
+    @param _id: id of paraemter
+    @type _id: str
+    @return: parmaeter name or empty string if no nameis given
+    @rtype: str
+    """
     for p in model.getListOfParameters():
         if p.getId()==_id:
             return p.getName()
@@ -220,90 +267,44 @@ def get_parameter_name(model, _id):
     return ''
 
 
-def plot_ss_quantity(model, param, quantity, region=[0,10], steps=5):
-    """ plot the steady state value of some quantity in dependence of some parameter """
-    # find quantity
-    sim = sbml_mca.sbml_mca(model)
-    sp_pos = r_pos = None
-    try:
-        sp_pos = sim._species_ids.index(quantity)
-    except:  pass
-    try:
-        r_pos  = [r.getId() for r in sim._model.getListOfReactions()].index(quantity)
-    except: pass
-    if sp_pos==None and r_pos==None:
-        raise Exception('Quantity not found')
-    p_values = numpy.linspace(region[0],region[1],steps)
-    result=[]
-    for p in p_values:
-        set_parameter_value( model, param, p )
-        sim = sbml_mca.sbml_mca(model)
-        ss = sim.get_steady_state()
-        if sp_pos!=None:
-            x = ss[sp_pos]
-        else:
-            v = sim.flux(ss, 1)
-            x = v[r_pos]
-        result.append(x)
-    pylab.plot( p_values, result )
-    pylab.show()
-
-
 def nullspace(matrix, tol=1e-14):
-    """ Get the nullspace (kernel) of a matrix"""
+    """
+    Get the nullspace (kernel) of a matrix
+    @param matrix: marix
+    @type matrix: numpy.ndarray
+    @param tol: tolerance (default 1e-14)
+    @type tol: float
+    @return: nullspace
+    @rtype: numpy.ndarray
+    """
     u,s,vh = numpy.linalg.svd(matrix)
-    return vh[ s<tol ].T
+    return vh[s<tol].T
 
 
 def matrix2tensor(A, B):
-    # make a tensor from 2 matrices Tikl = Aik * Bil
+    """
+    make a tensor from 2 matrices Tikl = Aik * Bil
+    @param A: matrix A
+    @type A: numpy.ndarray
+    @param B: matrix B
+    @type B: numpy.ndarray
+    @return: tensor
+    @rtype: numpy.ndarray
+    """
     ret = numpy.zeros((A.shape[0], A.shape[1], B.shape[1] ))
     for i in range(ret.shape[0]):
-        ret[i] = numpy.dot( numpy.matrix( A[i] ).T, numpy.matrix( B[i] ) )       
+        ret[i] = numpy.dot(numpy.matrix(A[i]).T, numpy.matrix(B[i]))
     return ret
 
 
-def load_matrix_from_file(f_name):
-    f = open(f_name,'r')
-    return numpy.array( [[float(x) for x in line.split()] for line in f.readlines()] )
-
-
-def cov2cor(mat):
-    # convert covariance to correlation matrix
-    mat = mat + numpy.diag( numpy.ones( mat.shape[0] )*10e-16 )
-    d = numpy.diag(1./numpy.sqrt(mat.diagonal()))
-    return numpy.dot( numpy.dot( d, mat ), d )
-
-
-def print_reactions(model):
-    for i,r in enumerate(model.getListOfReactions()):
-        d={'Reactants':[], 'Products':[]}
-        for tp in d.keys():
-            for sr in getattr( r, 'getListOf'+tp )():
-                name = sr.getSpecies()
-                if sr.getStoichiometry()!=1:
-                    name = str(sr.getStoichiometry()) + ' ' + name
-                d[tp].append(name)
-        print i+1, '\t', r.getId()#, ': '
-
-
-def plot_spectrum(model, quantity, param, region=[0,1], steps=100):
-    sim = sbml_mca.sbml_mca(model)
-    r_pos  = [r.getId() for r in sim._model.getListOfReactions()].index(quantity)
-    p_pos = sim.get_parameter_ids().index(param)
-    step=float(region[1]-region[0]) / (steps+1)
-    x=[]
-    result=[]
-    for i in range(steps):
-        w = region[0] + i*step
-        x.append(w)
-        result.append( abs( sim.get_spectral_flux_resp(w)[r_pos][p_pos] ) )
-
-    pylab.plot( x, result )
-    pylab.show()
-
-
 def ast_code_to_string(ast_code):
+    """
+    get string representation of libsbml AST code
+    @param ast_code: ast code
+    @type ast_code: int
+    @return: string
+    @rtype: str
+    """
     ast_names = [ 'AST_CONSTANT_E', 'AST_CONSTANT_FALSE', 'AST_CONSTANT_PI', 'AST_CONSTANT_TRUE', 'AST_DIVIDE', 'AST_FUNCTION', 'AST_FUNCTION_ABS',
                   'AST_FUNCTION_ARCCOS', 'AST_FUNCTION_ARCCOSH', 'AST_FUNCTION_ARCCOT', 'AST_FUNCTION_ARCCOTH', 'AST_FUNCTION_ARCCSC', 'AST_FUNCTION_ARCCSCH',
                   'AST_FUNCTION_ARCSEC', 'AST_FUNCTION_ARCSECH', 'AST_FUNCTION_ARCSIN', 'AST_FUNCTION_ARCSINH', 'AST_FUNCTION_ARCTAN', 'AST_FUNCTION_ARCTANH',
@@ -320,13 +321,56 @@ def ast_code_to_string(ast_code):
     raise Exception('AST code %s unknown' %ast_code)
 
 
-def ast_to_string(ast, assignment_rules, replacements, mode='python', replace=True):
-    """ convert libsbml AST node to string """
+def get_formula(name, sbml_model, params, assignment_rules, replacements):
+    """
+    get a string representation for a function definition with parameters already replaced
+    @param name: function name
+    @type name: str
+    @param sbml_model: libsbml model
+    @type sbml_model: libsbml.model
+    @param params: parameter values
+    @type params: list
+    @param assignment_rules: dictionary of assignment rules
+    @type assignment_rules: dict
+    @param replacements: dictionary of replacements
+    @type replacements: dict
+    @return: formula
+    @rtype: str
+    """
+    func = sbml_model.getFunctionDefinition(name)
+    p_dict = dict(zip([func.getArgument(x).getName() for x in range(func.getNumArguments())], params))
+    # print p_dict
+    # TODO: the formulaToString method does not work for functions such as log, exp, etc ...
+    # TODO: unify the math conversion (decide whether to use the ast_to_string parser or the libsbml mehtod
+    formula = ' ' + ast_to_string(func.getBody(), sbml_model, assignment_rules, replacements) + ' '
+    for param in p_dict:
+        formula = formula.replace(' ' + param + ' ', str(p_dict[param]))
+    return formula
+
+
+def ast_to_string(ast, sbml_model, assignment_rules, replacements, mode='python', replace=True):
+    """
+    convert libsbml AST node to string
+    @param ast: ast node
+    @type ast: libsbml.ast
+    @param sbml_model: sbml model
+    @type sbml_model: libsbml.model
+    @param assignment_rules: dictionary of assignment rules
+    @type assignment_rules: dict
+    @param replacements: dictionary of replacements
+    @type replacements: dict
+    @param mode: conversion mode (python or fortran)
+    @type mode: str
+    @param replace: whether to replace parameters with their values
+    @type replace: bool
+    @return: string representation of the formula
+    @rtype: str
+    """
     if ast is None:
         return
     type = ast.getType()
-    l = ast_to_string(ast.getLeftChild(), assignment_rules, replacements, mode, replace)
-    r = ast_to_string(ast.getRightChild(), assignment_rules, replacements, mode, replace)
+    l = ast_to_string(ast.getLeftChild(), sbml_model, assignment_rules, replacements, mode, replace)
+    r = ast_to_string(ast.getRightChild(), sbml_model, assignment_rules, replacements, mode, replace)
     if type == libsbml.AST_MINUS:
         if r is None:
             return '( - %s )' % l
@@ -389,7 +433,7 @@ def ast_to_string(ast, assignment_rules, replacements, mode='python', replace=Tr
         if ast.getNumChildren() != 3:
             raise CriticalError(
                 'AST_FUNCTION_PIECEWISE not yet implemented completely')
-        condition = ast_to_string(ast.getChild(1), assignment_rules, replacements, mode, replace)
+        condition = ast_to_string(ast.getChild(1), sbml_model, assignment_rules, replacements, mode, replace)
         return ' ( %s ) * ( %s ) + (1- %s ) *( %s )' % (condition, l, condition, r)
     elif type == libsbml.AST_FUNCTION_CEILING:
         return 'math.ceil( %s )' % l
@@ -402,21 +446,21 @@ def ast_to_string(ast, assignment_rules, replacements, mode='python', replace=Tr
     elif type == libsbml.AST_LOGICAL_AND:
         s = '(%s' % l
         for pos in range(1, ast.getNumChildren()):
-            c = ast_to_string(ast.getChild(pos), assignment_rules, replacements, mode, replace)
+            c = ast_to_string(ast.getChild(pos), sbml_model, assignment_rules, replacements, mode, replace)
             s += '  and  ' + c
         s += ')'
         return s
     elif type == libsbml.AST_LOGICAL_OR:
         s = '( %s' % l
         for pos in range(1, ast.getNumChildren()):
-            c = ast_to_string(ast.getChild(pos), assignment_rules, replacements, mode, replace)
+            c = ast_to_string(ast.getChild(pos), sbml_model, assignment_rules, replacements, mode, replace)
             s += '  or  ' + c
         s += ')'
         return s
     elif type == libsbml.AST_LOGICAL_XOR:
         s = '(bool( %s )' % l
         for pos in range(1, ast.getNumChildren()):
-            c = ast_to_string(ast.getChild(pos), assignment_rules, replacements, mode, replace)
+            c = ast_to_string(ast.getChild(pos), sbml_model, assignment_rules, replacements, mode, replace)
             s += ' ^ bool( %s )' % c
         s += ')'
         return s
@@ -431,23 +475,27 @@ def ast_to_string(ast, assignment_rules, replacements, mode='python', replace=Tr
                 pass
         return name
     elif type == libsbml.AST_FUNCTION:
-        children = [ast_to_string(ast.getChild(x), assignment_rules, replacements, mode, replace)
+        children = [ast_to_string(ast.getChild(x), sbml_model, assignment_rules, replacements, mode, replace)
                     for x in range(ast.getNumChildren())]
-        return get_formula(ast.getName(), children)
+        return get_formula(ast.getName(), sbml_model, children, assignment_rules, replacements)
     elif type == libsbml.AST_NAME_TIME:
-        return self._time_variable  # '$TIME$'
+        return Model.TIME_VARIABLE
     elif type == libsbml.AST_POWER:
         raise CriticalError('AST_POWER not yet implemented')
     else:
-        ast_name = misc.ast_code_to_string(type)
+        ast_name = ast_code_to_string(type)
         print ast_name
-        raise CriticalError(
-            'mathematic fucntion %s not yet implemented' % ast_name)
+        raise CriticalError('mathematic fucntion %s not yet implemented' % ast_name)
 
 
 def ast_to_string_libsbml(ast):
-    """ convert libsbml AST node to string, using libsbml """
-    # TODO: replace _ast_to_string method with this one
+    """
+    convert libsbml AST node to string, using libsbml
+    @param ast: libsbml.ast
+    @type ast: libsbml.ast
+    @return: string
+    @rtype: str
+    """
     formula = libsbml.formulaToString(ast)
     for old, new in [('log', 'math.log')]:
         formula = formula.replace(old, new)

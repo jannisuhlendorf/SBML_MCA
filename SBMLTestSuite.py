@@ -123,7 +123,15 @@ class SBMLTestSuite:
         return self._compare_results(reference_result, simulation_result)
 
     def _simulate(self, simulator, settings):
-        # simlate model with given settings
+        """
+        simlate model with given settings
+        @param simulator: Simulator.Simulator object
+        @type simulator: Simulator.Simulator
+        @param settings: settings dictionary
+        @type settings: dict
+        @return: simulation result dictionary
+        @rtype: dict
+        """
         result = simulator.integrate_return_dict(settings['duration'],
                                                  settings['steps']+1,
                                                  r_tol=settings['relative'],
@@ -133,14 +141,39 @@ class SBMLTestSuite:
         return result
 
     def _print(self, msg):
-        """ print a message using the classes writer object """
+        """
+        print a message using the classes writer object
+        @param msg: message to print
+        @type msg: string
+        @return: None
+        @rtype: None
+        """
         self._writer.write(str(msg) + '\n')
 
     def _generate_file_path(self, number, ending):
+        """
+        generate file path for test case
+        @param number: number of test case
+        @type number: int
+        @param ending: file ending
+        @type ending: str
+        @return: file path
+        @rtype: str
+        """
         number_string = '%05d' %number
         return os.path.join(self._path, number_string, number_string + ending)
 
-    def _compare_results(self, result_a, result_b):
+    @staticmethod
+    def _compare_results(result_a, result_b):
+        """
+        compare two simulation results
+        @param result_a: result dictionary A
+        @type result_a: dict
+        @param result_b: result dictionary B
+        @type result_b: dict
+        @return: distance (norm) between the two
+        @rtype: float
+        """
         diff = 0.
         for key in result_a:
             if key=='time':
@@ -150,6 +183,13 @@ class SBMLTestSuite:
         return diff
 
     def _read_settings(self, number):
+        """
+        read test case setting file
+        @param number: number of test case
+        @type number: int
+        @return: setting dictionary
+        @rtype: dict
+        """
         number_items = ['start', 'duration', 'steps', 'absolute', 'relative']
         list_items = ['variables', 'amount', 'concentration']
         result = {}
@@ -174,6 +214,13 @@ class SBMLTestSuite:
         return result
 
     def _read_results(self, number):
+        """
+        read reference result for test case
+        @param number: number of test case
+        @type number: int
+        @return: result dictionary
+        @rtype: dict
+        """
         f_path = self._generate_file_path(number, '-results.csv')
         result = {}
         csv_result = pandas.read_csv(f_path)
@@ -183,6 +230,17 @@ class SBMLTestSuite:
         return result
 
     def _plot_simulation(self, simulator, settings, reference_result):
+        """
+        plot simulation result
+        @param simulator: Simulator.Simulator object
+        @type simulator: Simulator.Simulator
+        @param settings: settings dictionary
+        @type settings: dict
+        @param reference_result: reference result dictionary
+        @type reference_result: dict
+        @return: None
+        @rtype: None
+        """
         variables = simulator.model.species_ids + [s.getId() for s in simulator.model.get_constant_species()]
         simulation_result = self._simulate(simulator, settings)
         colors = ('b', 'g', 'r', 'c', 'm', 'y', 'k')

@@ -14,16 +14,16 @@ def myeval(formula, d1, d2=None):
 class Kineticizer(object):
     """ Base class for the assignment of kinetics to SBML models"""
     
-    def __init__(self,\
-                 model,\
-                 ss_conc=None,\
-                 ss_flux=None,\
-                 vec_vmax=None,\
-                 vec_keq=None,\
-                 vec_km=None,\
-                 vec_kforw=None,\
-                 vec_kback=None,\
-                 reactions_with_stoich_one=[],\
+    def __init__(self,
+                 model,
+                 ss_conc=None,
+                 ss_flux=None,
+                 vec_vmax=None,
+                 vec_keq=None,
+                 vec_km=None,
+                 vec_kforw=None,
+                 vec_kback=None,
+                 reactions_with_stoich_one=[],
                  lazy_parameters=False):
         """
         @type     model:                      libsbml.model
@@ -64,7 +64,7 @@ class Kineticizer(object):
 
         # define a set of reactions where all stoichiometries are set to 1 in the kinetic law
         self._reactions_with_stoich_one = [r for i,r in enumerate(model.getListOfReactions()) if i in reactions_with_stoich_one]
-        if ss_conc != None:
+        if ss_conc is not None:
             # set the model to the steady state
             ss_dict = dict(zip([s.getId() for s in misc.get_species_wo_enzymes(self._model)], ss_conc))
             for s in model.getListOfSpecies():
@@ -82,26 +82,50 @@ class Kineticizer(object):
             self._assign_kinetic(r, param)
 
     def _get_stoichiometry(self, species_ref):
-        """ use this func instead of the libsbml one if you want to support the funky reaction_with_stoich_one thing """
+        """
+        use this func instead of the libsbml one if you want support for reaction_with_stoich_one
+        @param species_ref: libsbml.species reference
+        @type species_ref: libsbml.species
+        @return: stoichoimetyr
+        @rtype: int
+        """
         r = species_ref.getParentSBMLObject().getParentSBMLObject()
         if r in self._reactions_with_stoich_one:
             return 1
         return species_ref.getStoichiometry()
 
     def _set_enzyme_concentrations(self, enzyme_conc):
-        """ set enzyme concentrations with vector """
+        """
+        set enzyme concentrations with vector
+        @param enzyme_conc: list of enzyme concentrations
+        @type enzyme_conc: list
+        @return: None
+        @rtype: None
+        """
         for i,reaction in enumerate(self._model.getListOfReactions()):
             e=misc.get_enzyme_for_reaction(self._model, reaction)
             e.setInitialConcentration(enzyme_conc[i])
 
     def _set_external_metabolite_conc(self,ss_conc):
-        """ set external metabolite concentrations with vector """
+        """
+        set external metabolite concentrations with vector
+        @param ss_conc: list of steady state concentrations
+        @type ss_conc: list
+        @return: None
+        @rtype: None
+        """
         for i,s in enumerate(misc.get_species_wo_enzymes(self._model)):
             if s.getConstant() or s.getBoundaryCondition():
                 s.setInitialConcentration(ss_conc[i])
 
     def _get_enzyme(self, reaction):
-        """ get an enzyme for a reaction or make one"""
+        """
+        get an enzyme for a reaction or make one
+        @param reaction: reaction
+        @type reaction: libsbml.reaction
+        @return: enzyme for this reaction
+        @rtype: libsbml.species
+        """
         e = misc.get_enzyme_for_reaction(self._model, reaction)
         if not e:
             s = self._model.createSpecies()
@@ -113,25 +137,72 @@ class Kineticizer(object):
         return e
 
     def _test_thermodynamics(self, ss, flux, keq, enzymes):
-        td = Thermodynamics.thermodynamics(self._model)
+        """
+        check thermodynamic consistence (raise Exception if flux signs are not feasible)
+        @param ss: steady state concentrations
+        @type ss: list
+        @param flux: steady state flux
+        @type flux: list
+        @param keq: equilibrium constants
+        @type keq: list
+        @param enzymes: enzyme list
+        @type enzymes: list[libsbml.species]
+        @return: None
+        @rtype: None
+        """
+        td = Thermodynamics.Thermodynamics(self._model)
         nep = misc.get_not_enzyme_positions(self._model)
         if not td.check_flux_signs(ss[nep], flux, keq):
             raise Exception('Flux signs are thermodynamically not feasible')
 
-    def _get_standard_kms(self):
+    @staticmethod
+    def _get_standard_kms():
+        """
+        get standard KM values (here ones)
+        @return: list of KM values
+        @rtype: numpy.array
+        """
         kms = numpy.ones(sum([r.getNumReactants()+r.getNumProducts() for r in model.getListOfReactions()]))
         return kms
 
     def _pack_parameters(self, vec_kforw, vec_kback, vec_km):
-        """ Abstract method to bring input parameters to a structured form """
+        """
+        Abstract method to bring input parameters to a structured form
+        @param vec_kforw: list of kf values
+        @type vec_kforw: list[float]
+        @param vec_kback: list of kr values
+        @type vec_kback: list[float]
+        @param vec_km: list of km values
+        @type vec_km: list[float]
+        """
         raise Exception('Implement me')
         
     def _find_parameters(self, ss_conc, fluxes, eq, kms=None):
-        """ Abstract method to find a suitable parameter set. (returns list of parameters for each reaction)"""
+        """
+        Abstract method to find a suitable parameter set. (returns list of parameters for each reaction)
+        @param ss_conc: steady state concentrations
+        @type ss_conc: list[float]
+        @param fluxes: steady state fluxes
+        @type fluxes: list[float]
+        @param eq: list of equilibrium constants
+        @type eq: list[float]
+        @param kms: list of KM values
+        @type kms: list[float]
+        @return: list of parameters for each reaction)
+        @rtype: list
+        """
         raise Exception('Implement me')
 
     def _assign_kinetic(self, reaction, params):
-        """ Abstract method to assign a new kinetic to the reaction with parameters  """
+        """
+        Abstract method to assign a new kinetic to the reaction with parameters
+        @param reaction: reaction
+        @type reaction: libsbml.reaction
+        @param params: list of paramters
+        @type params: list
+        @return: parametrized reaction
+        @rtype: libsbml.reaction
+        """
         raise Exception('Implement me')
 
 
@@ -139,6 +210,21 @@ class MassAction(Kineticizer):
     """ Class to assign mass actions kinetics to SBML models """
     
     def _find_parameters(self, ss_conc, fluxes, kvs, eq, kms):
+        """
+        compute the parameters that lead to the given steady state
+        @param ss_conc: steady state concentrations
+        @type ss_conc: list[float]
+        @param fluxes: steady state fluxes
+        @type fluxes: list[float]
+        @param kvs: list of kv values
+        @type kvs: list
+        @param eq: list of equilibrium constants
+        @type eq: list
+        @param kms: list of km values
+        @type kms: list
+        @return: list of parameters
+        @rtype: list[float]
+        """
         species = misc.get_species_wo_enzymes(self._model)
         species2pos = dict( zip([s.getId() for s in species], range(len(species)) ) )
         params=[]
@@ -157,6 +243,15 @@ class MassAction(Kineticizer):
         return params
 
     def _assign_kinetic(self, reaction, params):
+        """
+        assign mass action kinetic to the given reaction
+        @param reaction: reaction
+        @type reaction: libsbml.reaction
+        @param params: list of parameters
+        @type params: list
+        @return: parametrized reaction
+        @rtype: libsbml.reaction
+        """
         (kf, kb) = params
         r_id = reaction.getId()
         enzyme = self._get_enzyme(reaction).getId()
@@ -175,6 +270,7 @@ class MassAction(Kineticizer):
         k_b = libsbml.Parameter('kb_'+r_id, kb)
         kl.addParameter(k_b)
         reaction.setKineticLaw(kl)
+        return reaction
         
     def _pack_parameters(self, vec_kforw, vec_kback, vec_km):
         return zip(vec_kforw,vec_kback)
@@ -184,6 +280,21 @@ class CompleteRandomOrder(Kineticizer):
     """ Class to assign complete random order kinetics to SBML models """
     
     def _find_parameters(self, ss_conc, fluxes, kvs, eqs, kms):
+        """
+        compute the parameters that lead to the given steady state
+        @param ss_conc: steady state concentrations
+        @type ss_conc: list[float]
+        @param fluxes: steady state fluxes
+        @type fluxes: list[float]
+        @param kvs: list of kv values
+        @type kvs: list
+        @param eqs: list of equilibrium constants
+        @type eqs: list
+        @param kms: list of km values
+        @type kms: list
+        @return: list of parameters
+        @rtype: list[float]
+        """
         ss_dict = dict(zip([s.getId() for s in misc.get_species_wo_enzymes(self._model)], [float(x) for x in ss_conc]))
         params=[]
         value_dict={}
@@ -213,18 +324,11 @@ class CompleteRandomOrder(Kineticizer):
 
             # find enzyme conc
             forward,backward,denominator  = self._get_formula_factors(reaction, 1)
-            print 
-            print r_id
-            print forward
-            print backward
-            print denominator
             forward_v = myeval(forward, value_dict, ss_dict)
             backward_v = myeval(backward, value_dict, ss_dict)
             denominator_v = myeval(denominator, value_dict, ss_dict)
-            
             v = (kf*forward_v - kb*backward_v)/denominator_v
             enzyme_conc = fluxes[i]/v
-            
             if enzyme_conc<0:
                 raise Exception('Error: Flux, concnetrations of equilibrium constants do not fit.')
             enzyme = misc.get_enzyme_for_reaction(self._model,reaction)
@@ -233,6 +337,16 @@ class CompleteRandomOrder(Kineticizer):
         return params
 
     def _assign_kinetic(self, reaction, params):
+        """
+        assign complete random order kinetic to the given reaction
+        @param reaction: reaction
+        @type reaction: libsbml.reaction
+        @param params: list of parameters
+        @type params: list
+        @return: parametrized reaction
+        @rtype: libsbml.reaction
+        """
+
         (km_sub, km_prod, kf, kb) = params
         r_id = reaction.getId()
         enzyme = self._get_enzyme(reaction).getId()
@@ -260,6 +374,15 @@ class CompleteRandomOrder(Kineticizer):
         reaction.setKineticLaw(kl)
 
     def _get_formula_factors(self, reaction, enzyme):
+        """
+        get the (forward, backward, denominator) parts for the given reaction
+        @param reaction: reaciton
+        @type reaction: libsbml.reaction
+        @param enzyme: enzyme for the reaction
+        @type enzyme: libsbml.species
+        @return: forward, backward, denominator
+        @rtype: tuple
+        """
         r_id = reaction.getId()
         denom=[]
         term = {'Reactants': [], 'Products': []}
@@ -279,9 +402,18 @@ class CompleteRandomOrder(Kineticizer):
         forward = ' * '.join(term['Reactants'])
         backward = ' * '.join(term['Products'])
         denominator = ' * '.join(denom)
-        return (forward, backward, denominator)
+        return forward, backward, denominator
 
     def _pack_parameters(self, vec_kforw, vec_kback, vec_km):
+        """
+        bring input parameters to a structured form
+        @param vec_kforw: list of kf values
+        @type vec_kforw: list[float]
+        @param vec_kback: list of kr values
+        @type vec_kback: list[float]
+        @param vec_km: list of km values
+        @type vec_km: list[float]
+        """
         if type(vec_km) != list:
             vec_km = vec_km.tolist()
         vec_km.reverse()
@@ -299,6 +431,15 @@ class ConvenienceKinetics(CompleteRandomOrder):
 
     """ Class to assign convenience kinetics to SBML models """
     def _get_formula_factors(self, reaction, enzyme):
+        """
+        get the (forward, backward, denominator) parts for the given reaction
+        @param reaction: reaciton
+        @type reaction: libsbml.reaction
+        @param enzyme: enzyme for the reaction
+        @type enzyme: libsbml.species
+        @return: forward, backward, denominator
+        @rtype: tuple
+        """
         r_id = reaction.getId()
         denom = []
         term = {'Reactants': [], 'Products': []}
@@ -319,10 +460,17 @@ class ConvenienceKinetics(CompleteRandomOrder):
         forward = ' * '.join( term['Reactants'] )
         backward = ' * '.join( term['Products'] )
         denominator = ' * '.join( denom )
-        return (forward, backward, denominator)
+        return forward, backward, denominator
 
 
 def parse_input_file(filename):
+    """
+    parse input file
+    @param filename: filename
+    @type filename: str
+    @return: fluxes, ss_conc, vmax, eq_const, kms
+    @rtype: tuple[list]
+    """
     str2arr = lambda str: numpy.array([float(x) for x in str.split()])
     fluxes = ss_conc = vmax = eq_const = kms = None
     f = open(filename, 'r')
@@ -332,14 +480,14 @@ def parse_input_file(filename):
         if line.lower().startswith('fluxes'):
             fluxes = str2arr( line[6:] )
         elif line.lower().startswith('ss_conc'):
-            ss_conc = str2arr( line[7:] )
+            ss_conc = str2arr(line[7:])
         elif line.lower().startswith('vmax'):
-            vmax = str2arr( line[4:] )
+            vmax = str2arr(line[4:])
         elif line.lower().startswith('eq_const'):
-            eq_const = str2arr( line[8:] )
+            eq_const = str2arr(line[8:])
         elif line.lower().startswith('kms'):
-            kms = str2arr( line[3:] )
-    return (fluxes, ss_conc, vmax, eq_const, kms)
+            kms = str2arr(line[3:])
+    return fluxes, ss_conc, vmax, eq_const, kms
 
 
 if __name__=='__main__':
@@ -364,19 +512,19 @@ if __name__=='__main__':
     else:
         flux = ss = vmax = keq = km = None
     
-    type2amount = {'flux': model.getNumReactions(),\
-                   'ss': len( misc.get_species_wo_enzymes(model) ),\
-                   'vmax': model.getNumReactions(),\
-                   'keq': model.getNumReactions(),\
-                   'km': sum([r.getNumReactants()+r.getNumProducts() for r in model.getListOfReactions()]) }
+    type2amount = {'flux': model.getNumReactions(),
+                   'ss': len(misc.get_species_wo_enzymes(model)),
+                   'vmax': model.getNumReactions(),
+                   'keq': model.getNumReactions(),
+                   'km': sum([r.getNumReactants()+r.getNumProducts() for r in model.getListOfReactions()])}
 
     for key in type2amount:
-        if locals()[key]==None:
+        if locals()[key] is None:
             if options.fantasy_params:
                 sys.stderr.write('%s parameters missing, setting to 1\n' %key)
                 locals()[key] = numpy.ones( type2amount[key] )
             else:
-                if key=='km' and options.type=='ma':
+                if key == 'km' and options.type == 'ma':
                     continue
                 sys.stderr.write('%s parameters missing\n' %key)
                 sys.exit()
@@ -384,13 +532,14 @@ if __name__=='__main__':
             sys.stderr.write('Wrong number of parameters for %s\n' %key)
             sys.exit()
 
-    d= {'ck': ConvenienceKinetics,\
-        'cro': CompleteRandomOrder,\
+    d= {'ck': ConvenienceKinetics,
+        'cro': CompleteRandomOrder,
         'ma': MassAction}
     if not options.type in d:
         sys.stderr.write('Error: unknown kinetics type\n')
         sys.exit()
-    d[options.type]( model, ss_conc=ss, ss_flux=flux, vec_vmax=vmax, vec_keq=keq, vec_km=km, reactions_with_stoich_one=[] )
+    d[options.type](model, ss_conc=ss, ss_flux=flux, vec_vmax=vmax, vec_keq=keq,
+                    vec_km=km, reactions_with_stoich_one=[])
     
     print '<?xml version="1.0" encoding="UTF-8"?>'
     print doc.toSBML()

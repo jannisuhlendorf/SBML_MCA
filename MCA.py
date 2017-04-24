@@ -57,6 +57,7 @@ class MCA:
             parameter_names), len(parameter_names)))
         for r_pos, kl in enumerate([r.getKineticLaw() for r in self.model.sbml_model.getListOfReactions()]):
             formula = misc.ast_to_string(kl.getMath(),
+                                         self.model.sbml_model,
                                          self.model.assignment_rules,
                                          self.model.replacements,
                                          mode='python',
@@ -88,6 +89,7 @@ class MCA:
 
         for r_pos, kl in enumerate([r.getKineticLaw() for r in self.model.sbml_model.getListOfReactions()]):
             formula = misc.ast_to_string(kl.getMath(),
+                                         self.model.sbml_model,
                                          self.model.assignment_rules,
                                          self.model.replacements,
                                          mode='python',
@@ -659,6 +661,7 @@ class MCA:
         for r_pos, kl in enumerate([r.getKineticLaw()
                                     for r in self.model.sbml_model.getListOfReactions()]):
             formula = misc.ast_to_string(kl.getMath(),
+                                         self.model.sbml_model,
                                          self.model.assignment_rules,
                                          self.model.replacements,
                                          mode='python',
