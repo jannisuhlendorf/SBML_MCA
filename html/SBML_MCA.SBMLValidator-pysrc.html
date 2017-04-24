@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>SBML_MCA.SBMLValidator</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="SBML_MCA-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="SBML_MCA-module.html">Package&nbsp;SBML_MCA</a> ::
+        Module&nbsp;SBMLValidator
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="SBML_MCA.SBMLValidator-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="SBML_MCA.SBMLValidator-module.html">Module SBML_MCA.SBMLValidator</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">libsbml</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"> </tt>
+<a name="SBMLValidator"></a><div id="SBMLValidator-def"><a name="L4"></a><tt class="py-lineno">  4</tt> <a class="py-toggle" href="#" id="SBMLValidator-toggle" onclick="return toggle('SBMLValidator');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="SBML_MCA.SBMLValidator.SBMLValidator-class.html">SBMLValidator</a><tt class="py-op">:</tt> </tt>
+</div><div id="SBMLValidator-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SBMLValidator-expanded"><a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line">    <tt class="py-docstring">""" class for validating an SBML model """</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line">    <tt id="link-0" class="py-name" targets="Variable SBML_MCA.SBMLValidator.SBMLValidator._maximal_model_size=SBML_MCA.SBMLValidator.SBMLValidator-class.html#_maximal_model_size"><a title="SBML_MCA.SBMLValidator.SBMLValidator._maximal_model_size" class="py-name" href="#" onclick="return doclink('link-0', '_maximal_model_size', 'link-0');">_maximal_model_size</a></tt> <tt class="py-op">=</tt> <tt class="py-number">4000</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"> </tt>
+<a name="SBMLValidator.__init__"></a><div id="SBMLValidator.__init__-def"><a name="L9"></a><tt class="py-lineno">  9</tt> <a class="py-toggle" href="#" id="SBMLValidator.__init__-toggle" onclick="return toggle('SBMLValidator.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SBML_MCA.SBMLValidator.SBMLValidator-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">model</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SBMLValidator.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SBMLValidator.__init__-expanded"><a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">        @type model:  libsbml.model or string</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring">        @param model: SBML model, or filename</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">type</tt><tt class="py-op">(</tt><tt class="py-name">model</tt><tt class="py-op">)</tt><tt class="py-op">==</tt><tt class="py-name">str</tt><tt class="py-op">:</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt> <tt class="py-op">=</tt> <tt class="py-name">libsbml</tt><tt class="py-op">.</tt><tt class="py-name">readSBML</tt><tt class="py-op">(</tt><tt class="py-name">model</tt><tt class="py-op">)</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line">            <tt class="py-name">m</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt><tt class="py-op">.</tt><tt class="py-name">getModel</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt> <tt class="py-op">=</tt> <tt class="py-name">m</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">=</tt><tt class="py-name">model</tt><tt class="py-op">.</tt><tt class="py-name">clone</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt> <tt class="py-op">=</tt> <tt class="py-name">libsbml</tt><tt class="py-op">.</tt><tt class="py-name">SBMLDocument</tt><tt class="py-op">(</tt><tt class="py-name">model</tt><tt class="py-op">.</tt><tt class="py-name">getLevel</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">model</tt><tt class="py-op">.</tt><tt class="py-name">getVersion</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt><tt class="py-op">.</tt><tt class="py-name">setModel</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="SBMLValidator.validate"></a><div id="SBMLValidator.validate-def"><a name="L23"></a><tt class="py-lineno"> 23</tt> <a class="py-toggle" href="#" id="SBMLValidator.validate-toggle" onclick="return toggle('SBMLValidator.validate');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SBML_MCA.SBMLValidator.SBMLValidator-class.html#validate">validate</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SBMLValidator.validate-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SBMLValidator.validate-expanded"><a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">        validate the model (this function should be called)</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">        @return: [warnings,errors] (each of them is a list of strings)</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: list</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt class="py-name">warnings</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-name">errors</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt class="py-name">errors</tt> <tt class="py-op">+=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Method SBML_MCA.SBMLValidator.SBMLValidator._check_model_size()=SBML_MCA.SBMLValidator.SBMLValidator-class.html#_check_model_size"><a title="SBML_MCA.SBMLValidator.SBMLValidator._check_model_size" class="py-name" href="#" onclick="return doclink('link-1', '_check_model_size', 'link-1');">_check_model_size</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">        <tt class="py-name">errors</tt> <tt class="py-op">+=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Method SBML_MCA.SBMLValidator.SBMLValidator._check_not_supported_sbml_mca()=SBML_MCA.SBMLValidator.SBMLValidator-class.html#_check_not_supported_sbml_mca"><a title="SBML_MCA.SBMLValidator.SBMLValidator._check_not_supported_sbml_mca" class="py-name" href="#" onclick="return doclink('link-2', '_check_not_supported_sbml_mca', 'link-2');">_check_not_supported_sbml_mca</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-name">warnings</tt> <tt class="py-op">+=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Method SBML_MCA.SBMLValidator.SBMLValidator._check_initial_conditions()=SBML_MCA.SBMLValidator.SBMLValidator-class.html#_check_initial_conditions"><a title="SBML_MCA.SBMLValidator.SBMLValidator._check_initial_conditions" class="py-name" href="#" onclick="return doclink('link-3', '_check_initial_conditions', 'link-3');">_check_initial_conditions</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-name">w</tt><tt class="py-op">,</tt><tt class="py-name">e</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method SBML_MCA.SBMLValidator.SBMLValidator._get_libsbml_errors()=SBML_MCA.SBMLValidator.SBMLValidator-class.html#_get_libsbml_errors"><a title="SBML_MCA.SBMLValidator.SBMLValidator._get_libsbml_errors" class="py-name" href="#" onclick="return doclink('link-4', '_get_libsbml_errors', 'link-4');">_get_libsbml_errors</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-name">warnings</tt> <tt class="py-op">+=</tt> <tt class="py-name">w</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-name">errors</tt> <tt class="py-op">+=</tt> <tt class="py-name">e</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">[</tt><tt class="py-name">warnings</tt><tt class="py-op">,</tt><tt class="py-name">errors</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"> </tt>
+<a name="SBMLValidator._check_model_size"></a><div id="SBMLValidator._check_model_size-def"><a name="L39"></a><tt class="py-lineno"> 39</tt> <a class="py-toggle" href="#" id="SBMLValidator._check_model_size-toggle" onclick="return toggle('SBMLValidator._check_model_size');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SBML_MCA.SBMLValidator.SBMLValidator-class.html#_check_model_size">_check_model_size</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SBMLValidator._check_model_size-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SBMLValidator._check_model_size-expanded"><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">        check the size of the model</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">        @return: list of errors</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: list[str]</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">errors</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">no_sp</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">.</tt><tt class="py-name">getNumSpecies</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-name">no_par</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">.</tt><tt class="py-name">getNumParameters</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-comment"># global parameters</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">r</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">.</tt><tt class="py-name">getListOfReactions</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-comment"># local parameters</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">            <tt class="py-name">no_par</tt> <tt class="py-op">+=</tt> <tt class="py-name">r</tt><tt class="py-op">.</tt><tt class="py-name">getKineticLaw</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">getNumParameters</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">no_sp</tt><tt class="py-op">*</tt><tt class="py-name">no_par</tt> <tt class="py-op">&gt;</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="SBML_MCA.SBMLValidator.SBMLValidator._maximal_model_size" class="py-name" href="#" onclick="return doclink('link-5', '_maximal_model_size', 'link-0');">_maximal_model_size</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">            <tt class="py-name">errors</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'Model is larger than maximal allowed size.'</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">errors</tt> </tt>
+</div><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"> </tt>
+<a name="SBMLValidator._check_not_supported_sbml_mca"></a><div id="SBMLValidator._check_not_supported_sbml_mca-def"><a name="L54"></a><tt class="py-lineno"> 54</tt> <a class="py-toggle" href="#" id="SBMLValidator._check_not_supported_sbml_mca-toggle" onclick="return toggle('SBMLValidator._check_not_supported_sbml_mca');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SBML_MCA.SBMLValidator.SBMLValidator-class.html#_check_not_supported_sbml_mca">_check_not_supported_sbml_mca</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SBMLValidator._check_not_supported_sbml_mca-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SBMLValidator._check_not_supported_sbml_mca-expanded"><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">        check for features in the sbml that are not supported yet</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">        @return: list of errors</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: list[str]</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-name">errors</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">.</tt><tt class="py-name">getNumConstraints</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">            <tt class="py-name">errors</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'Constraints not supported'</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">.</tt><tt class="py-name">getNumEvents</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">            <tt class="py-name">errors</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'Events not supported'</tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-name">p_ids</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">p</tt><tt class="py-op">.</tt><tt class="py-name">getId</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">.</tt><tt class="py-name">getListOfParameters</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">ia</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">.</tt><tt class="py-name">getListOfInitialAssignments</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">ia</tt><tt class="py-op">.</tt><tt class="py-name">getSymbol</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">not</tt> <tt class="py-keyword">in</tt> <tt class="py-name">p_ids</tt><tt class="py-op">:</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">                <tt class="py-name">errors</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'Initial assignments are currently only supported for parameters.'</tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">c</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">.</tt><tt class="py-name">getListOfCompartments</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">c</tt><tt class="py-op">.</tt><tt class="py-name">getConstant</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">                <tt class="py-name">errors</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'Varying compartment sizes not supported'</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">rule</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">.</tt><tt class="py-name">getListOfRules</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">rule</tt><tt class="py-op">.</tt><tt class="py-name">isAlgebraic</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">                <tt class="py-name">errors</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'Algebraic rules not supported'</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt id="link-6" class="py-name" targets="Variable SBML_MCA.Model.Model.parameter_ids=SBML_MCA.Model.Model-class.html#parameter_ids"><a title="SBML_MCA.Model.Model.parameter_ids" class="py-name" href="#" onclick="return doclink('link-6', 'parameter_ids', 'link-6');">parameter_ids</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">p</tt><tt class="py-op">.</tt><tt class="py-name">getId</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">.</tt><tt class="py-name">getListOfParameters</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">rule</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">.</tt><tt class="py-name">getListOfRules</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">rule</tt><tt class="py-op">.</tt><tt class="py-name">isRate</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">                <tt class="py-keyword">continue</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">            <tt class="py-name">var</tt> <tt class="py-op">=</tt> <tt class="py-name">rule</tt><tt class="py-op">.</tt><tt class="py-name">getVariable</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">var</tt> <tt class="py-keyword">in</tt> <tt id="link-7" class="py-name"><a title="SBML_MCA.Model.Model.parameter_ids" class="py-name" href="#" onclick="return doclink('link-7', 'parameter_ids', 'link-6');">parameter_ids</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">                <tt class="py-name">errors</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'Parameter %s is changed by a rate rule. This is not supported.'</tt> <tt class="py-op">%</tt><tt class="py-op">(</tt><tt class="py-name">var</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">errors</tt> </tt>
+</div><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"> </tt>
+<a name="SBMLValidator._check_initial_conditions"></a><div id="SBMLValidator._check_initial_conditions-def"><a name="L85"></a><tt class="py-lineno"> 85</tt> <a class="py-toggle" href="#" id="SBMLValidator._check_initial_conditions-toggle" onclick="return toggle('SBMLValidator._check_initial_conditions');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SBML_MCA.SBMLValidator.SBMLValidator-class.html#_check_initial_conditions">_check_initial_conditions</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SBMLValidator._check_initial_conditions-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SBMLValidator._check_initial_conditions-expanded"><a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring">        check if for each species initial conditions are given</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt class="py-docstring">        @return: list of warnings</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: list[str]</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-name">warnings</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">s</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_model</tt><tt class="py-op">.</tt><tt class="py-name">getListOfSpecies</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">s</tt><tt class="py-op">.</tt><tt class="py-name">getConstant</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">                <tt class="py-keyword">continue</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt><tt class="py-op">(</tt><tt class="py-name">s</tt><tt class="py-op">.</tt><tt class="py-name">isSetInitialConcentration</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">or</tt> <tt class="py-name">s</tt><tt class="py-op">.</tt><tt class="py-name">isSetInitialAmount</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                <tt class="py-name">warnings</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-string">'No initial value specified for species %s. Setting initial value to 0.'</tt> <tt class="py-op">%</tt><tt class="py-name">s</tt><tt class="py-op">.</tt><tt class="py-name">getId</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">warnings</tt> </tt>
+</div><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="SBMLValidator._get_libsbml_errors"></a><div id="SBMLValidator._get_libsbml_errors-def"><a name="L99"></a><tt class="py-lineno"> 99</tt> <a class="py-toggle" href="#" id="SBMLValidator._get_libsbml_errors-toggle" onclick="return toggle('SBMLValidator._get_libsbml_errors');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="SBML_MCA.SBMLValidator.SBMLValidator-class.html#_get_libsbml_errors">_get_libsbml_errors</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SBMLValidator._get_libsbml_errors-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SBMLValidator._get_libsbml_errors-expanded"><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">        get errors from libsbml</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">        @return: list of warnings and errors</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-docstring">        @rtype: [list, list]</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt><tt class="py-op">.</tt><tt class="py-name">setConsistencyChecks</tt><tt class="py-op">(</tt><tt class="py-name">libsbml</tt><tt class="py-op">.</tt><tt class="py-name">LIBSBML_CAT_GENERAL_CONSISTENCY</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt><tt class="py-op">.</tt><tt class="py-name">setConsistencyChecks</tt><tt class="py-op">(</tt><tt class="py-name">libsbml</tt><tt class="py-op">.</tt><tt class="py-name">LIBSBML_CAT_IDENTIFIER_CONSISTENCY</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt><tt class="py-op">.</tt><tt class="py-name">setConsistencyChecks</tt><tt class="py-op">(</tt><tt class="py-name">libsbml</tt><tt class="py-op">.</tt><tt class="py-name">LIBSBML_CAT_UNITS_CONSISTENCY</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt><tt class="py-op">.</tt><tt class="py-name">setConsistencyChecks</tt><tt class="py-op">(</tt><tt class="py-name">libsbml</tt><tt class="py-op">.</tt><tt class="py-name">LIBSBML_CAT_MATHML_CONSISTENCY</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt><tt class="py-op">.</tt><tt class="py-name">setConsistencyChecks</tt><tt class="py-op">(</tt><tt class="py-name">libsbml</tt><tt class="py-op">.</tt><tt class="py-name">LIBSBML_CAT_SBO_CONSISTENCY</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt><tt class="py-op">.</tt><tt class="py-name">setConsistencyChecks</tt><tt class="py-op">(</tt><tt class="py-name">libsbml</tt><tt class="py-op">.</tt><tt class="py-name">LIBSBML_CAT_OVERDETERMINED_MODEL</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt><tt class="py-op">.</tt><tt class="py-name">setConsistencyChecks</tt><tt class="py-op">(</tt><tt class="py-name">libsbml</tt><tt class="py-op">.</tt><tt class="py-name">LIBSBML_CAT_MODELING_PRACTICE</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-comment"># TODO: find out why this gives zero errors for cloned models</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">errors</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-name">warnings</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt><tt class="py-op">.</tt><tt class="py-name">checkConsistency</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt><tt class="py-op">.</tt><tt class="py-name">getNumErrors</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">            <tt class="py-name">e</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_doc</tt><tt class="py-op">.</tt><tt class="py-name">getError</tt><tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">            <tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">e</tt><tt class="py-op">.</tt><tt class="py-name">getMessage</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">            <tt class="py-name">line</tt> <tt class="py-op">=</tt> <tt class="py-name">e</tt><tt class="py-op">.</tt><tt class="py-name">getLine</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">            <tt class="py-name">fatal</tt> <tt class="py-op">=</tt> <tt class="py-name">e</tt><tt class="py-op">.</tt><tt class="py-name">isFatal</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">            <tt class="py-name">e_type</tt> <tt class="py-op">=</tt> <tt class="py-string">'warning'</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">e</tt><tt class="py-op">.</tt><tt class="py-name">isError</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">                <tt class="py-name">e_type</tt> <tt class="py-op">=</tt> <tt class="py-string">'error'</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">            <tt class="py-keyword">elif</tt> <tt class="py-name">e</tt><tt class="py-op">.</tt><tt class="py-name">isInfo</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">                <tt class="py-name">e_type</tt> <tt class="py-op">=</tt> <tt class="py-string">'info'</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">            <tt class="py-name">error_msg</tt> <tt class="py-op">=</tt> <tt class="py-string">'Libsbml %s in line %d: %s'</tt> <tt class="py-op">%</tt><tt class="py-op">(</tt><tt class="py-name">e_type</tt><tt class="py-op">,</tt> <tt class="py-name">line</tt><tt class="py-op">,</tt> <tt class="py-name">msg</tt><tt class="py-op">)</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">fatal</tt><tt class="py-op">:</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">                <tt class="py-name">errors</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">error_msg</tt><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">                <tt class="py-name">warnings</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">error_msg</tt><tt class="py-op">)</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">[</tt><tt class="py-name">warnings</tt><tt class="py-op">,</tt><tt class="py-name">errors</tt><tt class="py-op">]</tt> </tt>
+</div></div><a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="SBML_MCA-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Mon Apr 24 21:05:11 2017
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

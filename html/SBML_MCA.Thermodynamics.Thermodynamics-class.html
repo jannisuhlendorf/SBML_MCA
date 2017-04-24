@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>SBML_MCA.Thermodynamics.Thermodynamics</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="SBML_MCA-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="SBML_MCA-module.html">Package&nbsp;SBML_MCA</a> ::
+        <a href="SBML_MCA.Thermodynamics-module.html">Module&nbsp;Thermodynamics</a> ::
+        Class&nbsp;Thermodynamics
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="SBML_MCA.Thermodynamics.Thermodynamics-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Thermodynamics</h1><p class="nomargin-top"><span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics">source&nbsp;code</a></span></p>
+<p>Class to compute perform thermodynamic checks on SBML models</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Thermodynamics.Thermodynamics-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">model</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">bool</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Thermodynamics.Thermodynamics-class.html#check_flux_signs" class="summary-sig-name">check_flux_signs</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ss</span>,
+        <span class="summary-sig-arg">fluxes</span>,
+        <span class="summary-sig-arg">keq</span>,
+        <span class="summary-sig-arg">enzymes</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">tol</span>=<span class="summary-sig-default">1e-09</span>)</span><br />
+      check the sign of the fluxes</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics.check_flux_signs">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">bool</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Thermodynamics.Thermodynamics-class.html#check_equilibrium_constants" class="summary-sig-name">check_equilibrium_constants</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">keqs</span>,
+        <span class="summary-sig-arg">tol</span>=<span class="summary-sig-default">1e-14</span>)</span><br />
+      check if the equilibrium constants are thermodynamically feasible</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics.check_equilibrium_constants">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Thermodynamics.Thermodynamics-class.html#find_steady_state_flux" class="summary-sig-name">find_steady_state_flux</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">flux</span>,
+        <span class="summary-sig-arg">ss</span>,
+        <span class="summary-sig-arg">eq</span>)</span><br />
+      find a steady state flux which is consistent with the steady state 
+      concentrations and equilibrium constants</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics.find_steady_state_flux">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">None</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Thermodynamics.Thermodynamics-class.html#check_steady_state" class="summary-sig-name">check_steady_state</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">flux</span>,
+        <span class="summary-sig-arg">tol</span>=<span class="summary-sig-default">0.001</span>)</span><br />
+      check whether the given flux vector satisfies the steady state 
+      condition ds/dt=0</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics.check_steady_state">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Thermodynamics.Thermodynamics-class.html#_get_stoich_mat" class="summary-sig-name" onclick="show_private();">_get_stoich_mat</a>(<span class="summary-sig-arg">model</span>)</span><br />
+      get stoichiometric matrix</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics._get_stoich_mat">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">model</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsbml.Model) - libsbml.Model</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_get_stoich_mat"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_get_stoich_mat</span>(<span class="sig-arg">model</span>)</span>
+    <br /><em class="fname">Static Method</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics._get_stoich_mat">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get stoichiometric matrix</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsbml.model) - libsbml.model</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>stoich. matrix</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="check_flux_signs"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">check_flux_signs</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ss</span>,
+        <span class="sig-arg">fluxes</span>,
+        <span class="sig-arg">keq</span>,
+        <span class="sig-arg">enzymes</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">tol</span>=<span class="sig-default">1e-09</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics.check_flux_signs">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>check the sign of the fluxes</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ss</code></strong> (numpy.array) - steady state values</li>
+        <li><strong class="pname"><code>fluxes</code></strong> (numpy.array) - flux values</li>
+        <li><strong class="pname"><code>keq</code></strong> (numpy.array) - equilibrium constants</li>
+        <li><strong class="pname"><code>enzymes</code></strong> (numpy.array) - list of enzyme concentrations (optional)</li>
+        <li><strong class="pname"><code>tol</code></strong> (float) - tolercance (default: 1e-9)</li>
+    </ul></dd>
+    <dt>Returns: bool</dt>
+        <dd>True (flux signs are OK) or Flase (not)</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="check_equilibrium_constants"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">check_equilibrium_constants</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">keqs</span>,
+        <span class="sig-arg">tol</span>=<span class="sig-default">1e-14</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics.check_equilibrium_constants">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>check if the equilibrium constants are thermodynamically feasible</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>keqs</code></strong> (numpy.array) - list of equilibrium constants</li>
+        <li><strong class="pname"><code>tol</code></strong> (float) - tolerance (default: 1e-14)</li>
+    </ul></dd>
+    <dt>Returns: bool</dt>
+        <dd>True (OK) Flase (no)</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="find_steady_state_flux"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">find_steady_state_flux</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">flux</span>,
+        <span class="sig-arg">ss</span>,
+        <span class="sig-arg">eq</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics.find_steady_state_flux">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>find a steady state flux which is consistent with the steady state 
+  concentrations and equilibrium constants</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>flux</code></strong> (numpy.array) - steady state flux</li>
+        <li><strong class="pname"><code>ss</code></strong> (numpy.array) - steady state concentrations</li>
+        <li><strong class="pname"><code>eq</code></strong> (numnpy.array) - list of equilibrium constants</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>new steady state flux</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="check_steady_state"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">check_steady_state</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">flux</span>,
+        <span class="sig-arg">tol</span>=<span class="sig-default">0.001</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Thermodynamics-pysrc.html#Thermodynamics.check_steady_state">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>check whether the given flux vector satisfies the steady state 
+  condition ds/dt=0</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>flux</code></strong> (numpy.array) - steady state flux</li>
+        <li><strong class="pname"><code>tol</code></strong> (float) - tolerance (default: 1e-3)</li>
+    </ul></dd>
+    <dt>Returns: None</dt>
+        <dd>None (raises Exception if steady state assumption is violated)</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="SBML_MCA-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Mon Apr 24 21:05:11 2017
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

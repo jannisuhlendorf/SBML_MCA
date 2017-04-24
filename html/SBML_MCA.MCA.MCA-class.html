@@ -1,0 +1,1855 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>SBML_MCA.MCA.MCA</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="SBML_MCA-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="SBML_MCA-module.html">Package&nbsp;SBML_MCA</a> ::
+        <a href="SBML_MCA.MCA-module.html">Module&nbsp;MCA</a> ::
+        Class&nbsp;MCA
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="SBML_MCA.MCA.MCA-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class MCA</h1><p class="nomargin-top"><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA">source&nbsp;code</a></span></p>
+<p>Class implementing various metabolic control analysis methods</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">model</span>)</span><br />
+      constructor for MCA class</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_2nd_elasticities" class="summary-sig-name">get_2nd_elasticities</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">parameter_names</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get the second order elasticities, if parameter_names is not 
+      speciefied for all parameters</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_2nd_elasticities">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_elasticities" class="summary-sig-name">get_elasticities</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">parameter_names</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">string_output</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">time</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get elasticities for a custom set of parameters</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_elasticities">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_parameter_elasticities" class="summary-sig-name">get_parameter_elasticities</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">string_output</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get parameter elasticities ( dv / dp )</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_parameter_elasticities">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_metabolite_elasticities" class="summary-sig-name">get_metabolite_elasticities</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">string_output</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get substrate elasticities ( dv / ds )</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_metabolite_elasticities">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_flux_cc" class="summary-sig-name">get_flux_cc</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">string_output</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get flux control coefficients ( dJ / dv )</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_flux_cc">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_conc_cc" class="summary-sig-name">get_conc_cc</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">string_output</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get concentration control coefficients ( dS / dv )</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_conc_cc">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_conc_resp" class="summary-sig-name">get_conc_resp</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">string_output</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get concentration response coefficients ( dS / dp)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_conc_resp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_flux_resp" class="summary-sig-name">get_flux_resp</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">string_output</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get flux response coefficients ( dJ / dp )</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_flux_resp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_custom_conc_resp" class="summary-sig-name">get_custom_conc_resp</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">parameter_names</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">string_output</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get concentration response coefficients for a custom set of 
+      parameters</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_custom_conc_resp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_custom_flux_resp" class="summary-sig-name">get_custom_flux_resp</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">parameter_names</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">string_output</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get flux response coefficients for a custom set of parameters</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_custom_flux_resp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_2nd_conc_resp" class="summary-sig-name">get_2nd_conc_resp</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get the 2nd order concentration response coefficients</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_2nd_conc_resp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_2nd_flux_resp" class="summary-sig-name">get_2nd_flux_resp</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get the 2nd order flux response coefficients</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_2nd_flux_resp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_2nd_custom_conc_resp" class="summary-sig-name">get_2nd_custom_conc_resp</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">parameter_names</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get the 2nd order concentration response coefficients for a custom 
+      parameter set</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_2nd_custom_conc_resp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_2nd_custom_flux_resp" class="summary-sig-name">get_2nd_custom_flux_resp</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">parameter_names</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get the 2nd order flux response coefficients for a custom parameter 
+      set</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_2nd_custom_flux_resp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">2d tuple of numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_2nd_custom_resp" class="summary-sig-name">get_2nd_custom_resp</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">parameter_names</span>)</span><br />
+      returns a tuple with ( R2S, R2J ) (much faster than calling both 
+      custom methods...)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_2nd_custom_resp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_spectral_conc_cc" class="summary-sig-name">get_spectral_conc_cc</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">frequency</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get spectral concentration control coefficients</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_spectral_conc_cc">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_spectral_flux_cc" class="summary-sig-name">get_spectral_flux_cc</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">frequency</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get spectral flux control coefficients</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_spectral_flux_cc">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_spectral_conc_resp" class="summary-sig-name">get_spectral_conc_resp</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">frequency</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get spectral concentration response coefficients</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_spectral_conc_resp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_spectral_flux_resp" class="summary-sig-name">get_spectral_flux_resp</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">frequency</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get spectral flux response coefficients</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_spectral_flux_resp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_jacobian" class="summary-sig-name">get_jacobian</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get the jacobian (dS/dS)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_jacobian">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_stability" class="summary-sig-name">get_stability</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ss_conc</span>=<span class="summary-sig-default">None</span>)</span><br />
+      get the stability (eigenvalues jacobian) of the system at this point</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_stability">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_elasticities_symbolic"></a><span class="summary-sig-name">get_elasticities_symbolic</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">parameter_names</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_elasticities_symbolic">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_time_varying_conc_rc_numerical" class="summary-sig-name">get_time_varying_conc_rc_numerical</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">end_time</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">initial_cond_as_params</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">return_multiple</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">return_species_tc</span>=<span class="summary-sig-default">False</span>)</span><br />
+      get time varying concentration response coefficients</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_time_varying_conc_rc_numerical">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_time_varying_conc_rc" class="summary-sig-name">get_time_varying_conc_rc</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">end_time</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">initial_cond_as_params</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">return_flat</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">return_species_tc</span>=<span class="summary-sig-default">False</span>)</span><br />
+      get time varying concentration response coefficients</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_time_varying_conc_rc">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_time_varying_flux_rc" class="summary-sig-name">get_time_varying_flux_rc</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">end_time</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">initial_cond_as_params</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">return_flat</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">return_species_tc</span>=<span class="summary-sig-default">False</span>)</span><br />
+      get time varying flux response coefficients</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_time_varying_flux_rc">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#get_time_varying_rc_web_if" class="summary-sig-name">get_time_varying_rc_web_if</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">end_time</span>,
+        <span class="summary-sig-arg">what</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">conc</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">initial_cond_as_params</span>=<span class="summary-sig-default">False</span>)</span><br />
+      get time varying response coefficients method for web-interface</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_time_varying_rc_web_if">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">None</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#plot_time_varying_coefficients" class="summary-sig-name">plot_time_varying_coefficients</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">end_time</span>,
+        <span class="summary-sig-arg">what</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">conc_resp</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">initial_cond_as_params</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">None</span>)</span><br />
+      plot time varying coefficients using pylab</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.plot_time_varying_coefficients">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.ndarray</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#_normalize_coefficients" class="summary-sig-name" onclick="show_private();">_normalize_coefficients</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">coeff</span>,
+        <span class="summary-sig-arg">left</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">right</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">first_order</span>=<span class="summary-sig-default">None</span>)</span><br />
+      normalize coefficients (2d or 3d)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA._normalize_coefficients">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.ndarray</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#_normalize_time_varying_coeff" class="summary-sig-name" onclick="show_private();">_normalize_time_varying_coeff</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">coeff</span>,
+        <span class="summary-sig-arg">left</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">right</span>=<span class="summary-sig-default">None</span>)</span><br />
+      normalize time varying response coefficients</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA._normalize_time_varying_coeff">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#_compute_2nd_resp" class="summary-sig-name" onclick="show_private();">_compute_2nd_resp</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">custom_params</span>=<span class="summary-sig-default">None</span>)</span><br />
+      compute the second order responce coefficients</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA._compute_2nd_resp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dict</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#_get_value_dict" class="summary-sig-name" onclick="show_private();">_get_value_dict</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">species_conc</span>)</span><br />
+      get dictionary with standard parameter values</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA._get_value_dict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#_get_elasticity" class="summary-sig-name" onclick="show_private();">_get_elasticity</a>(<span class="summary-sig-arg">formula</span>,
+        <span class="summary-sig-arg">value_dict</span>,
+        <span class="summary-sig-arg">p_name</span>)</span><br />
+      compute elasticity (partial derivative) of formula w.r.t p_name</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA._get_elasticity">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.MCA.MCA-class.html#_get_2nd_elasticity" class="summary-sig-name" onclick="show_private();">_get_2nd_elasticity</a>(<span class="summary-sig-arg">formula</span>,
+        <span class="summary-sig-arg">value_dict</span>,
+        <span class="summary-sig-arg">p_name1</span>,
+        <span class="summary-sig-arg">p_name2</span>)</span><br />
+      get the 2nd derivations of the input function with respect to p_name1
+      and p_name2</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA._get_2nd_elasticity">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_SMALL_FACTOR"></a><span class="summary-name">_SMALL_FACTOR</span> = <code title="1e-12">1e-12</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="MIN_VALUE_NORM"></a><span class="summary-name">MIN_VALUE_NORM</span> = <code title="1e-18">1e-18</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">model</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>constructor for MCA class</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (Model.Model) - model object</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_2nd_elasticities"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_2nd_elasticities</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">parameter_names</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_2nd_elasticities">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get the second order elasticities, if parameter_names is not 
+  speciefied for all parameters</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>parameter_names</code></strong> (list) - list of parameter names</li>
+        <li><strong class="pname"><code>ss_conc</code></strong> (numpy.array) - vector of steady state concentrations</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>3d-tensor with second order elasticities, 1st index: reaction, 
+          2nd index: param 1 3rd index: param 2</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_elasticities"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_elasticities</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">parameter_names</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">string_output</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">time</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_elasticities">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get elasticities for a custom set of parameters</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>parameter_names</code></strong> (list) - list of parameter names</li>
+        <li><strong class="pname"><code>ss_conc</code></strong> (numpy.array) - vector of steady state concentrations</li>
+        <li><strong class="pname"><code>string_output</code></strong> (boolean) - boolean indicating whether the output should be in string form</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix with elasticities</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_parameter_elasticities"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_parameter_elasticities</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">string_output</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_parameter_elasticities">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get parameter elasticities ( dv / dp )</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ss_conc</code></strong> (numpy.array) - vector of steady state concentrations</li>
+        <li><strong class="pname"><code>string_output</code></strong> (boolean) - boolean indicating whether the output should be in string form</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix with elasticities</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_metabolite_elasticities"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_metabolite_elasticities</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">string_output</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_metabolite_elasticities">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get substrate elasticities ( dv / ds )</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ss_conc</code></strong> (numpy.array) - vector of steady state concentrations</li>
+        <li><strong class="pname"><code>string_output</code></strong> (boolean) - boolean indicating whether the output should be in string form</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix with elasticities</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_flux_cc"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_flux_cc</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">string_output</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_flux_cc">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get flux control coefficients ( dJ / dv )</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ss_conc</code></strong> (numpy.array) - vector of steady state concentrations</li>
+        <li><strong class="pname"><code>string_output</code></strong> (boolean) - boolean indicating whether the output should be in string form</li>
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix containing control coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_conc_cc"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_conc_cc</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">string_output</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_conc_cc">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get concentration control coefficients ( dS / dv )</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ss_conc</code></strong> (numpy.array) - vector of steady state concentrations</li>
+        <li><strong class="pname"><code>string_output</code></strong> (boolean) - boolean indicating whether the output should be in string form</li>
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix containing control coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_conc_resp"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_conc_resp</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">string_output</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_conc_resp">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get concentration response coefficients ( dS / dp)</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ss_conc</code></strong> (numpy.array) - vector of steady state concentrations</li>
+        <li><strong class="pname"><code>string_output</code></strong> (boolean) - boolean indicating whether the output should be in string form</li>
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix containing response coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_flux_resp"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_flux_resp</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">string_output</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_flux_resp">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get flux response coefficients ( dJ / dp )</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ss_conc</code></strong> (numpy.array) - vector of steady state concentrations</li>
+        <li><strong class="pname"><code>string_output</code></strong> (boolean) - boolean indicating whether the output should be in string form</li>
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix containing response coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_custom_conc_resp"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_custom_conc_resp</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">parameter_names</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">string_output</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_custom_conc_resp">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get concentration response coefficients for a custom set of 
+  parameters</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>parameter_names</code></strong> (list) - list of parameter names</li>
+        <li><strong class="pname"><code>ss_conc</code></strong> (numpy.array) - vector of steady state concentrations</li>
+        <li><strong class="pname"><code>string_output</code></strong> (boolean) - boolean indicating whether the output should be in string form</li>
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix containing response coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_custom_flux_resp"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_custom_flux_resp</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">parameter_names</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">string_output</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_custom_flux_resp">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get flux response coefficients for a custom set of parameters</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>parameter_names</code></strong> (list) - list of parameter names</li>
+        <li><strong class="pname"><code>ss_conc</code></strong> (numpy.array) - vector of steady state concentrations</li>
+        <li><strong class="pname"><code>string_output</code></strong> (boolean) - boolean indicating whether the output should be in string form</li>
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix containing response coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_2nd_conc_resp"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_2nd_conc_resp</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_2nd_conc_resp">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get the 2nd order concentration response coefficients</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>3d tensor containing second order concentration response 
+          coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_2nd_flux_resp"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_2nd_flux_resp</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_2nd_flux_resp">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get the 2nd order flux response coefficients</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>3d tensor containing second order flux response coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_2nd_custom_conc_resp"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_2nd_custom_conc_resp</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">parameter_names</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_2nd_custom_conc_resp">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get the 2nd order concentration response coefficients for a custom 
+  parameter set</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>parameter_names</code></strong> (list) - list of parameter names</li>
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>3d tensor containing second order concentration response 
+          coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_2nd_custom_flux_resp"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_2nd_custom_flux_resp</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">parameter_names</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_2nd_custom_flux_resp">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get the 2nd order flux response coefficients for a custom parameter 
+  set</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>parameter_names</code></strong> (list) - list of parameter names</li>
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>3d tensor containing second order flux response coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_2nd_custom_resp"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_2nd_custom_resp</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">parameter_names</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_2nd_custom_resp">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>returns a tuple with ( R2S, R2J ) (much faster than calling both 
+  custom methods...)</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>parameter_names</code></strong> (list) - list of parameter names</li>
+    </ul></dd>
+    <dt>Returns: 2d tuple of numpy.array</dt>
+        <dd>tuple containing second order concentration and flux response 
+          coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_spectral_conc_cc"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_spectral_conc_cc</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">frequency</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_spectral_conc_cc">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get spectral concentration control coefficients</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>frequency</code></strong> (number) - frequency of the perturbation</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix of specetral concentration response coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_spectral_flux_cc"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_spectral_flux_cc</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">frequency</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_spectral_flux_cc">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get spectral flux control coefficients</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>frequency</code></strong> (number) - frequency of the perturbation</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix of specetral flux response coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_spectral_conc_resp"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_spectral_conc_resp</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">frequency</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_spectral_conc_resp">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get spectral concentration response coefficients</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>frequency</code></strong> (number) - frequency of the perturbation</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix of specetral concentration response coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_spectral_flux_resp"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_spectral_flux_resp</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">frequency</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_spectral_flux_resp">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get spectral flux response coefficients</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>frequency</code></strong> (number) - frequency of the perturbation</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>matrix of specetral flux response coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_jacobian"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_jacobian</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_jacobian">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get the jacobian (dS/dS)</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ss_conc</code></strong> (numpy.array) - vector of steady state metabolite concentrations</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>jacobian matrix</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_stability"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_stability</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ss_conc</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_stability">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get the stability (eigenvalues jacobian) of the system at this 
+  point</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ss_conc</code></strong> (numpy.array) - vector of steady state metabolite concentrations</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>list of strings containing messages</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_time_varying_conc_rc_numerical"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_time_varying_conc_rc_numerical</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">end_time</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">initial_cond_as_params</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">return_multiple</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">return_species_tc</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_time_varying_conc_rc_numerical">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get time varying concentration response coefficients</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>end_time</code></strong> (float) - time to compute time varying coeffs.</li>
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+        <li><strong class="pname"><code>initial_cond_as_params</code></strong> (bool) - include the initial concentration as influencing parameters</li>
+        <li><strong class="pname"><code>return_multiple</code></strong> (bool) - if True, return normalized, non-normalized coefficients and 
+          errors</li>
+        <li><strong class="pname"><code>return_species_tc</code></strong> (bool) - return also time courses of species</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>[time, time_varying_concentration_response_coefficients]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_time_varying_conc_rc"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_time_varying_conc_rc</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">end_time</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">initial_cond_as_params</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">return_flat</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">return_species_tc</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_time_varying_conc_rc">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get time varying concentration response coefficients</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>end_time</code></strong> (float) - time to compute time varying coeffs.</li>
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+        <li><strong class="pname"><code>initial_cond_as_params</code></strong> (bool) - include the initial concentration as influencing parameters</li>
+        <li><strong class="pname"><code>return_flat</code></strong> (bool) - if True, return flattened (2d) version of coefficients</li>
+        <li><strong class="pname"><code>return_species_tc</code></strong> (bool) - return also time courses of species</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>[time, time_varying_concentration_response_coefficients]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_time_varying_flux_rc"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_time_varying_flux_rc</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">end_time</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">initial_cond_as_params</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">return_flat</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">return_species_tc</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_time_varying_flux_rc">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get time varying flux response coefficients</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>end_time</code></strong> (float) - time to compute time varying coeffs.</li>
+        <li><strong class="pname"><code>normalize</code></strong> (string or None) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+        <li><strong class="pname"><code>initial_cond_as_params</code></strong> (bool) - include the initial concentration as influencing parameters</li>
+        <li><strong class="pname"><code>return_flat</code></strong> (bool) - if True, return flattened (2d) version of coefficients</li>
+        <li><strong class="pname"><code>return_species_tc</code></strong> (bool) - return also time courses of species</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>[timepoints, time_varying_flux_response_coefficients]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_time_varying_rc_web_if"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_time_varying_rc_web_if</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">end_time</span>,
+        <span class="sig-arg">what</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">conc</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">initial_cond_as_params</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.get_time_varying_rc_web_if">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get time varying response coefficients method for web-interface</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>end_time</code></strong> (float) - time to compute time varying coeffs.</li>
+        <li><strong class="pname"><code>what</code></strong> (str) - conc or flux for concentration or flux response coefficients</li>
+        <li><strong class="pname"><code>initial_cond_as_params</code></strong> (bool) - include the initial concentration as influencing parameters</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>[timepoints, tv_rc, tv_rc_norm, errors]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="plot_time_varying_coefficients"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">plot_time_varying_coefficients</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">end_time</span>,
+        <span class="sig-arg">what</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">conc_resp</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">initial_cond_as_params</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA.plot_time_varying_coefficients">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>plot time varying coefficients using pylab</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>end_time</code></strong> (float) - time to compute time varying coeffs.</li>
+        <li><strong class="pname"><code>what</code></strong> (str) - conc or flux for concentration or flux response coefficients</li>
+        <li><strong class="pname"><code>initial_cond_as_params</code></strong> (bool) - include the initial concentration as influencing parameters</li>
+        <li><strong class="pname"><code>normalize</code></strong> (string or none) - one of (None, left, right, both) indicating how the coefficients 
+          should be normalized</li>
+    </ul></dd>
+    <dt>Returns: None</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_normalize_coefficients"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_normalize_coefficients</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">coeff</span>,
+        <span class="sig-arg">left</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">right</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">first_order</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA._normalize_coefficients">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>normalize coefficients (2d or 3d)</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>coeff</code></strong> (numpy.array) - coefficients to be normalized</li>
+        <li><strong class="pname"><code>left</code></strong> (str or numpy.ndarray) - conc for steady state concentrations, flux for steady state 
+          fluxes or numpy.ndarray for custom normalization</li>
+        <li><strong class="pname"><code>right</code></strong> (str or numpy.ndarray) - conc for steady state concentrations, flux for steady state 
+          fluxes or numpy.ndarray for custom normalization</li>
+        <li><strong class="pname"><code>first_order</code></strong> (numpy.ndarray) - correction terms for normalization of second order terms</li>
+    </ul></dd>
+    <dt>Returns: numpy.ndarray</dt>
+        <dd>normalized coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_normalize_time_varying_coeff"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_normalize_time_varying_coeff</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">coeff</span>,
+        <span class="sig-arg">left</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">right</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA._normalize_time_varying_coeff">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>normalize time varying response coefficients</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>coeff</code></strong> (numpy.ndarray) - time varying coefficient</li>
+        <li><strong class="pname"><code>left</code></strong> (None or numpy.ndarray) - left side normalization (concentrations or fluxes)</li>
+        <li><strong class="pname"><code>right</code></strong> (None or numpy.ndarray) - right side normalization</li>
+    </ul></dd>
+    <dt>Returns: numpy.ndarray</dt>
+        <dd>normalized coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_compute_2nd_resp"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_compute_2nd_resp</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">custom_params</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA._compute_2nd_resp">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>compute the second order responce coefficients</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>custom_params</code></strong> (list) - list of custom parameter to compute 2nd order response 
+          coefficients for</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>2nd concentration response coefficients, 2nd flux response 
+          coefficients</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_get_value_dict"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_get_value_dict</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">species_conc</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA._get_value_dict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get dictionary with standard parameter values</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>species_conc</code></strong> (list) - list of species concentrations</li>
+    </ul></dd>
+    <dt>Returns: dict</dt>
+        <dd>dictionary {species_id: concentration}</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_get_elasticity"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_get_elasticity</span>(<span class="sig-arg">formula</span>,
+        <span class="sig-arg">value_dict</span>,
+        <span class="sig-arg">p_name</span>)</span>
+    <br /><em class="fname">Static Method</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA._get_elasticity">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>compute elasticity (partial derivative) of formula w.r.t p_name</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>formula</code></strong> (str) - formula to derive</li>
+        <li><strong class="pname"><code>value_dict</code></strong> (dict) - dictionary with values for parameters</li>
+        <li><strong class="pname"><code>p_name</code></strong> (str) - parameter name to derive</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>d(formula)/d(p_name)</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_get_2nd_elasticity"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_get_2nd_elasticity</span>(<span class="sig-arg">formula</span>,
+        <span class="sig-arg">value_dict</span>,
+        <span class="sig-arg">p_name1</span>,
+        <span class="sig-arg">p_name2</span>)</span>
+    <br /><em class="fname">Static Method</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.MCA-pysrc.html#MCA._get_2nd_elasticity">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get the 2nd derivations of the input function with respect to p_name1 
+  and p_name2</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>formula</code></strong> (str) - formula to derive</li>
+        <li><strong class="pname"><code>value_dict</code></strong> (dict) - dictionary with values for parameters</li>
+        <li><strong class="pname"><code>p_name1</code></strong> (str) - first parameter name to derive</li>
+        <li><strong class="pname"><code>p_name2</code></strong> (str) - second parameter name to derive</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>d^2 f / dxdy</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="SBML_MCA-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Mon Apr 24 21:05:11 2017
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

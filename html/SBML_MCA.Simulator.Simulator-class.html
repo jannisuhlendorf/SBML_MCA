@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>SBML_MCA.Simulator.Simulator</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="SBML_MCA-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="SBML_MCA-module.html">Package&nbsp;SBML_MCA</a> ::
+        <a href="SBML_MCA.Simulator-module.html">Module&nbsp;Simulator</a> ::
+        Class&nbsp;Simulator
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="SBML_MCA.Simulator.Simulator-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Simulator</h1><p class="nomargin-top"><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator">source&nbsp;code</a></span></p>
+<p>Class for the simulation of SBML models</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Simulator.Simulator-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">model</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Simulator.Simulator-class.html#get_steady_state" class="summary-sig-name">get_steady_state</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">s0</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">tol</span>=<span class="summary-sig-default">1e-12</span>,
+        <span class="summary-sig-arg">max_steps</span>=<span class="summary-sig-default">100</span>,
+        <span class="summary-sig-arg">max_computation_time</span>=<span class="summary-sig-default">180</span>,
+        <span class="summary-sig-arg">old_ss</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">d_params</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">old_conc_resp</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">string_output</span>=<span class="summary-sig-default">False</span>)</span><br />
+      find a steady state of the system, if the steady state before a 
+      parameter perturbation (old_ss), the parameter change (d_params) and 
+      the response coefficients of the unperturbed model (old_conc_resp) 
+      are given, the initial values are linearly approximated (can be much 
+      faster, than with initial values)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.get_steady_state">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Simulator.Simulator-class.html#get_steady_state_flux" class="summary-sig-name">get_steady_state_flux</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">string_output</span>=<span class="summary-sig-default">False</span>)</span><br />
+      get the flux in steady state</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.get_steady_state_flux">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Simulator.Simulator-class.html#solve_steady_state" class="summary-sig-name">solve_steady_state</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      solve steady state by a numerical optimization</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.solve_steady_state">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Simulator.Simulator-class.html#dS_dt" class="summary-sig-name">dS_dt</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">species_conc</span>,
+        <span class="summary-sig-arg">t</span>)</span><br />
+      compute rate of metabolite change</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.dS_dt">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Simulator.Simulator-class.html#flux" class="summary-sig-name">flux</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">species_conc</span>,
+        <span class="summary-sig-arg">t</span>)</span><br />
+      get reaction velocities at given point</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.flux">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Simulator.Simulator-class.html#integrate" class="summary-sig-name">integrate</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">time</span>,
+        <span class="summary-sig-arg">steps</span>,
+        <span class="summary-sig-arg">s0</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">r_tol</span>=<span class="summary-sig-default">1e-06</span>,
+        <span class="summary-sig-arg">a_tol</span>=<span class="summary-sig-default">1e-12</span>)</span><br />
+      integrate the model and return result as matrix</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.integrate">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Simulator.Simulator-class.html#integrate_with_constant_species" class="summary-sig-name">integrate_with_constant_species</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">time</span>,
+        <span class="summary-sig-arg">steps</span>,
+        <span class="summary-sig-arg">s0</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">r_tol</span>=<span class="summary-sig-default">1e-06</span>,
+        <span class="summary-sig-arg">a_tol</span>=<span class="summary-sig-default">1e-12</span>)</span><br />
+      same as integrate function, but also include species with boundary 
+      condition or constant set to true</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.integrate_with_constant_species">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dict</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Simulator.Simulator-class.html#integrate_return_dict" class="summary-sig-name">integrate_return_dict</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">time</span>,
+        <span class="summary-sig-arg">steps</span>,
+        <span class="summary-sig-arg">s0</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">r_tol</span>=<span class="summary-sig-default">1e-06</span>,
+        <span class="summary-sig-arg">a_tol</span>=<span class="summary-sig-default">1e-12</span>,
+        <span class="summary-sig-arg">with_constant_species</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">with_assignment_rules</span>=<span class="summary-sig-default">True</span>)</span><br />
+      integrates the model and returns a dictionary as result</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.integrate_return_dict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Simulator.Simulator-class.html#plot_timecourse" class="summary-sig-name">plot_timecourse</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">time</span>,
+        <span class="summary-sig-arg">steps</span>,
+        <span class="summary-sig-arg">s0</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">r_tol</span>=<span class="summary-sig-default">1e-06</span>,
+        <span class="summary-sig-arg">a_tol</span>=<span class="summary-sig-default">1e-12</span>,
+        <span class="summary-sig-arg">legend</span>=<span class="summary-sig-default">True</span>)</span><br />
+      integrate the model and return plot the result</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.plot_timecourse">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dict</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Simulator.Simulator-class.html#compute_assignment_rules" class="summary-sig-name">compute_assignment_rules</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">simulation_result</span>,
+        <span class="summary-sig-arg">species_ids</span>)</span><br />
+      compute assignment rules for species after a simulation</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.compute_assignment_rules">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.ndarray</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.Simulator.Simulator-class.html#odeint_wrapper" class="summary-sig-name">odeint_wrapper</a>(<span class="summary-sig-arg">d_func</span>,
+        <span class="summary-sig-arg">x0</span>,
+        <span class="summary-sig-arg">timepoints</span>,
+        <span class="summary-sig-arg">rtol</span>=<span class="summary-sig-default">1e-06</span>,
+        <span class="summary-sig-arg">atol</span>=<span class="summary-sig-default">1e-12</span>)</span><br />
+      wrapper function for scipy.integrate.odepack.odeint adding error 
+      handling</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.odeint_wrapper">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">model</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (Model.Model) - SBML_MCA model object</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_steady_state"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_steady_state</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">s0</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">tol</span>=<span class="sig-default">1e-12</span>,
+        <span class="sig-arg">max_steps</span>=<span class="sig-default">100</span>,
+        <span class="sig-arg">max_computation_time</span>=<span class="sig-default">180</span>,
+        <span class="sig-arg">old_ss</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">d_params</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">old_conc_resp</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">string_output</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.get_steady_state">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>find a steady state of the system, if the steady state before a 
+  parameter perturbation (old_ss), the parameter change (d_params) and the 
+  response coefficients of the unperturbed model (old_conc_resp) are given,
+  the initial values are linearly approximated (can be much faster, than 
+  with initial values)</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>s0</code></strong> (numpy.array) - vector of initial concentrations</li>
+        <li><strong class="pname"><code>tol</code></strong> (number) - tolerance</li>
+        <li><strong class="pname"><code>old_ss</code></strong> (numpy.array) - previously computed steady stae</li>
+        <li><strong class="pname"><code>d_params</code></strong> (numpy.array) - vector of parameter deviations</li>
+        <li><strong class="pname"><code>old_conc_resp</code></strong> (numpy.array) - the concentration response coefficients of the model with the old
+          parameter values</li>
+        <li><strong class="pname"><code>string_output</code></strong> (boolean) - boolean indicating whether the output should be in string from</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>vector of steady state metabolite concentrations</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_steady_state_flux"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_steady_state_flux</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">string_output</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.get_steady_state_flux">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get the flux in steady state</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>string_output</code></strong> (boolean @param      string_output   boolean indicating whether 
+          the output should be a string @rtype                      
+          numpy.array @return                     vector of reaction rates 
+          in steady state)</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="solve_steady_state"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">solve_steady_state</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.solve_steady_state">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>solve steady state by a numerical optimization</p>
+  <dl class="fields">
+    <dt>Returns: numpy.array</dt>
+        <dd>vector of steady state concentrations</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dS_dt"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dS_dt</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">species_conc</span>,
+        <span class="sig-arg">t</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.dS_dt">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>compute rate of metabolite change</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>species_conc</code></strong> (list[float]) - list of species concentrations</li>
+        <li><strong class="pname"><code>t</code></strong> (float) - current time</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>array of rate of changes for each substrate</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="flux"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">flux</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">species_conc</span>,
+        <span class="sig-arg">t</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.flux">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get reaction velocities at given point</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>species_conc</code></strong> (list[float]) - list of species concentrations</li>
+        <li><strong class="pname"><code>t</code></strong> (float) - current time</li>
+    </ul></dd>
+    <dt>Returns: numpy.array</dt>
+        <dd>array of reaction rate velocities</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="integrate"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">integrate</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">time</span>,
+        <span class="sig-arg">steps</span>,
+        <span class="sig-arg">s0</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">r_tol</span>=<span class="sig-default">1e-06</span>,
+        <span class="sig-arg">a_tol</span>=<span class="sig-default">1e-12</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.integrate">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>integrate the model and return result as matrix</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>time</code></strong> (number) - simulation time</li>
+        <li><strong class="pname"><code>steps</code></strong> (number) - number of time steps</li>
+        <li><strong class="pname"><code>s0</code></strong> (numpy.array) - vector of initial metabolite concentrations</li>
+        <li><strong class="pname"><code>r_tol</code></strong> (number) - relative tolervance</li>
+        <li><strong class="pname"><code>a_tol</code></strong> (number) - absolute tolerance @rtype     numpy.array @return    matrix 
+          containing a row for each metabolite time course</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="integrate_with_constant_species"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">integrate_with_constant_species</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">time</span>,
+        <span class="sig-arg">steps</span>,
+        <span class="sig-arg">s0</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">r_tol</span>=<span class="sig-default">1e-06</span>,
+        <span class="sig-arg">a_tol</span>=<span class="sig-default">1e-12</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.integrate_with_constant_species">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>same as integrate function, but also include species with boundary 
+  condition or constant set to true</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>time</code></strong> (number) - simulation time</li>
+        <li><strong class="pname"><code>steps</code></strong> (number) - number of time steps</li>
+        <li><strong class="pname"><code>s0</code></strong> (numpy.array) - vector of initial metabolite concentrations</li>
+        <li><strong class="pname"><code>r_tol</code></strong> (number) - relative tolervance</li>
+        <li><strong class="pname"><code>a_tol</code></strong> (number) - absolute tolerance @rtype     numpy.array @return    matrix 
+          containing a row for each metabolite time course</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="integrate_return_dict"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">integrate_return_dict</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">time</span>,
+        <span class="sig-arg">steps</span>,
+        <span class="sig-arg">s0</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">r_tol</span>=<span class="sig-default">1e-06</span>,
+        <span class="sig-arg">a_tol</span>=<span class="sig-default">1e-12</span>,
+        <span class="sig-arg">with_constant_species</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">with_assignment_rules</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.integrate_return_dict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>integrates the model and returns a dictionary as result</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>time</code></strong> (float) - current time</li>
+        <li><strong class="pname"><code>steps</code></strong> (int) - number of steps</li>
+        <li><strong class="pname"><code>s0</code></strong> (numpy.array) - steady state concentration (optional)</li>
+        <li><strong class="pname"><code>r_tol</code></strong> (float) - relative solver tolerance</li>
+        <li><strong class="pname"><code>a_tol</code></strong> (float) - absolute solver tolernace</li>
+        <li><strong class="pname"><code>with_constant_species</code></strong> (bool) - include constant species</li>
+        <li><strong class="pname"><code>with_assignment_rules</code></strong> (bool) - include assignment rules</li>
+    </ul></dd>
+    <dt>Returns: dict</dt>
+        <dd>dictionary with simulation results {species: result}</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="plot_timecourse"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">plot_timecourse</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">time</span>,
+        <span class="sig-arg">steps</span>,
+        <span class="sig-arg">s0</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">r_tol</span>=<span class="sig-default">1e-06</span>,
+        <span class="sig-arg">a_tol</span>=<span class="sig-default">1e-12</span>,
+        <span class="sig-arg">legend</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.plot_timecourse">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>integrate the model and return plot the result</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>time</code></strong> (number) - simulation time</li>
+        <li><strong class="pname"><code>steps</code></strong> (number) - number of time steps</li>
+        <li><strong class="pname"><code>s0</code></strong> (numpy.array) - vector of initial metabolite concentrations</li>
+        <li><strong class="pname"><code>r_tol</code></strong> (number) - relative tolervance</li>
+        <li><strong class="pname"><code>a_tol</code></strong> (number) - absolute tolerance</li>
+        <li><strong class="pname"><code>legend</code></strong> (boolean) - indicate whether plot should include a legend</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="compute_assignment_rules"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">compute_assignment_rules</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">simulation_result</span>,
+        <span class="sig-arg">species_ids</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.compute_assignment_rules">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>compute assignment rules for species after a simulation</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>simulation_result</code></strong> (numpy.ndarray) - matrix of simulation result</li>
+        <li><strong class="pname"><code>species_ids</code></strong> (list[str]) - list of species IDs</li>
+    </ul></dd>
+    <dt>Returns: dict</dt>
+        <dd>dictionary of assignment rule results {assignment_rule: result}</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="odeint_wrapper"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">odeint_wrapper</span>(<span class="sig-arg">d_func</span>,
+        <span class="sig-arg">x0</span>,
+        <span class="sig-arg">timepoints</span>,
+        <span class="sig-arg">rtol</span>=<span class="sig-default">1e-06</span>,
+        <span class="sig-arg">atol</span>=<span class="sig-default">1e-12</span>)</span>
+    <br /><em class="fname">Static Method</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.Simulator-pysrc.html#Simulator.odeint_wrapper">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>wrapper function for scipy.integrate.odepack.odeint adding error 
+  handling</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>d_func</code></strong> (function) - derivative function</li>
+        <li><strong class="pname"><code>x0</code></strong> (numpy.array) - list of intial values</li>
+        <li><strong class="pname"><code>timepoints</code></strong> (numpy.array) - list of time points</li>
+        <li><strong class="pname"><code>r_tol</code></strong> (number) - relative tolervance</li>
+        <li><strong class="pname"><code>a_tol</code></strong> (number) - absolute tolerance</li>
+    </ul></dd>
+    <dt>Returns: numpy.ndarray</dt>
+        <dd>result matrix</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="SBML_MCA-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Mon Apr 24 21:05:11 2017
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>SBML_MCA.misc</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="SBML_MCA-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="SBML_MCA-module.html">Package&nbsp;SBML_MCA</a> ::
+        Module&nbsp;misc
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="SBML_MCA.misc-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module misc</h1><p class="nomargin-top"><span class="codelink"><a href="SBML_MCA.misc-pysrc.html">source&nbsp;code</a></span></p>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">str</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#matrix2string" class="summary-sig-name">matrix2string</a>(<span class="summary-sig-arg">mat</span>,
+        <span class="summary-sig-arg">head</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">left</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">justify</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">center</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">delim</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"> | </code><code class="variable-quote">'</code></span>)</span><br />
+      convert matrix to a string representation</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#matrix2string">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">libsbml.model</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#make_unique_local_parameters" class="summary-sig-name">make_unique_local_parameters</a>(<span class="summary-sig-arg">model</span>)</span><br />
+      Function to give all local parameters unique ids</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#make_unique_local_parameters">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list[libsbml.species]</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#get_not_constant_species" class="summary-sig-name">get_not_constant_species</a>(<span class="summary-sig-arg">model</span>)</span><br />
+      get species of the model that are not constant</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_not_constant_species">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">bool</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#is_enzyme" class="summary-sig-name">is_enzyme</a>(<span class="summary-sig-arg">species</span>)</span><br />
+      is the given species an enzyme?</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#is_enzyme">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list[libsbml.species]</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#get_enzymes" class="summary-sig-name">get_enzymes</a>(<span class="summary-sig-arg">model</span>)</span><br />
+      get the enzymes of the model</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_enzymes">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list[int]</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#get_not_enzyme_positions" class="summary-sig-name">get_not_enzyme_positions</a>(<span class="summary-sig-arg">model</span>)</span><br />
+      get positions of species that are not enzymes</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_not_enzyme_positions">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list[libsbml.species]</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#get_species_wo_enzymes" class="summary-sig-name">get_species_wo_enzymes</a>(<span class="summary-sig-arg">model</span>)</span><br />
+      gett species that are not enzymes</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_species_wo_enzymes">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">libsbml.species</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#get_enzyme_for_reaction" class="summary-sig-name">get_enzyme_for_reaction</a>(<span class="summary-sig-arg">model</span>,
+        <span class="summary-sig-arg">reaction</span>)</span><br />
+      get the enzyme for a given reaction</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_enzyme_for_reaction">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list[libsbml.reaction]</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#get_enzyme_catalysed_reactions" class="summary-sig-name">get_enzyme_catalysed_reactions</a>(<span class="summary-sig-arg">model</span>)</span><br />
+      Find the reactions that are being catalysed by an enzyme (enzymatic 
+      reactions)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_enzyme_catalysed_reactions">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#add_enzymes_to_reactions" class="summary-sig-name">add_enzymes_to_reactions</a>(<span class="summary-sig-arg">model</span>)</span><br />
+      Create an enzyme for each reaction, if none exists (and modify 
+      kinetic law)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#add_enzymes_to_reactions">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#get_parameter_value" class="summary-sig-name">get_parameter_value</a>(<span class="summary-sig-arg">model</span>,
+        <span class="summary-sig-arg">_id</span>)</span><br />
+      get a certain paraemter value</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_parameter_value">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#set_parameter_value" class="summary-sig-name">set_parameter_value</a>(<span class="summary-sig-arg">model</span>,
+        <span class="summary-sig-arg">_id</span>,
+        <span class="summary-sig-arg">value</span>)</span><br />
+      set a parameter value</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#set_parameter_value">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">str</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#get_parameter_name" class="summary-sig-name">get_parameter_name</a>(<span class="summary-sig-arg">model</span>,
+        <span class="summary-sig-arg">_id</span>)</span><br />
+      get the name of a parameter</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_parameter_name">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.ndarray</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#nullspace" class="summary-sig-name">nullspace</a>(<span class="summary-sig-arg">matrix</span>,
+        <span class="summary-sig-arg">tol</span>=<span class="summary-sig-default">1e-14</span>)</span><br />
+      Get the nullspace (kernel) of a matrix</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#nullspace">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy.ndarray</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#matrix2tensor" class="summary-sig-name">matrix2tensor</a>(<span class="summary-sig-arg">A</span>,
+        <span class="summary-sig-arg">B</span>)</span><br />
+      make a tensor from 2 matrices Tikl = Aik * Bil</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#matrix2tensor">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">str</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#ast_code_to_string" class="summary-sig-name">ast_code_to_string</a>(<span class="summary-sig-arg">ast_code</span>)</span><br />
+      get string representation of libsbml AST code</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#ast_code_to_string">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">str</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#get_formula" class="summary-sig-name">get_formula</a>(<span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">sbml_model</span>,
+        <span class="summary-sig-arg">params</span>,
+        <span class="summary-sig-arg">assignment_rules</span>,
+        <span class="summary-sig-arg">replacements</span>)</span><br />
+      get a string representation for a function definition with parameters
+      already replaced</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_formula">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">str</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#ast_to_string" class="summary-sig-name">ast_to_string</a>(<span class="summary-sig-arg">ast</span>,
+        <span class="summary-sig-arg">sbml_model</span>,
+        <span class="summary-sig-arg">assignment_rules</span>,
+        <span class="summary-sig-arg">replacements</span>,
+        <span class="summary-sig-arg">mode</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">python</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">replace</span>=<span class="summary-sig-default">True</span>)</span><br />
+      convert libsbml AST node to string</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#ast_to_string">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">str</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="SBML_MCA.misc-module.html#ast_to_string_libsbml" class="summary-sig-name">ast_to_string_libsbml</a>(<span class="summary-sig-arg">ast</span>)</span><br />
+      convert libsbml AST node to string, using libsbml</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="SBML_MCA.misc-pysrc.html#ast_to_string_libsbml">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'SBML_MCA'"><code class="variable-quote">'</code><code class="variable-string">SBML_MCA</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="matrix2string"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">matrix2string</span>(<span class="sig-arg">mat</span>,
+        <span class="sig-arg">head</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">left</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">justify</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">center</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">delim</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"> | </code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#matrix2string">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>convert matrix to a string representation</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>mat</code></strong> (numpy.ndarray) - matrix</li>
+        <li><strong class="pname"><code>head</code></strong> (list[str]) - list of column names</li>
+        <li><strong class="pname"><code>left</code></strong> (list[str]) - list of row names</li>
+        <li><strong class="pname"><code>justify</code></strong> (str) - justify (left|center|right)</li>
+        <li><strong class="pname"><code>delim</code></strong> (str) - delimiter (default |)</li>
+    </ul></dd>
+    <dt>Returns: str</dt>
+        <dd>string representation of matrix</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="make_unique_local_parameters"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">make_unique_local_parameters</span>(<span class="sig-arg">model</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#make_unique_local_parameters">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to give all local parameters unique ids</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsbml.model) - libsbml.model</li>
+    </ul></dd>
+    <dt>Returns: libsbml.model</dt>
+        <dd>libsbml.model</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_not_constant_species"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_not_constant_species</span>(<span class="sig-arg">model</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_not_constant_species">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get species of the model that are not constant</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsbml.model) - libsbml.model</li>
+    </ul></dd>
+    <dt>Returns: list[libsbml.species]</dt>
+        <dd>list of species</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_enzyme"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_enzyme</span>(<span class="sig-arg">species</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#is_enzyme">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>is the given species an enzyme?</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>species</code></strong> (libsbml.species) - libsbml.species</li>
+    </ul></dd>
+    <dt>Returns: bool</dt>
+        <dd>bool</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_enzymes"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_enzymes</span>(<span class="sig-arg">model</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_enzymes">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get the enzymes of the model</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsmbl.model) - libsbml.model</li>
+    </ul></dd>
+    <dt>Returns: list[libsbml.species]</dt>
+        <dd>list of enzymes</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_not_enzyme_positions"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_not_enzyme_positions</span>(<span class="sig-arg">model</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_not_enzyme_positions">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get positions of species that are not enzymes</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsbml.model) - libsbml.model</li>
+    </ul></dd>
+    <dt>Returns: list[int]</dt>
+        <dd>list of positions</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_species_wo_enzymes"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_species_wo_enzymes</span>(<span class="sig-arg">model</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_species_wo_enzymes">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>gett species that are not enzymes</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsbml.model) - libsbml.model</li>
+    </ul></dd>
+    <dt>Returns: list[libsbml.species]</dt>
+        <dd>list of species</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_enzyme_for_reaction"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_enzyme_for_reaction</span>(<span class="sig-arg">model</span>,
+        <span class="sig-arg">reaction</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_enzyme_for_reaction">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get the enzyme for a given reaction</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsbml.model) - libsbml.model</li>
+        <li><strong class="pname"><code>reaction</code></strong> (libsbml.reaction) - libsbml.reaction</li>
+    </ul></dd>
+    <dt>Returns: libsbml.species</dt>
+        <dd>enzme for the reaction</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_enzyme_catalysed_reactions"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_enzyme_catalysed_reactions</span>(<span class="sig-arg">model</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_enzyme_catalysed_reactions">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Find the reactions that are being catalysed by an enzyme (enzymatic 
+  reactions)</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsbml.model) - libsbml.model</li>
+    </ul></dd>
+    <dt>Returns: list[libsbml.reaction]</dt>
+        <dd>list of reactions</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="add_enzymes_to_reactions"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">add_enzymes_to_reactions</span>(<span class="sig-arg">model</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#add_enzymes_to_reactions">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Create an enzyme for each reaction, if none exists (and modify kinetic
+  law)</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsbml.model) - libsbml.model</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_parameter_value"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_parameter_value</span>(<span class="sig-arg">model</span>,
+        <span class="sig-arg">_id</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_parameter_value">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get a certain paraemter value</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsbml.model) - libsbml.model</li>
+        <li><strong class="pname"><code>_id</code></strong> (str) - id of paraemter</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>parameter value</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_parameter_value"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_parameter_value</span>(<span class="sig-arg">model</span>,
+        <span class="sig-arg">_id</span>,
+        <span class="sig-arg">value</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#set_parameter_value">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>set a parameter value</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsbml.model) - libsbml.model</li>
+        <li><strong class="pname"><code>_id</code></strong> (str) - id of paraemter</li>
+        <li><strong class="pname"><code>value</code></strong> (float) - parameter value</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_parameter_name"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_parameter_name</span>(<span class="sig-arg">model</span>,
+        <span class="sig-arg">_id</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_parameter_name">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get the name of a parameter</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>model</code></strong> (libsbml.model) - libsbml.model</li>
+        <li><strong class="pname"><code>_id</code></strong> (str) - id of paraemter</li>
+    </ul></dd>
+    <dt>Returns: str</dt>
+        <dd>parmaeter name or empty string if no nameis given</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="nullspace"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">nullspace</span>(<span class="sig-arg">matrix</span>,
+        <span class="sig-arg">tol</span>=<span class="sig-default">1e-14</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#nullspace">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Get the nullspace (kernel) of a matrix</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>matrix</code></strong> (numpy.ndarray) - marix</li>
+        <li><strong class="pname"><code>tol</code></strong> (float) - tolerance (default 1e-14)</li>
+    </ul></dd>
+    <dt>Returns: numpy.ndarray</dt>
+        <dd>nullspace</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="matrix2tensor"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">matrix2tensor</span>(<span class="sig-arg">A</span>,
+        <span class="sig-arg">B</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#matrix2tensor">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>make a tensor from 2 matrices Tikl = Aik * Bil</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>A</code></strong> (numpy.ndarray) - matrix A</li>
+        <li><strong class="pname"><code>B</code></strong> (numpy.ndarray) - matrix B</li>
+    </ul></dd>
+    <dt>Returns: numpy.ndarray</dt>
+        <dd>tensor</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="ast_code_to_string"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ast_code_to_string</span>(<span class="sig-arg">ast_code</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#ast_code_to_string">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get string representation of libsbml AST code</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ast_code</code></strong> (int) - ast code</li>
+    </ul></dd>
+    <dt>Returns: str</dt>
+        <dd>string</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_formula"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_formula</span>(<span class="sig-arg">name</span>,
+        <span class="sig-arg">sbml_model</span>,
+        <span class="sig-arg">params</span>,
+        <span class="sig-arg">assignment_rules</span>,
+        <span class="sig-arg">replacements</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#get_formula">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>get a string representation for a function definition with parameters 
+  already replaced</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>name</code></strong> (str) - function name</li>
+        <li><strong class="pname"><code>sbml_model</code></strong> (libsbml.model) - libsbml model</li>
+        <li><strong class="pname"><code>params</code></strong> (list) - parameter values</li>
+        <li><strong class="pname"><code>assignment_rules</code></strong> (dict) - dictionary of assignment rules</li>
+        <li><strong class="pname"><code>replacements</code></strong> (dict) - dictionary of replacements</li>
+    </ul></dd>
+    <dt>Returns: str</dt>
+        <dd>formula</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="ast_to_string"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ast_to_string</span>(<span class="sig-arg">ast</span>,
+        <span class="sig-arg">sbml_model</span>,
+        <span class="sig-arg">assignment_rules</span>,
+        <span class="sig-arg">replacements</span>,
+        <span class="sig-arg">mode</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">python</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">replace</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#ast_to_string">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>convert libsbml AST node to string</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ast</code></strong> (libsbml.ast) - ast node</li>
+        <li><strong class="pname"><code>sbml_model</code></strong> (libsbml.model) - sbml model</li>
+        <li><strong class="pname"><code>assignment_rules</code></strong> (dict) - dictionary of assignment rules</li>
+        <li><strong class="pname"><code>replacements</code></strong> (dict) - dictionary of replacements</li>
+        <li><strong class="pname"><code>mode</code></strong> (str) - conversion mode (python or fortran)</li>
+        <li><strong class="pname"><code>replace</code></strong> (bool) - whether to replace parameters with their values</li>
+    </ul></dd>
+    <dt>Returns: str</dt>
+        <dd>string representation of the formula</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="ast_to_string_libsbml"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ast_to_string_libsbml</span>(<span class="sig-arg">ast</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="SBML_MCA.misc-pysrc.html#ast_to_string_libsbml">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>convert libsbml AST node to string, using libsbml</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ast</code></strong> (libsbml.ast) - libsbml.ast</li>
+    </ul></dd>
+    <dt>Returns: str</dt>
+        <dd>string</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="SBML_MCA-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Mon Apr 24 21:05:11 2017
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
