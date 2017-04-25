@@ -110,129 +110,6 @@ class Model:
         return self._kinetic_laws
 
     @property
-    def external_species_concentrations(self):
-        """
-        get external species concentrations
-        @return: list of initial conditions
-        @rtype: list
-        """
-        if self._external_species_concentrations is None:
-            self._external_species_concentrations = {}
-            for s in self.get_species(species_filter = self.is_species_constant):
-                if s.isSetInitialConcentration():
-                    self._external_species_concentrations[s.getId()] = s.getInitialConcentration()
-                elif s.isSetInitialAmount():
-                    self._external_species_concentrations[s.getId()] = s.getInitialAmount()
-        return self._external_species_concentrations
-
-    @property
-    def rate_rules(self):
-        """
-        get rate rules (explicid ODEs)
-        @return: dictionary of rate rules key=variable, value=rate rule
-        @rtype: dict
-        """
-        if self._rate_rules is None:
-            self._rate_rules = {}
-            for rule in self.sbml_model.getListOfRules():
-                var = rule.getVariable()
-                formula = misc.ast_to_string(rule.getMath(), self.assignment_rules, self.replacements, mode='')
-                if rule.isRate():
-                    self._rate_rules[var] = formula
-                elif rule.isAlgebraic():
-                    raise CriticalError('Algebraic rules not supported')
-            self._rate_rules = self._replace_flux_symbols(self._rate_rules)
-        return self._rate_rules
-
-    @property
-    def assignment_rules(self):
-        """
-        get assignment rules
-        @return: dictionary of assignment rules
-        @rtype: dict
-        """
-        if self._assignment_rules is None:
-            is_loop = True
-            self._assignment_rules = {}
-            while is_loop:  # loop until no assignment rule is dependent on another assignment
-                for rule in self.sbml_model.getListOfRules():
-                    if rule.isAssignment():
-                        var = rule.getVariable()
-                        formula = misc.ast_to_string(rule.getMath(),
-                                                     self.assignment_rules,
-                                                     self.replacements,
-                                                     mode='',
-                                                     replace=True)
-                        formula_wo_replace = misc.ast_to_string(rule.getMath(),
-                                                                self.assignment_rules,
-                                                                self.replacements,
-                                                                mode='',
-                                                                replace=False)
-                        self._assignment_rules[var] = {True: formula, False: formula_wo_replace}
-                # check dependencies
-                is_loop = False
-                for var1 in self._assignment_rules:
-                    for var2 in self._assignment_rules:
-                        if var2 in self._assignment_rules[var1][True]:
-                            is_loop = True
-        return self._assignment_rules
-
-    @property
-    def replacements(self):
-        """
-        get dictionary of parameter values and compartmets
-        @return: replacements (constant parameter values)
-        @rtype: dict
-        """
-        if self._replacements is None:
-            # do not take include parameters that are modified by a rule
-            self._replacements = {}
-            params_changed_by_rule = [r.getVariable() for r in self.sbml_model.getListOfRules()]
-            for (pos, base) in enumerate([self.sbml_model] +
-                                                 [r.getKineticLaw() for r in self.sbml_model.getListOfReactions()]):
-                for p in base.getListOfParameters():
-                    if not p.getId() in params_changed_by_rule:
-                        self._replacements[p.getId()] = p.getValue()
-            for comp in self.sbml_model.getListOfCompartments():
-                s = 1.
-                if comp.isSetSize():
-                    s = comp.getSize()
-                elif comp.isSetVolume():
-                    s = comp.getVolume()
-                self._replacements[comp.getId()] = s
-            # handle initial assignments (they might be dependent on each other,
-            # therefore try 50 evaluations)
-            max_iter = 50
-            # this has to be done manually, because get_initial_conc method depends
-            # on parameters which are not yet known
-            params_with_species = {}
-            for s in self.sbml_model.getListOfSpecies():
-                if s.isSetInitialConcentration():
-                    params_with_species[s.getId()] = s.getInitialConcentration()
-                elif s.isSetInitialAmount():
-                    params_with_species[s.getId()] = s.getInitialAmount()
-
-            while any([math.isnan(self._replacements[x]) for x in self._replacements]) and max_iter > 0:
-                params_with_species.update(self._replacements)
-                ass = self._evaluate_initial_assignments(params_with_species)
-                for p in ass:
-                    if self._replacements.has_key(p) and math.isnan(self._replacements[p]):
-                        self._replacements[p] = float(ass[p])
-                    max_iter -= 1
-        return self._replacements
-
-    @property
-    def species_2_position(self):
-        """
-        get dictionary mapping species to position in stoichiometric matrix
-        @return: mapping species to position in stoichiometric matrix
-        @rtype: dict
-        """
-        if self._species_2_position is None:
-            self._species_2_position = dict(zip(self.species_ids, range(self.species_ids.__len__())))
-        return self._species_2_position
-
-    @property
     def species_ids(self):
         """
         @return: list of species IDs
@@ -270,6 +147,16 @@ class Model:
         return self._parameter_ids
 
     @property
+    def reaction_ids(self):
+        """
+        @return: list of reaction IDs
+        @rtype: list
+        """
+        if self._reaction_ids is None:
+            self._reaction_ids = [r.getId() for r in self.sbml_model.getListOfReactions()]
+        return self._reaction_ids
+
+    @property
     def ode_variables(self):
         """
         @return: list of species IDs and parameter IDs which are modified by an ODE (ether take part in reaction
@@ -280,6 +167,134 @@ class Model:
             self._ode_variables = self.species_ids \
                                   + [p_id for p_id in self._rate_rules if not p_id in self.species_ids]
         return self._ode_variables
+
+    @property
+    def external_species_concentrations(self):
+        """
+        get external species concentrations
+        @return: list of initial conditions
+        @rtype: list
+        """
+        if self._external_species_concentrations is None:
+            self._external_species_concentrations = {}
+            for s in self.get_species(species_filter = self.is_species_constant):
+                if s.isSetInitialConcentration():
+                    self._external_species_concentrations[s.getId()] = s.getInitialConcentration()
+                elif s.isSetInitialAmount():
+                    self._external_species_concentrations[s.getId()] = s.getInitialAmount()
+        return self._external_species_concentrations
+
+    @property
+    def rate_rules(self):
+        """
+        get rate rules (explicid ODEs)
+        @return: dictionary of rate rules key=variable, value=rate rule
+        @rtype: dict
+        """
+        if self._rate_rules is None:
+            self._rate_rules = {}
+            for rule in self.sbml_model.getListOfRules():
+                var = rule.getVariable()
+                formula = misc.ast_to_string(rule.getMath(),
+                                             self.sbml_model,
+                                             self.assignment_rules,
+                                             self.replacements,
+                                             mode='')
+                if rule.isRate():
+                    self._rate_rules[var] = formula
+                elif rule.isAlgebraic():
+                    raise CriticalError('Algebraic rules not supported')
+            self._rate_rules = self._replace_flux_symbols(self._rate_rules)
+        return self._rate_rules
+
+    @property
+    def assignment_rules(self):
+        """
+        get assignment rules
+        @return: dictionary of assignment rules
+        @rtype: dict
+        """
+        if self._assignment_rules is None:
+            is_loop = True
+            self._assignment_rules = {}
+            while is_loop:  # loop until no assignment rule is dependent on another assignment
+                for rule in self.sbml_model.getListOfRules():
+                    if rule.isAssignment():
+                        var = rule.getVariable()
+                        formula = misc.ast_to_string(rule.getMath(),
+                                                     self.sbml_model,
+                                                     self.assignment_rules,
+                                                     self.replacements,
+                                                     mode='',
+                                                     replace=True)
+                        formula_wo_replace = misc.ast_to_string(rule.getMath(),
+                                                                self.sbml_model,
+                                                                self.assignment_rules,
+                                                                self.replacements,
+                                                                mode='',
+                                                                replace=False)
+                        self._assignment_rules[var] = {True: formula, False: formula_wo_replace}
+                # check dependencies
+                is_loop = False
+                for var1 in self._assignment_rules:
+                    for var2 in self._assignment_rules:
+                        if var2 in self._assignment_rules[var1][True]:
+                            is_loop = True
+        return self._assignment_rules
+
+    @property
+    def replacements(self):
+        """
+        get dictionary of parameter values and compartmets
+        @return: replacements (constant parameter values)
+        @rtype: dict
+        """
+        if self._replacements is None:
+            # do not take include parameters that are modified by a rule
+            self._replacements = {}
+            params_changed_by_rule = [r.getVariable() for r in self.sbml_model.getListOfRules()]
+            for (pos, base) in enumerate([self.sbml_model] +
+                                                 [r.getKineticLaw() for r in self.sbml_model.getListOfReactions()]):
+                for p in base.getListOfParameters():
+                    if not p.getId() in params_changed_by_rule:
+                        self._replacements[p.getId()] = p.getValue()
+            for comp in self.sbml_model.getListOfCompartments():
+                if comp.isSetSize():
+                    s = comp.getSize()
+                elif comp.isSetVolume():
+                    s = comp.getVolume()
+                else:
+                    s = 1. # default compartment size
+                self._replacements[comp.getId()] = s
+            params_with_species = {}
+            for s in self.sbml_model.getListOfSpecies():
+                if s.isSetInitialConcentration():
+                    params_with_species[s.getId()] = s.getInitialConcentration()
+                elif s.isSetInitialAmount():
+                    params_with_species[s.getId()] = s.getInitialAmount()
+
+            # handle initial assignments (they might be dependent on each other,
+            # therefore try 50 evaluations)
+            max_iter = 50
+            while any([math.isnan(self._replacements[x]) for x in self._replacements]) and max_iter > 0:
+                params_with_species.update(self._replacements)
+                ass = self._evaluate_initial_assignments(params_with_species)
+                for p in ass:
+                    if self._replacements.has_key(p) and math.isnan(self._replacements[p]):
+                        self._replacements[p] = float(ass[p])
+                    max_iter -= 1
+        return self._replacements
+
+    @property
+    def species_2_position(self):
+        """
+        get dictionary mapping species to position in stoichiometric matrix
+        @return: mapping species to position in stoichiometric matrix
+        @rtype: dict
+        """
+        if self._species_2_position is None:
+            self._species_2_position = dict(zip(self.species_ids, range(self.species_ids.__len__())))
+        return self._species_2_position
 
     @property
     def enzyme_positions(self):
@@ -304,19 +319,6 @@ class Model:
             self._not_enzyme_positions = [i for i in range(len(self.species_ids)) if i not in self.enzyme_positions]
         return self._not_enzyme_positions
 
-    def get_species(self, species_filter=None):
-        """
-        get list of species
-        @param species_filter: filter to only get a specific type of species (e.g. constant ones)
-        @type species_filter: function
-        @return: list of species
-        @rtype: list
-        """
-        if species_filter is None:
-            return self.sbml_model.getListOfSpecies()
-        else:
-            return filter(species_filter, self.sbml_model.getListOfSpecies())
-
     @property
     def species_volume_prefactor(self):
         """
@@ -338,15 +340,18 @@ class Model:
             self._species_volume_prefactor = numpy.array(factors)
         return self._species_volume_prefactor
 
-    @property
-    def reaction_ids(self):
+    def get_species(self, species_filter=None):
         """
-        @return: list of reaction IDs
+        get list of species
+        @param species_filter: filter to only get a specific type of species (e.g. constant ones)
+        @type species_filter: function
+        @return: list of species
         @rtype: list
         """
-        if self._reaction_ids is None:
-            self._reaction_ids = [r.getId() for r in self.sbml_model.getListOfReactions()]
-        return self._reaction_ids
+        if species_filter is None:
+            return self.sbml_model.getListOfSpecies()
+        else:
+            return filter(species_filter, self.sbml_model.getListOfSpecies())
 
     def get_parameter_values(self, parameter_ids=None):
         """
@@ -600,6 +605,7 @@ class Model:
         formulas = []
         for pos, kl in enumerate([r.getKineticLaw() for r in self.sbml_model.getListOfReactions()]):
             formula = misc.ast_to_string(kl.getMath(),
+                                         self.sbml_model,
                                          self.assignment_rules,
                                          self.replacements,
                                          mode='python')
