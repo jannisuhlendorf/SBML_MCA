@@ -27,15 +27,8 @@ class Simulator:
         self._no_steady_state = False
         self._steady_state_s0 = None
 
-    def get_steady_state(self,
-                         s0=None,
-                         tol=1e-12,
-                         max_steps=100,
-                         max_computation_time=180,
-                         old_ss=None,
-                         d_params=None,
-                         old_conc_resp=None,
-                         string_output=False):
+    def get_steady_state(self, s0=None, tol=1e-12, max_steps=100, max_computation_time=180, old_ss=None,
+                         d_params=None, old_conc_resp=None, string_output=False):
         """
         find a steady state of the system, if the steady state before a parameter perturbation (old_ss), the
         parameter change (d_params) and the response coefficients of the unperturbed model (old_conc_resp) are
@@ -126,7 +119,6 @@ class Simulator:
         # TODO: implement different comp. sizes
         s0 = self.model.get_initial_conc()
         [L_inv, L, _] = self.model.N_partitioned
-        print self.model.N_partitioned
         si = numpy.dot(L_inv, s0)
         t = s0 - numpy.dot(L, si)
         f = lambda x: numpy.linalg.norm(

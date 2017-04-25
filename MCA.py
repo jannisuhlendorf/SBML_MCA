@@ -11,7 +11,7 @@ import pylab
 class MCA:
     """ Class implementing various metabolic control analysis methods """
     
-    _SMALL_FACTOR = 1e-12  # used to add to the trace of a singular jacobian
+    SMALL_FACTOR = 1e-12  # used to add to the trace of a singular jacobian
     MIN_VALUE_NORM = 1e-18  # minimal value that is divided by in normalization
 
     def __init__(self, model):
@@ -36,37 +36,6 @@ class MCA:
         self._2nd_frc = None
         # save parameters for which the coefficients have been computed
         self._reference_params = {}
-
-    def get_2nd_elasticities(self, parameter_names=None, ss_conc=None):
-        """
-        get the second order elasticities, if parameter_names is not speciefied for all parameters
-        @type    parameter_names:  list
-        @param   parameter_names:  list of parameter names
-        @type    ss_conc:          numpy.array
-        @param   ss_conc:          vector of steady state concentrations
-        @rtype:                    numpy.array
-        @return:                   3d-tensor with second order elasticities,
-                                   1st index: reaction, 2nd index: param 1 3rd index: param 2
-        """
-        if ss_conc is None:
-            ss_conc = self.simulator.get_steady_state()
-        if parameter_names is None:
-            parameter_names = self.model.parameter_ids
-        value_dict = self._get_value_dict(ss_conc)
-        ee = numpy.zeros((self.model.sbml_model.getNumReactions(), len(
-            parameter_names), len(parameter_names)))
-        for r_pos, kl in enumerate([r.getKineticLaw() for r in self.model.sbml_model.getListOfReactions()]):
-            formula = misc.ast_to_string(kl.getMath(),
-                                         self.model.sbml_model,
-                                         self.model.assignment_rules,
-                                         self.model.replacements,
-                                         mode='python',
-                                         replace=False)
-            for p1_pos, p1_id in enumerate(parameter_names):
-                for p2_pos, p2_id in enumerate(parameter_names[:p1_pos + 1]):
-                    ela = self._get_2nd_elasticity(formula, value_dict, p1_id, p2_id)
-                    ee[r_pos, p1_pos, p2_pos] = ee[r_pos, p2_pos, p1_pos] = ela
-        return ee
 
     def get_elasticities(self, parameter_names, ss_conc=None, string_output=False, time=None):
         """
@@ -181,6 +150,37 @@ class MCA:
                                       [r.getId() for r in self.model.sbml_model.getListOfReactions()])
         return e_ela
 
+    def get_2nd_elasticities(self, parameter_names=None, ss_conc=None):
+        """
+        get the second order elasticities, if parameter_names is not speciefied for all parameters
+        @type    parameter_names:  list
+        @param   parameter_names:  list of parameter names
+        @type    ss_conc:          numpy.array
+        @param   ss_conc:          vector of steady state concentrations
+        @rtype:                    numpy.array
+        @return:                   3d-tensor with second order elasticities,
+                                   1st index: reaction, 2nd index: param 1 3rd index: param 2
+        """
+        if ss_conc is None:
+            ss_conc = self.simulator.get_steady_state()
+        if parameter_names is None:
+            parameter_names = self.model.parameter_ids
+        value_dict = self._get_value_dict(ss_conc)
+        ee = numpy.zeros((self.model.sbml_model.getNumReactions(), len(
+            parameter_names), len(parameter_names)))
+        for r_pos, kl in enumerate([r.getKineticLaw() for r in self.model.sbml_model.getListOfReactions()]):
+            formula = misc.ast_to_string(kl.getMath(),
+                                         self.model.sbml_model,
+                                         self.model.assignment_rules,
+                                         self.model.replacements,
+                                         mode='python',
+                                         replace=False)
+            for p1_pos, p1_id in enumerate(parameter_names):
+                for p2_pos, p2_id in enumerate(parameter_names[:p1_pos + 1]):
+                    ela = self._get_2nd_elasticity(formula, value_dict, p1_id, p2_id)
+                    ee[r_pos, p1_pos, p2_pos] = ee[r_pos, p2_pos, p1_pos] = ela
+        return ee
+
     def get_flux_cc(self, ss_conc=None, string_output=False, normalize=None):
         """
         get flux control coefficients ( dJ / dv )
@@ -267,7 +267,7 @@ class MCA:
             M_inv = numpy.linalg.inv(M)
         except:
             try:
-                M_inv = numpy.linalg.inv(M + numpy.eye(len(M)) * self._SMALL_FACTOR)
+                M_inv = numpy.linalg.inv(M + numpy.eye(len(M)) * self.SMALL_FACTOR)
             except:
                 raise NoncriticalError('Error: Singular Jacobian')
 
@@ -560,7 +560,7 @@ class MCA:
         except:
             try:
                 M_inv = numpy.linalg.inv(
-                    M + numpy.eye(len(M)) * self._SMALL_FACTOR)
+                    M + numpy.eye(len(M)) * self.SMALL_FACTOR)
             except:
                 raise NoncriticalError('Error: Singular Jacobian')
 

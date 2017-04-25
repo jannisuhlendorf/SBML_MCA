@@ -69,7 +69,7 @@ class Model:
                         s = self.sbml_model.getSpecies(sr.getSpecies())
                         if s.getBoundaryCondition() \
                                 or s.getConstant() \
-                                or s.getId() in species_ids_changed_by_rule:  # we dont want no constant species in our stoich matrix
+                                or s.getId() in species_ids_changed_by_rule:
                             continue
                         j = self.species_2_position[sr.getSpecies()]
                         self._N[j, i] += sign * sr.getStoichiometry()
